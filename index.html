@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Examen: La Edad Antigua</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky: #E8F4FD;
+    --sand: #FDF6E3;
+    --gold: #F4B942;
+    --gold-dark: #C8860A;
+    --blue: #3A86D4;
+    --blue-dark: #1A5FA0;
+    --green: #4CAF50;
+    --green-dark: #2E7D32;
+    --red: #E53935;
+    --red-light: #FFEBEE;
+    --green-light: #E8F5E9;
+    --purple: #7B5EA7;
+    --orange: #F77F00;
+    --teal: #00897B;
+    --bg: #FDF6E3;
+    --white: #FFFFFF;
+    --text: #2D2D2D;
+    --muted: #6B6B6B;
+    --border: #E0D5C0;
+    --radius: 16px;
+    --radius-lg: 24px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--sky);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* STARS BACKGROUND */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(circle, rgba(255,255,200,0.6) 1px, transparent 1px),
+      radial-gradient(circle, rgba(255,255,200,0.4) 1px, transparent 1px);
+    background-size: 80px 80px, 40px 40px;
+    background-position: 0 0, 20px 20px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.3;
+  }
+
+  .app { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: 20px 16px 60px; }
+
+  /* HEADER */
+  .header {
+    text-align: center;
+    padding: 28px 24px 20px;
+    background: linear-gradient(135deg, #1A3A6B 0%, #2E5EAA 60%, #3A86D4 100%);
+    border-radius: var(--radius-lg);
+    margin-bottom: 24px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; left: 50%; transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #2E5EAA;
+  }
+  .header h1 {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(22px, 5vw, 34px);
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+  .header p { font-size: 14px; opacity: 0.9; }
+
+  /* VARIANT SELECTOR */
+  .variant-selector {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .variant-btn {
+    font-family: 'Fredoka One', cursive;
+    font-size: 15px;
+    padding: 10px 22px;
+    border-radius: 50px;
+    border: 3px solid var(--blue);
+    background: white;
+    color: var(--blue);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .variant-btn:hover { background: var(--blue); color: white; transform: translateY(-2px); }
+  .variant-btn.active { background: var(--blue); color: white; box-shadow: 0 4px 12px rgba(58,134,212,0.4); }
+  .variant-emoji { font-size: 20px; }
+
+  /* PROGRESS */
+  .progress-bar-wrap {
+    background: #D0E8F8;
+    border-radius: 50px;
+    height: 12px;
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    border-radius: 50px;
+    background: linear-gradient(90deg, var(--blue), var(--teal));
+    transition: width 0.4s ease;
+  }
+  .progress-label {
+    font-size: 13px;
+    color: var(--muted);
+    text-align: right;
+    margin-bottom: 20px;
+  }
+
+  /* QUESTION CARD */
+  .question-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-bottom: 20px;
+    border: 2px solid var(--border);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    animation: slideIn 0.3s ease;
+  }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .q-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+  .q-badge {
+    font-family: 'Fredoka One', cursive;
+    font-size: 13px;
+    padding: 4px 12px;
+    border-radius: 50px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .badge-test { background: #E8F0FF; color: #3A5EAA; }
+  .badge-vf { background: #FFF3E0; color: #E65100; }
+  .badge-fill { background: #E8F5E9; color: #2E7D32; }
+  .badge-match { background: #F3E5F5; color: #6A1B9A; }
+
+  .q-number {
+    font-family: 'Fredoka One', cursive;
+    font-size: 28px;
+    color: var(--blue);
+    line-height: 1;
+    min-width: 36px;
+  }
+  .q-text {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--text);
+    flex: 1;
+  }
+
+  /* ILLUSTRATION */
+  .q-illustration {
+    display: flex;
+    justify-content: center;
+    margin: 12px 0 16px;
+  }
+  .q-illustration svg { max-width: 180px; }
+
+  /* TEST OPTIONS */
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 4px;
+  }
+  @media (max-width: 480px) { .options-grid { grid-template-columns: 1fr; } }
+
+  .option-btn {
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    border: 2.5px solid var(--border);
+    background: var(--sand);
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.18s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .option-btn:hover:not(:disabled) {
+    border-color: var(--blue);
+    background: #EFF6FF;
+    transform: translateY(-2px);
+  }
+  .option-btn.correct { background: var(--green-light); border-color: var(--green); color: var(--green-dark); }
+  .option-btn.wrong { background: var(--red-light); border-color: var(--red); color: var(--red); }
+  .option-btn:disabled { cursor: default; }
+  .option-letter {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--blue);
+    color: white;
+    font-family: 'Fredoka One', cursive;
+    font-size: 13px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .option-btn.correct .option-letter { background: var(--green); }
+  .option-btn.wrong .option-letter { background: var(--red); }
+
+  /* VF BUTTONS */
+  .vf-buttons { display: flex; gap: 12px; margin-top: 4px; }
+  .vf-btn {
+    flex: 1;
+    padding: 14px;
+    border-radius: var(--radius);
+    border: 2.5px solid var(--border);
+    background: var(--sand);
+    font-family: 'Fredoka One', cursive;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.18s;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+  }
+  .vf-btn:hover:not(:disabled) { transform: translateY(-2px); }
+  .vf-btn.vf-true:hover:not(:disabled) { background: var(--green-light); border-color: var(--green); }
+  .vf-btn.vf-false:hover:not(:disabled) { background: var(--red-light); border-color: var(--red); }
+  .vf-btn.correct { background: var(--green-light); border-color: var(--green); color: var(--green-dark); }
+  .vf-btn.wrong { background: var(--red-light); border-color: var(--red); color: var(--red); }
+  .vf-btn:disabled { cursor: default; }
+
+  /* FILL IN THE BLANK */
+  .fill-wrap { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
+  .fill-input {
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 10px;
+    border: 2.5px solid var(--blue);
+    background: white;
+    color: var(--text);
+    width: 180px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .fill-input:focus { border-color: var(--purple); box-shadow: 0 0 0 3px rgba(123,94,167,0.15); }
+  .fill-input.correct { border-color: var(--green); background: var(--green-light); }
+  .fill-input.wrong { border-color: var(--red); background: var(--red-light); }
+  .fill-check-btn {
+    font-family: 'Fredoka One', cursive;
+    font-size: 15px;
+    padding: 8px 20px;
+    border-radius: 50px;
+    border: none;
+    background: var(--blue);
+    color: white;
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+  .fill-check-btn:hover { background: var(--blue-dark); transform: translateY(-1px); }
+  .fill-check-btn:disabled { opacity: 0.5; cursor: default; }
+
+  /* MATCH */
+  .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+  .match-item {
+    padding: 10px 14px;
+    border-radius: var(--radius);
+    border: 2.5px solid var(--border);
+    background: var(--sand);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: center;
+  }
+  .match-item.left-item { color: var(--blue-dark); border-color: var(--blue); background: #EFF6FF; }
+  .match-item.right-item { color: var(--purple); border-color: var(--purple); background: #F3E5F5; }
+  .match-item.selected { transform: scale(1.04); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+  .match-item.matched { opacity: 0.5; cursor: default; background: var(--green-light); border-color: var(--green); color: var(--green-dark); }
+  .match-item.wrong-match { background: var(--red-light); border-color: var(--red); }
+
+  /* FEEDBACK */
+  .feedback {
+    margin-top: 14px;
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    display: none;
+    align-items: center;
+    gap: 8px;
+  }
+  .feedback.show { display: flex; }
+  .feedback.correct-fb { background: var(--green-light); color: var(--green-dark); }
+  .feedback.wrong-fb { background: var(--red-light); color: var(--red); }
+  .feedback-icon { font-size: 20px; }
+
+  /* SCORE PANEL */
+  .score-panel {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 32px 24px;
+    text-align: center;
+    border: 2px solid var(--border);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    display: none;
+    animation: slideIn 0.4s ease;
+  }
+  .score-panel.show { display: block; }
+  .score-title { font-family: 'Fredoka One', cursive; font-size: 28px; color: var(--blue-dark); margin-bottom: 8px; }
+  .score-big { font-family: 'Fredoka One', cursive; font-size: 72px; line-height: 1; color: var(--gold-dark); }
+  .score-denom { font-size: 28px; color: var(--muted); }
+  .score-msg { font-size: 18px; font-weight: 700; margin: 14px 0 6px; }
+  .score-emoji { font-size: 48px; margin: 10px 0; }
+  .retry-btn {
+    font-family: 'Fredoka One', cursive;
+    font-size: 18px;
+    padding: 14px 36px;
+    border-radius: 50px;
+    border: none;
+    background: linear-gradient(135deg, var(--blue), var(--teal));
+    color: white;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.2s;
+    box-shadow: 0 4px 14px rgba(58,134,212,0.4);
+  }
+  .retry-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(58,134,212,0.5); }
+
+  /* CIVILIZATION TAGS */
+  .civ-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 800;
+    padding: 2px 10px;
+    border-radius: 50px;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .civ-egipto { background: #FFF3CD; color: #856404; }
+  .civ-roma { background: #F8D7DA; color: #842029; }
+  .civ-grecia { background: #CFF4FC; color: #055160; }
+  .civ-mesopotamia { background: #D1E7DD; color: #0A3622; }
+  .civ-general { background: #E2D9F3; color: #432874; }
+
+  /* SECTION DIVIDER */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 28px 0 20px;
+  }
+  .section-divider-line { flex: 1; height: 2px; background: var(--border); border-radius: 2px; }
+  .section-divider-label {
+    font-family: 'Fredoka One', cursive;
+    font-size: 15px;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .section-divider-icon { font-size: 22px; }
+
+  /* MATCH STATUS */
+  .match-status { font-size: 13px; color: var(--muted); margin-top: 8px; font-weight: 700; }
+
+  /* SUBMIT */
+  .submit-area { text-align: center; margin-top: 32px; }
+  .submit-btn {
+    font-family: 'Fredoka One', cursive;
+    font-size: 20px;
+    padding: 16px 48px;
+    border-radius: 50px;
+    border: none;
+    background: linear-gradient(135deg, var(--gold), var(--orange));
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 4px 14px rgba(244,185,66,0.5);
+    letter-spacing: 0.5px;
+  }
+  .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(244,185,66,0.6); }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <div class="header">
+    <h1>🏛️ La Edad Antigua</h1>
+    <p>¡Demuestra lo que has aprendido! Elige un examen y a por ello 🚀</p>
+  </div>
+
+  <div class="variant-selector">
+    <button class="variant-btn active" onclick="loadVariant(0)"><span class="variant-emoji">🌟</span> Examen 1</button>
+    <button class="variant-btn" onclick="loadVariant(1)"><span class="variant-emoji">⚡</span> Examen 2</button>
+    <button class="variant-btn" onclick="loadVariant(2)"><span class="variant-emoji">🔥</span> Examen 3</button>
+  </div>
+
+  <div id="quiz-area"></div>
+  <div id="score-panel" class="score-panel"></div>
+
+</div>
+
+<script>
+const VARIANTS = [
+
+/* ═══════════════ VARIANT 1 ═══════════════ */
+{
+  title: "Examen 1 — ¡El Aventurero!",
+  questions: [
+    {
+      type: "test",
+      civ: "general",
+      civLabel: "Edad Antigua",
+      text: "¿En qué año empieza la Edad Antigua?",
+      illustration: "timeline",
+      options: ["2000 a.C.", "4000 a.C.", "476 d.C.", "3200 a.C."],
+      correct: 1,
+      feedback: "¡Correcto! La Edad Antigua comienza en el año 4000 a.C. con la aparición de la escritura."
+    },
+    {
+      type: "vf",
+      civ: "general",
+      civLabel: "Edad Antigua",
+      text: "En la Edad Antigua, los esclavos disfrutaban de los mismos derechos que los hombres libres.",
+      illustration: "scales",
+      correct: false,
+      feedback: "¡Correcto! Los esclavos no tenían ningún derecho. Eran prisioneros de guerra o hijos de esclavas."
+    },
+    {
+      type: "test",
+      civ: "egipto",
+      civLabel: "Egipto",
+      text: "¿Cuál era el río más importante para los antiguos egipcios?",
+      illustration: "nile",
+      options: ["El Tigris", "El Éufrates", "El Nilo", "El Mediterráneo"],
+      correct: 2,
+      feedback: "¡Exacto! El Nilo era tan vital que incluso lo consideraban un dios."
+    },
+    {
+      type: "fill",
+      civ: "egipto",
+      civLabel: "Egipto",
+      text: "Las misteriosas escrituras egipcias se llamaban",
+      blank: "jeroglíficos",
+      alternatives: ["jeroglificos", "jeroglificos", "jeroglificos"],
+      feedback: "¡Muy bien! Los jeroglíficos fueron un misterio durante milenios hasta que los arqueólogos los descifaron."
+    },
+    {
+      type: "test",
+      civ: "roma",
+      civLabel: "Roma",
+      text: "¿Cómo se llamaban los nobles en la sociedad romana?",
+      illustration: "rome_society",
+      options: ["Plebeyos", "Legionarios", "Patricios", "Gladiadores"],
+      correct: 2,
+      feedback: "¡Correcto! Los patricios eran los nobles: ricos, poderosos, políticos y militares."
+    },
+    {
+      type: "vf",
+      civ: "grecia",
+      civLabel: "Grecia",
+      text: "Los antiguos griegos inventaron las Olimpiadas, que siguen celebrándose hoy en día.",
+      illustration: "olympics",
+      correct: true,
+      feedback: "¡Así es! Las Olimpiadas nacieron en la Antigua Grecia y han llegado hasta nuestros días."
+    },
+    {
+      type: "match",
+      civ: "general",
+      civLabel: "Civilizaciones",
+      text: "Une cada civilización con su característica principal:",
+      pairs: [
+        ["Mesopotamia", "Primeras ciudades-estado"],
+        ["Egipto", "Faraones y pirámides"],
+        ["Grecia", "Democracia y filósofos"],
+        ["Roma", "Legionarios y calzadas"],
+      ],
+      feedback: "¡Genial! Cada civilización aportó algo único al mundo."
+    },
+    {
+      type: "test",
+      civ: "mesopotamia",
+      civLabel: "Mesopotamia",
+      text: "¿Qué significa la palabra 'Mesopotamia' en griego?",
+      illustration: "tigris",
+      options: ["Tierra de reyes", "Entre dos ríos", "Ciudad de dioses", "Mar de arena"],
+      correct: 1,
+      feedback: "¡Correcto! Mesopotamia significa 'Entre dos ríos': el Tigris y el Éufrates."
+    },
+    {
+      type: "vf",
+      civ: "egipto",
+      civLabel: "Egipto",
+      text: "El faraón más famoso de Egipto fue Ramsés II.",
+      illustration: "pharaoh",
+      correct: false,
+      feedback: "¡El más famoso fue Tutankamón! Aunque hubo muchísimos faraones en 3000 años de historia."
+    },
+    {
+      type: "fill",
+      civ: "roma",
+      civLabel: "Roma",
+      text: "El Imperio Romano cayó en el siglo V cuando los",
+      blank: "germanos",
+      alternatives: ["germanos"],
+      feedback: "¡Exacto! Los germanos invadieron Roma y así comenzó la Edad Media."
+    }
+  ]
+},
+
+/* ═══════════════ VARIANT 2 ═══════════════ */
+{
+  title: "Examen 2 — ¡El Explorador!",
+  questions: [
+    {
+      type: "test",
+      civ: "general",
+      civLabel: "Edad Antigua",
+      text: "¿Cuándo termina la Edad Antigua?",
+      illustration: "timeline",
+      options: ["En el año 1000 d.C.", "En el año 476 d.C.", "En el año 3200 a.C.", "En el año 146 a.C."],
+      correct: 1,
+      feedback: "¡Correcto! La Edad Antigua termina en el año 476 d.C. con la caída del Imperio Romano de Occidente."
+    },
+    {
+      type: "vf",
+      civ: "mesopotamia",
+      civLabel: "Mesopotamia",
+      text: "La escritura cuneiforme se realizaba con un punzón de madera sobre tablillas de arcilla.",
+      illustration: "cuneiform",
+      correct: true,
+      feedback: "¡Muy bien! Así escribían los mesopotámicos hace más de 5000 años."
+    },
+    {
+      type: "test",
+      civ: "grecia",
+      civLabel: "Grecia",
+      text: "¿Cuáles eran las dos polis más poderosas de la Antigua Grecia?",
+      illustration: "polis",
+      options: ["Roma y Cartago", "Atenas y Esparta", "Uruk y Ur", "Babilonia y Nínive"],
+      correct: 1,
+      feedback: "¡Exacto! Atenas y Esparta eran las ciudades más importantes de la Antigua Grecia."
+    },
+    {
+      type: "fill",
+      civ: "egipto",
+      civLabel: "Egipto",
+      text: "Los cuerpos de los faraones eran",
+      blank: "momificados",
+      alternatives: ["momificados", "momificado"],
+      feedback: "¡Correcto! Los momificaban para conservarlos después de la muerte."
+    },
+    {
+      type: "test",
+      civ: "mesopotamia",
+      civLabel: "Mesopotamia",
+      text: "¿Cómo se llamaba el templo en el centro de las ciudades mesopotámicas?",
+      illustration: "ziggurat",
+      options: ["Acrópolis", "Zigurat", "Panteón", "Pirámide"],
+      correct: 1,
+      feedback: "¡Correcto! El zigurat era el templo donde vivían los sacerdotes y controlaban el comercio."
+    },
+    {
+      type: "vf",
+      civ: "roma",
+      civLabel: "Roma",
+      text: "Según la leyenda, Roma fue fundada por dos hermanos criados por una loba.",
+      illustration: "wolf",
+      correct: true,
+      feedback: "¡Así es! Según la leyenda, Rómulo y Remo fueron criados por una loba. ¡Aunque es solo una leyenda!"
+    },
+    {
+      type: "match",
+      civ: "egipto",
+      civLabel: "Egipto",
+      text: "Une cada dios egipcio con su descripción:",
+      pairs: [
+        ["Ra", "Dios del sol, cabeza de halcón"],
+        ["Anubis", "Cabeza de chacal"],
+        ["Bastet", "Cabeza de leona"],
+        ["El Nilo", "Considerado un dios"],
+      ],
+      feedback: "¡Fantástico! Los egipcios tenían cientos de dioses, muchos con cabezas de animales."
+    },
+    {
+      type: "test",
+      civ: "grecia",
+      civLabel: "Grecia",
+      text: "¿Cómo se llamaba la plaza o asamblea donde los griegos debatían y votaban?",
+      illustration: "agora",
+      options: ["Circo", "Ágora", "Foro", "Acrópolis"],
+      correct: 1,
+      feedback: "¡Correcto! En el ágora los ciudadanos debatían y votaban, inventando así la democracia."
+    },
+    {
+      type: "vf",
+      civ: "general",
+      civLabel: "Edad Antigua",
+      text: "Durante la Edad Antigua, el comercio entre ciudades estaba prohibido.",
+      illustration: "trade",
+      correct: false,
+      feedback: "¡Incorrecto! El comercio fue muy importante y permitió un gran intercambio cultural."
+    },
+    {
+      type: "fill",
+      civ: "mesopotamia",
+      civLabel: "Mesopotamia",
+      text: "Hoy en día, el territorio de Mesopotamia corresponde al país llamado",
+      blank: "Irak",
+      alternatives: ["iraq", "irak", "Irak"],
+      feedback: "¡Correcto! Mesopotamia es hoy el país de Irak."
+    }
+  ]
+},
+
+/* ═══════════════ VARIANT 3 ═══════════════ */
+{
+  title: "Examen 3 — ¡El Sabio!",
+  questions: [
+    {
+      type: "test",
+      civ: "egipto",
+      civLabel: "Egipto",
+      text: "¿Quién fundó el Antiguo Egipto a orillas del Nilo?",
+      illustration: "pharaoh",
+      options: ["Tutankamón", "Cleopatra", "El faraón Narmer", "Ramsés II"],
+      correct: 2,
+      feedback: "¡Correcto! El faraón Narmer, también conocido como el Rey Escorpión, fundó Egipto en el 3200 a.C."
+    },
+    {
+      type: "vf",
+      civ: "grecia",
+      civLabel: "Grecia",
+      text: "En la Antigua Grecia, las mujeres y los extranjeros podían votar en el ágora.",
+      illustration: "agora",
+      correct: false,
+      feedback: "¡Correcto que es FALSO! Solo podían votar los hombres nacidos en las polis. Las mujeres y extranjeros no eran ciudadanos."
+    },
+    {
+      type: "test",
+      civ: "grecia",
+      civLabel: "Grecia",
+      text: "¿Cuál de estos NO es un filósofo de la Antigua Grecia?",
+      illustration: "philosophers",
+      options: ["Sócrates", "Platón", "Aristóteles", "Julio César"],
+      correct: 3,
+      feedback: "¡Correcto! Julio César era romano, no griego. Sócrates, Platón y Aristóteles sí eran griegos."
+    },
+    {
+      type: "match",
+      civ: "roma",
+      civLabel: "Roma",
+      text: "Une cada término romano con su significado:",
+      pairs: [
+        ["Legionarios", "Soldados del ejército romano"],
+        ["Calzadas", "Carreteras del Imperio"],
+        ["Patricios", "Nobles y poderosos"],
+        ["Acueductos", "Llevan el agua de un lugar a otro"],
+      ],
+      feedback: "¡Excelente! Los romanos eran grandes ingenieros y organizadores."
+    },
+    {
+      type: "fill",
+      civ: "mesopotamia",
+      civLabel: "Mesopotamia",
+      text: "La primera escritura de la humanidad nació en Mesopotamia hacia el año 3500 a.C. y se llamaba escritura",
+      blank: "cuneiforme",
+      alternatives: ["cuneiforme"],
+      feedback: "¡Muy bien! La escritura cuneiforme fue uno de los inventos más importantes de la humanidad."
+    },
+    {
+      type: "test",
+      civ: "egipto",
+      civLabel: "Egipto",
+      text: "¿Para qué servían las pirámides egipcias?",
+      illustration: "pyramid",
+      options: ["Como templos religiosos", "Como mercados", "Como tumbas para los faraones", "Como escuelas"],
+      correct: 2,
+      feedback: "¡Correcto! Las pirámides eran tumbas monumentales para los faraones, con túneles y pasadizos secretos."
+    },
+    {
+      type: "vf",
+      civ: "roma",
+      civLabel: "Roma",
+      text: "El Imperio Romano conquistó territorios en Europa, África y Asia.",
+      illustration: "rome_map",
+      correct: true,
+      feedback: "¡Correcto! Los romanos conquistaron Grecia, Egipto, Siria, Francia, Alemania, España e incluso Britania."
+    },
+    {
+      type: "test",
+      civ: "mesopotamia",
+      civLabel: "Mesopotamia",
+      text: "¿Cuál fue el primer gran invento artístico de Mesopotamia en arquitectura?",
+      illustration: "arch",
+      options: ["La pirámide", "La cúpula", "El arco y la bóveda", "La columna"],
+      correct: 2,
+      feedback: "¡Exacto! Los mesopotámicos inventaron el arco y la bóveda para construir templos y palacios."
+    },
+    {
+      type: "vf",
+      civ: "egipto",
+      civLabel: "Egipto",
+      text: "Los antiguos egipcios inventaron el cepillo de dientes y la pasta dentífrica.",
+      illustration: "hygiene",
+      correct: true,
+      feedback: "¡Increíble pero cierto! Los egipcios también inventaron peines, tijeras, maquillaje, desodorante y llaves cerraduras."
+    },
+    {
+      type: "test",
+      civ: "grecia",
+      civLabel: "Grecia",
+      text: "¿Quién era Zeus en la mitología griega?",
+      illustration: "zeus",
+      options: ["Dios del mar", "Señor del rayo y dios más poderoso", "Dios de la guerra", "Dios del sol"],
+      correct: 1,
+      feedback: "¡Correcto! Zeus era el señor del rayo y el dios más poderoso de la mitología griega."
+    }
+  ]
+}
+];
+
+/* ═══════ ILLUSTRATIONS ═══════ */
+const ILLUSTRATIONS = {
+  timeline: `<svg viewBox="0 0 180 80" xmlns="http://www.w3.org/2000/svg">
+    <rect x="10" y="35" width="160" height="8" rx="4" fill="#3A86D4" opacity="0.3"/>
+    <circle cx="20" cy="39" r="10" fill="#3A86D4"/><text x="20" y="43" text-anchor="middle" font-size="8" fill="white" font-family="Fredoka One">4000</text>
+    <circle cx="90" cy="39" r="10" fill="#7B5EA7"/><text x="90" y="43" text-anchor="middle" font-size="8" fill="white" font-family="Fredoka One">...</text>
+    <circle cx="160" cy="39" r="10" fill="#E53935"/><text x="160" y="43" text-anchor="middle" font-size="8" fill="white" font-family="Fredoka One">476</text>
+    <text x="20" y="22" text-anchor="middle" font-size="9" fill="#1A5FA0" font-family="Nunito" font-weight="800">Inicio</text>
+    <text x="160" y="22" text-anchor="middle" font-size="9" fill="#B71C1C" font-family="Nunito" font-weight="800">Fin</text>
+    <text x="20" y="62" text-anchor="middle" font-size="8" fill="#555" font-family="Nunito">a.C.</text>
+    <text x="160" y="62" text-anchor="middle" font-size="8" fill="#555" font-family="Nunito">d.C.</text>
+  </svg>`,
+
+  nile: `<svg viewBox="0 0 180 90" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="90" rx="12" fill="#FFF8E1"/>
+    <path d="M80 10 Q70 30 75 50 Q80 70 78 85" stroke="#1565C0" stroke-width="12" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <rect x="20" y="40" width="55" height="35" rx="4" fill="#C8A96E" opacity="0.6"/>
+    <rect x="100" y="40" width="55" height="35" rx="4" fill="#C8A96E" opacity="0.6"/>
+    <polygon points="35,40 50,10 65,40" fill="#C8A96E"/>
+    <polygon points="110,40 125,15 140,40" fill="#C8A96E"/>
+    <circle cx="130" cy="20" r="8" fill="#F4B942"/>
+    <text x="90" y="88" text-anchor="middle" font-size="10" fill="#1565C0" font-family="Nunito" font-weight="800">Río Nilo</text>
+  </svg>`,
+
+  pharaoh: `<svg viewBox="0 0 180 110" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="110" rx="12" fill="#FFF8E1"/>
+    <rect x="70" y="8" width="40" height="50" rx="4" fill="#F4B942"/>
+    <rect x="74" y="8" width="32" height="10" rx="2" fill="#1565C0"/>
+    <circle cx="90" cy="45" r="18" fill="#FFCC80"/>
+    <ellipse cx="90" cy="42" rx="9" ry="5" fill="#BF8040"/>
+    <circle cx="85" cy="44" r="2" fill="#5D4037"/>
+    <circle cx="95" cy="44" r="2" fill="#5D4037"/>
+    <path d="M85 50 Q90 54 95 50" stroke="#5D4037" stroke-width="1.5" fill="none"/>
+    <rect x="72" y="63" width="36" height="35" rx="4" fill="#F4B942"/>
+    <line x1="72" y1="65" x2="72" y2="98" stroke="#C8A000" stroke-width="2"/>
+    <line x1="108" y1="65" x2="108" y2="98" stroke="#C8A000" stroke-width="2"/>
+    <rect x="60" y="65" width="12" height="22" rx="3" fill="#FFCC80"/>
+    <rect x="108" y="65" width="12" height="22" rx="3" fill="#FFCC80"/>
+    <text x="90" y="108" text-anchor="middle" font-size="10" fill="#856404" font-family="Nunito" font-weight="800">Faraón</text>
+  </svg>`,
+
+  pyramid: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="100" rx="12" fill="#FFF8E1"/>
+    <polygon points="90,15 20,85 160,85" fill="#C8A96E"/>
+    <polygon points="90,15 90,85 160,85" fill="#BF9060"/>
+    <line x1="90" y1="15" x2="20" y2="85" stroke="#856404" stroke-width="1" opacity="0.4"/>
+    <line x1="90" y1="15" x2="160" y2="85" stroke="#856404" stroke-width="1" opacity="0.4"/>
+    <line x1="35" y1="75" x2="145" y2="75" stroke="#856404" stroke-width="1" opacity="0.4"/>
+    <line x1="50" y1="65" x2="130" y2="65" stroke="#856404" stroke-width="1" opacity="0.4"/>
+    <circle cx="157" cy="25" r="10" fill="#F4B942"/>
+    <rect x="74" y="72" width="16" height="13" rx="2" fill="#8D6E63"/>
+    <text x="90" y="98" text-anchor="middle" font-size="10" fill="#856404" font-family="Nunito" font-weight="800">Pirámide</text>
+  </svg>`,
+
+  ziggurat: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="100" rx="12" fill="#E8F5E9"/>
+    <rect x="10" y="75" width="160" height="18" rx="3" fill="#8D6E63"/>
+    <rect x="25" y="57" width="130" height="18" rx="3" fill="#A1887F"/>
+    <rect x="40" y="40" width="100" height="17" rx="3" fill="#BCAAA4"/>
+    <rect x="60" y="25" width="60" height="15" rx="3" fill="#D7CCC8"/>
+    <rect x="75" y="15" width="30" height="10" rx="2" fill="#EFEBE9"/>
+    <line x1="55" y1="57" x2="55" y2="75" stroke="#795548" stroke-width="2"/>
+    <line x1="125" y1="57" x2="125" y2="75" stroke="#795548" stroke-width="2"/>
+    <text x="90" y="98" text-anchor="middle" font-size="10" fill="#4E342E" font-family="Nunito" font-weight="800">Zigurat</text>
+  </svg>`,
+
+  olympics: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="100" rx="12" fill="#E3F2FD"/>
+    <circle cx="55" cy="45" r="16" fill="none" stroke="#1565C0" stroke-width="4"/>
+    <circle cx="90" cy="45" r="16" fill="none" stroke="#E53935" stroke-width="4"/>
+    <circle cx="125" cy="45" r="16" fill="none" stroke="#FDD835" stroke-width="4"/>
+    <circle cx="72" cy="58" r="16" fill="none" stroke="#2E7D32" stroke-width="4"/>
+    <circle cx="108" cy="58" r="16" fill="none" stroke="#E65100" stroke-width="4"/>
+    <text x="90" y="90" text-anchor="middle" font-size="10" fill="#0D47A1" font-family="Nunito" font-weight="800">Olimpiadas</text>
+  </svg>`,
+
+  agora: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="100" rx="12" fill="#E0F7FA"/>
+    <rect x="10" y="60" width="160" height="8" rx="2" fill="#B0BEC5"/>
+    <line x1="25" y1="25" x2="25" y2="60" stroke="#90A4AE" stroke-width="5" stroke-linecap="round"/>
+    <line x1="55" y1="25" x2="55" y2="60" stroke="#90A4AE" stroke-width="5" stroke-linecap="round"/>
+    <line x1="85" y1="25" x2="85" y2="60" stroke="#90A4AE" stroke-width="5" stroke-linecap="round"/>
+    <line x1="115" y1="25" x2="115" y2="60" stroke="#90A4AE" stroke-width="5" stroke-linecap="round"/>
+    <line x1="145" y1="25" x2="145" y2="60" stroke="#90A4AE" stroke-width="5" stroke-linecap="round"/>
+    <line x1="155" y1="25" x2="155" y2="60" stroke="#90A4AE" stroke-width="5" stroke-linecap="round"/>
+    <polygon points="10,25 90,10 170,25" fill="#CFD8DC"/>
+    <circle cx="65" cy="78" r="7" fill="#FFCC80"/>
+    <circle cx="90" cy="78" r="7" fill="#FFCC80"/>
+    <circle cx="115" cy="78" r="7" fill="#FFCC80"/>
+    <text x="90" y="98" text-anchor="middle" font-size="10" fill="#006064" font-family="Nunito" font-weight="800">Ágora griega</text>
+  </svg>`,
+
+  philosophers: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="100" rx="12" fill="#F3E5F5"/>
+    <circle cx="45" cy="40" r="16" fill="#CE93D8"/>
+    <text x="45" y="45" text-anchor="middle" font-size="11" fill="white" font-family="Fredoka One">S</text>
+    <text x="45" y="68" text-anchor="middle" font-size="9" fill="#6A1B9A" font-family="Nunito" font-weight="800">Sócrates</text>
+    <circle cx="90" cy="40" r="16" fill="#AB47BC"/>
+    <text x="90" y="45" text-anchor="middle" font-size="11" fill="white" font-family="Fredoka One">P</text>
+    <text x="90" y="68" text-anchor="middle" font-size="9" fill="#6A1B9A" font-family="Nunito" font-weight="800">Platón</text>
+    <circle cx="135" cy="40" r="16" fill="#8E24AA"/>
+    <text x="135" y="45" text-anchor="middle" font-size="11" fill="white" font-family="Fredoka One">A</text>
+    <text x="135" y="68" text-anchor="middle" font-size="9" fill="#6A1B9A" font-family="Nunito" font-weight="800">Aristóteles</text>
+    <text x="90" y="92" text-anchor="middle" font-size="10" fill="#4A148C" font-family="Nunito" font-weight="800">Los tres grandes filósofos</text>
+  </svg>`,
+
+  wolf: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="100" rx="12" fill="#FFF3E0"/>
+    <ellipse cx="90" cy="65" rx="45" ry="28" fill="#9E9E9E"/>
+    <circle cx="90" cy="48" r="20" fill="#9E9E9E"/>
+    <polygon points="78,35 72,18 84,32" fill="#9E9E9E"/>
+    <polygon points="102,35 108,18 96,32" fill="#9E9E9E"/>
+    <ellipse cx="82" cy="48" rx="5" ry="6" fill="white"/>
+    <ellipse cx="98" cy="48" rx="5" ry="6" fill="white"/>
+    <circle cx="82" cy="49" r="3" fill="#333"/>
+    <circle cx="98" cy="49" r="3" fill="#333"/>
+    <ellipse cx="90" cy="57" rx="7" ry="4" fill="#BDBDBD"/>
+    <circle cx="55" cy="72" r="8" fill="#FFCC80"/>
+    <circle cx="72" cy="72" r="8" fill="#FFCC80"/>
+    <text x="90" y="97" text-anchor="middle" font-size="9" fill="#E65100" font-family="Nunito" font-weight="800">Rómulo y Remo</text>
+  </svg>`,
+
+  rome_society: `<svg viewBox="0 0 180 95" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="95" rx="12" fill="#FFEBEE"/>
+    <rect x="55" y="15" width="70" height="22" rx="4" fill="#C62828"/>
+    <text x="90" y="30" text-anchor="middle" font-size="10" fill="white" font-family="Nunito" font-weight="800">Patricios 👑</text>
+    <rect x="35" y="42" width="110" height="22" rx="4" fill="#EF9A9A"/>
+    <text x="90" y="57" text-anchor="middle" font-size="10" fill="#7F0000" font-family="Nunito" font-weight="800">Plebeyos 🌾</text>
+    <rect x="15" y="69" width="150" height="22" rx="4" fill="#FFCDD2"/>
+    <text x="90" y="84" text-anchor="middle" font-size="10" fill="#B71C1C" font-family="Nunito" font-weight="800">Esclavos ⛓️</text>
+  </svg>`,
+
+  rome_map: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="100" rx="12" fill="#E3F2FD"/>
+    <ellipse cx="90" cy="55" rx="75" ry="38" fill="#E8D5A3" opacity="0.8"/>
+    <ellipse cx="90" cy="60" rx="70" ry="15" fill="#4FC3F7" opacity="0.5"/>
+    <circle cx="90" cy="50" r="6" fill="#C62828"/>
+    <text x="90" y="48" text-anchor="middle" font-size="7" fill="white" font-family="Fredoka One">R</text>
+    <text x="90" y="93" text-anchor="middle" font-size="9" fill="#0D47A1" font-family="Nunito" font-weight="800">El Imperio Romano</text>
+  </svg>`,
+
+  cuneiform: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="100" rx="12" fill="#FFF8E1"/>
+    <rect x="20" y="15" width="140" height="70" rx="6" fill="#D7CCC8"/>
+    <line x1="35" y1="30" x2="55" y2="30" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="35" y1="30" x2="35" y2="38" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="65" y1="25" x2="65" y2="40" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="65" y1="25" x2="80" y2="30" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="90" y1="28" x2="110" y2="28" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="100" y1="28" x2="100" y2="40" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="35" y1="52" x2="45" y2="52" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="40" y1="52" x2="40" y2="65" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="60" y1="50" x2="80" y2="55" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="95" y1="52" x2="120" y2="52" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="130" y1="50" x2="145" y2="65" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="90" y="97" text-anchor="middle" font-size="10" fill="#4E342E" font-family="Nunito" font-weight="800">Escritura cuneiforme</text>
+  </svg>`,
+
+  polis: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="100" rx="12" fill="#E8F5E9"/>
+    <rect x="15" y="50" width="65" height="35" rx="4" fill="#81C784"/>
+    <polygon points="47,20 15,50 80,50" fill="#4CAF50"/>
+    <text x="47" y="80" text-anchor="middle" font-size="9" fill="white" font-family="Nunito" font-weight="800">Esparta</text>
+    <rect x="100" y="50" width="65" height="35" rx="4" fill="#64B5F6"/>
+    <polygon points="132,20 100,50 165,50" fill="#2196F3"/>
+    <text x="132" y="80" text-anchor="middle" font-size="9" fill="white" font-family="Nunito" font-weight="800">Atenas</text>
+    <text x="90" y="98" text-anchor="middle" font-size="9" fill="#1B5E20" font-family="Nunito" font-weight="800">Las dos grandes polis</text>
+  </svg>`,
+
+  hygiene: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="100" rx="12" fill="#E0F7FA"/>
+    <rect x="25" y="30" width="12" height="40" rx="4" fill="#B2DFDB"/>
+    <rect x="21" y="26" width="20" height="10" rx="3" fill="#80CBC4"/>
+    <rect x="24" y="62" width="14" height="15" rx="4" fill="#00838F"/>
+    <text x="31" y="85" text-anchor="middle" font-size="8" fill="#006064" font-family="Nunito" font-weight="800">cepillo</text>
+    <ellipse cx="75" cy="55" rx="18" ry="10" fill="#F48FB1"/>
+    <rect x="73" y="38" width="4" height="17" rx="2" fill="#CE93D8"/>
+    <text x="75" y="83" text-anchor="middle" font-size="8" fill="#880E4F" font-family="Nunito" font-weight="800">maquillaje</text>
+    <ellipse cx="125" cy="50" rx="20" ry="14" fill="#FFF9C4"/>
+    <path d="M115 42 Q125 35 135 42" fill="#F4B942"/>
+    <text x="125" y="80" text-anchor="middle" font-size="8" fill="#856404" font-family="Nunito" font-weight="800">perfume</text>
+    <rect x="148" y="35" width="12" height="28" rx="3" fill="#BDBDBD"/>
+    <line x1="154" y1="32" x2="154" y2="35" stroke="#757575" stroke-width="2"/>
+    <text x="154" y="83" text-anchor="middle" font-size="8" fill="#424242" font-family="Nunito" font-weight="800">tijeras</text>
+  </svg>`,
+
+  zeus: `<svg viewBox="0 0 180 110" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="110" rx="12" fill="#E3F2FD"/>
+    <circle cx="90" cy="35" r="22" fill="#FFCC80"/>
+    <ellipse cx="90" cy="28" rx="12" ry="6" fill="#E0E0E0"/>
+    <circle cx="84" cy="36" r="3" fill="#5D4037"/>
+    <circle cx="96" cy="36" r="3" fill="#5D4037"/>
+    <path d="M84 44 Q90 49 96 44" stroke="#5D4037" stroke-width="1.5" fill="none"/>
+    <path d="M78 44 Q74 60 70 65" stroke="#BF8040" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M102 44 Q106 60 110 65" stroke="#BF8040" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <rect x="72" y="57" width="36" height="42" rx="4" fill="#90CAF9"/>
+    <polygon points="95,68 108,90 82,90" fill="#FDD835" opacity="0.85"/>
+    <text x="90" y="107" text-anchor="middle" font-size="10" fill="#0D47A1" font-family="Nunito" font-weight="800">Zeus ⚡</text>
+  </svg>`,
+
+  arch: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="100" rx="12" fill="#FFF8E1"/>
+    <rect x="30" y="35" width="20" height="52" rx="3" fill="#D7CCC8"/>
+    <rect x="130" y="35" width="20" height="52" rx="3" fill="#D7CCC8"/>
+    <path d="M30 35 Q90 -10 150 35" fill="#BCAAA4" stroke="#8D6E63" stroke-width="3"/>
+    <rect x="10" y="85" width="160" height="12" rx="3" fill="#8D6E63"/>
+    <text x="90" y="98" text-anchor="middle" font-size="10" fill="#4E342E" font-family="Nunito" font-weight="800">El arco</text>
+  </svg>`,
+
+  scales: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="100" rx="12" fill="#FFF3E0"/>
+    <line x1="90" y1="15" x2="90" y2="75" stroke="#795548" stroke-width="3"/>
+    <line x1="50" y1="35" x2="130" y2="35" stroke="#795548" stroke-width="3"/>
+    <line x1="50" y1="35" x2="50" y2="55" stroke="#795548" stroke-width="2"/>
+    <line x1="130" y1="35" x2="130" y2="45" stroke="#795548" stroke-width="2"/>
+    <ellipse cx="50" cy="60" rx="22" ry="8" fill="#AED6F1"/>
+    <ellipse cx="130" cy="50" rx="22" ry="8" fill="#F1948A"/>
+    <text x="50" y="63" text-anchor="middle" font-size="8" fill="#1565C0" font-family="Nunito" font-weight="800">Libres</text>
+    <text x="130" y="53" text-anchor="middle" font-size="8" fill="#C0392B" font-family="Nunito" font-weight="800">Esclavos</text>
+    <rect x="82" y="72" width="16" height="16" rx="3" fill="#795548"/>
+    <text x="90" y="97" text-anchor="middle" font-size="9" fill="#4E342E" font-family="Nunito" font-weight="800">Sociedad dividida</text>
+  </svg>`,
+
+  trade: `<svg viewBox="0 0 180 90" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="90" rx="12" fill="#E8F5E9"/>
+    <rect x="10" y="30" width="35" height="30" rx="5" fill="#A5D6A7"/>
+    <rect x="135" y="30" width="35" height="30" rx="5" fill="#80DEEA"/>
+    <line x1="45" y1="42" x2="135" y2="42" stroke="#795548" stroke-width="2" stroke-dasharray="6,4"/>
+    <polygon points="60,32 80,42 60,52" fill="#F4B942"/>
+    <polygon points="120,32 100,42 120,52" fill="#F4B942"/>
+    <text x="90" y="72" text-anchor="middle" font-size="10" fill="#2E7D32" font-family="Nunito" font-weight="800">Intercambio comercial</text>
+  </svg>`,
+
+  tigris: `<svg viewBox="0 0 180 90" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="90" rx="12" fill="#FFF8E1"/>
+    <path d="M20 30 Q40 20 60 35 Q80 50 100 30 Q120 15 140 28 Q160 40 170 35" stroke="#1565C0" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.6"/>
+    <path d="M20 55 Q40 45 60 60 Q80 75 100 55 Q120 40 140 53 Q160 65 170 60" stroke="#42A5F5" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.6"/>
+    <text x="30" y="32" font-size="9" fill="#1A237E" font-family="Nunito" font-weight="800">Tigris</text>
+    <text x="30" y="57" font-size="9" fill="#0277BD" font-family="Nunito" font-weight="800">Éufrates</text>
+    <text x="90" y="84" text-anchor="middle" font-size="10" fill="#4E342E" font-family="Nunito" font-weight="800">Los dos grandes ríos</text>
+  </svg>`
+};
+
+/* ═══════════════════════════ STATE ═══════════════════════════ */
+let currentVariant = 0;
+let answers = [];
+let matchState = {};
+
+function loadVariant(idx) {
+  currentVariant = idx;
+  document.querySelectorAll('.variant-btn').forEach((b,i) => b.classList.toggle('active', i===idx));
+  answers = new Array(VARIANTS[idx].questions.length).fill(null);
+  matchState = {};
+  document.getElementById('score-panel').classList.remove('show');
+  renderQuiz();
+}
+
+function renderQuiz() {
+  const v = VARIANTS[currentVariant];
+  const qa = document.getElementById('quiz-area');
+  qa.innerHTML = '';
+
+  const prog = document.createElement('div');
+  prog.innerHTML = `<div class="progress-bar-wrap"><div class="progress-bar-fill" id="prog-fill" style="width:0%"></div></div><div class="progress-label" id="prog-label">0 / ${v.questions.length} respondidas</div>`;
+  qa.appendChild(prog);
+
+  v.questions.forEach((q, qi) => {
+    const card = document.createElement('div');
+    card.className = 'question-card';
+    card.id = `q-${qi}`;
+
+    const typeLabel = {test:'Tipo test', vf:'Verdadero o Falso', fill:'Completa la frase', match:'Une con flechas'}[q.type];
+    const typeBadge = {test:'badge-test', vf:'badge-vf', fill:'badge-fill', match:'badge-match'}[q.type];
+
+    let illHtml = '';
+    const key = q.illustration;
+    if (key && ILLUSTRATIONS[key]) {
+      illHtml = `<div class="q-illustration">${ILLUSTRATIONS[key]}</div>`;
+    }
+
+    card.innerHTML = `
+      <span class="civ-tag civ-${q.civ}">${q.civLabel}</span>
+      <div class="q-header">
+        <span class="q-number">${qi+1}</span>
+        <div style="flex:1">
+          <span class="q-badge ${typeBadge}">${typeLabel}</span>
+          <div class="q-text" style="margin-top:6px">${q.text}${q.type==='fill' ? ' <span style="color:var(--blue)">___________</span>' : ''}</div>
+        </div>
+      </div>
+      ${illHtml}
+      <div id="q-body-${qi}"></div>
+      <div class="feedback" id="fb-${qi}"><span class="feedback-icon"></span><span id="fb-text-${qi}"></span></div>
+    `;
+    qa.appendChild(card);
+
+    const body = document.getElementById(`q-body-${qi}`);
+    if (q.type === 'test') renderTest(body, q, qi);
+    else if (q.type === 'vf') renderVF(body, q, qi);
+    else if (q.type === 'fill') renderFill(body, q, qi);
+    else if (q.type === 'match') renderMatch(body, q, qi);
+  });
+
+  const sub = document.createElement('div');
+  sub.className = 'submit-area';
+  sub.innerHTML = `<button class="submit-btn" onclick="submitQuiz()">🏛️ Ver mi puntuación</button>`;
+  qa.appendChild(sub);
+}
+
+function showFeedback(qi, isCorrect, msg) {
+  const fb = document.getElementById(`fb-${qi}`);
+  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.querySelector('.feedback-icon').textContent = isCorrect ? '🌟' : '💡';
+  document.getElementById(`fb-text-${qi}`).textContent = msg;
+  updateProgress();
+}
+
+function updateProgress() {
+  const v = VARIANTS[currentVariant];
+  const answered = answers.filter(a => a !== null).length;
+  const pct = Math.round(answered / v.questions.length * 100);
+  document.getElementById('prog-fill').style.width = pct + '%';
+  document.getElementById('prog-label').textContent = `${answered} / ${v.questions.length} respondidas`;
+}
+
+/* ── TEST ── */
+function renderTest(body, q, qi) {
+  const letters = ['A','B','C','D'];
+  const grid = document.createElement('div');
+  grid.className = 'options-grid';
+  q.options.forEach((opt, oi) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = `<span class="option-letter">${letters[oi]}</span>${opt}`;
+    btn.onclick = () => {
+      if (answers[qi] !== null) return;
+      const correct = oi === q.correct;
+      answers[qi] = correct;
+      grid.querySelectorAll('.option-btn').forEach((b, bi) => {
+        b.disabled = true;
+        if (bi === q.correct) b.classList.add('correct');
+        else if (bi === oi && !correct) b.classList.add('wrong');
+      });
+      showFeedback(qi, correct, correct ? q.feedback : `La respuesta correcta era: "${q.options[q.correct]}". ${q.feedback}`);
+    };
+    grid.appendChild(btn);
+  });
+  body.appendChild(grid);
+}
+
+/* ── V/F ── */
+function renderVF(body, q, qi) {
+  const wrap = document.createElement('div');
+  wrap.className = 'vf-buttons';
+  ['✅ Verdadero', '❌ Falso'].forEach((label, li) => {
+    const btn = document.createElement('button');
+    btn.className = `vf-btn ${li===0?'vf-true':'vf-false'}`;
+    btn.textContent = label;
+    btn.onclick = () => {
+      if (answers[qi] !== null) return;
+      const chosen = li === 0;
+      const correct = chosen === q.correct;
+      answers[qi] = correct;
+      wrap.querySelectorAll('.vf-btn').forEach(b => b.disabled = true);
+      btn.classList.add(correct ? 'correct' : 'wrong');
+      const otherBtn = wrap.querySelector(`.${li===0?'vf-false':'vf-true'}`);
+      if (!correct) otherBtn.classList.add('correct');
+      showFeedback(qi, correct, q.feedback);
+    };
+    wrap.appendChild(btn);
+  });
+  body.appendChild(wrap);
+}
+
+/* ── FILL ── */
+function renderFill(body, q, qi) {
+  const wrap = document.createElement('div');
+  wrap.className = 'fill-wrap';
+  const inp = document.createElement('input');
+  inp.className = 'fill-input';
+  inp.type = 'text';
+  inp.placeholder = 'Escribe aquí...';
+  const btn = document.createElement('button');
+  btn.className = 'fill-check-btn';
+  btn.textContent = '✔ Comprobar';
+  const check = () => {
+    if (answers[qi] !== null) return;
+    const val = inp.value.trim().toLowerCase();
+    const accepted = [q.blank.toLowerCase(), ...(q.alternatives||[]).map(a=>a.toLowerCase())];
+    const correct = accepted.includes(val);
+    answers[qi] = correct;
+    inp.disabled = true;
+    btn.disabled = true;
+    inp.classList.add(correct ? 'correct' : 'wrong');
+    if (!correct) inp.value = q.blank;
+    showFeedback(qi, correct, q.feedback);
+  };
+  btn.onclick = check;
+  inp.addEventListener('keydown', e => { if(e.key==='Enter') check(); });
+  wrap.appendChild(inp);
+  wrap.appendChild(btn);
+  body.appendChild(wrap);
+}
+
+/* ── MATCH ── */
+function renderMatch(body, q, qi) {
+  const state = { selectedLeft: null, selectedRight: null, matched: new Set(), errors: 0 };
+  matchState[qi] = state;
+
+  const shuffledRight = [...q.pairs].sort(() => Math.random()-0.5).map(p=>p[1]);
+
+  const grid = document.createElement('div');
+  grid.className = 'match-grid';
+  const colLeft = document.createElement('div');
+  const colRight = document.createElement('div');
+  colLeft.style.display = 'flex'; colLeft.style.flexDirection = 'column'; colLeft.style.gap = '8px';
+  colRight.style.display = 'flex'; colRight.style.flexDirection = 'column'; colRight.style.gap = '8px';
+
+  const statusEl = document.createElement('div');
+  statusEl.className = 'match-status';
+  statusEl.textContent = `0 / ${q.pairs.length} pares encontrados`;
+
+  q.pairs.forEach((pair, pi) => {
+    const leftBtn = document.createElement('button');
+    leftBtn.className = 'match-item left-item';
+    leftBtn.textContent = pair[0];
+    leftBtn.dataset.leftIdx = pi;
+    leftBtn.onclick = () => {
+      if (leftBtn.classList.contains('matched') || answers[qi] !== null) return;
+      grid.querySelectorAll('.left-item:not(.matched)').forEach(b=>b.classList.remove('selected'));
+      leftBtn.classList.add('selected');
+      state.selectedLeft = pi;
+      tryMatch(grid, q, qi, state, statusEl);
+    };
+    colLeft.appendChild(leftBtn);
+  });
+
+  shuffledRight.forEach((rightText, ri) => {
+    const rightBtn = document.createElement('button');
+    rightBtn.className = 'match-item right-item';
+    rightBtn.textContent = rightText;
+    rightBtn.dataset.rightText = rightText;
+    rightBtn.onclick = () => {
+      if (rightBtn.classList.contains('matched') || answers[qi] !== null) return;
+      grid.querySelectorAll('.right-item:not(.matched)').forEach(b=>b.classList.remove('selected'));
+      rightBtn.classList.add('selected');
+      state.selectedRight = rightText;
+      tryMatch(grid, q, qi, state, statusEl);
+    };
+    colRight.appendChild(rightBtn);
+  });
+
+  grid.appendChild(colLeft);
+  grid.appendChild(colRight);
+  body.appendChild(grid);
+  body.appendChild(statusEl);
+}
+
+function tryMatch(grid, q, qi, state, statusEl) {
+  if (state.selectedLeft === null || state.selectedRight === null) return;
+  const li = state.selectedLeft;
+  const rt = state.selectedRight;
+  const correct = q.pairs[li][1] === rt;
+
+  const leftBtn = grid.querySelector(`[data-left-idx="${li}"]`);
+  const rightBtn = grid.querySelector(`[data-right-text="${rt}"]`);
+
+  if (correct) {
+    leftBtn.classList.remove('selected'); leftBtn.classList.add('matched');
+    rightBtn.classList.remove('selected'); rightBtn.classList.add('matched');
+    state.matched.add(li);
+    statusEl.textContent = `${state.matched.size} / ${q.pairs.length} pares encontrados`;
+    if (state.matched.size === q.pairs.length) {
+      answers[qi] = state.errors === 0;
+      showFeedback(qi, true, q.feedback);
+    }
+  } else {
+    state.errors++;
+    leftBtn.classList.remove('selected');
+    rightBtn.classList.remove('selected');
+    rightBtn.classList.add('wrong-match');
+    setTimeout(()=>rightBtn.classList.remove('wrong-match'), 600);
+  }
+  state.selectedLeft = null;
+  state.selectedRight = null;
+}
+
+/* ── SUBMIT ── */
+function submitQuiz() {
+  const v = VARIANTS[currentVariant];
+  const total = v.questions.length;
+  const correct = answers.filter(a => a === true).length;
+  const pct = Math.round(correct/total*100);
+
+  let emoji, msg;
+  if (pct === 100)       { emoji = '🏆'; msg = '¡PERFECTO! ¡Eres un genio de la Historia!'; }
+  else if (pct >= 80)    { emoji = '⭐'; msg = '¡Fantástico! ¡Casi lo bordas!'; }
+  else if (pct >= 60)    { emoji = '😊'; msg = '¡Muy bien! Sigue repasando un poquito.'; }
+  else if (pct >= 40)    { emoji = '💪'; msg = '¡Buen intento! Vuelve a ver el vídeo y lo clavaras.'; }
+  else                   { emoji = '📚'; msg = 'No pasa nada, ¡repasa y vuelve a intentarlo!'; }
+
+  const panel = document.getElementById('score-panel');
+  panel.innerHTML = `
+    <div class="score-title">🏛️ ${v.title}</div>
+    <div class="score-emoji">${emoji}</div>
+    <div><span class="score-big">${correct}</span><span class="score-denom"> / ${total}</span></div>
+    <div class="score-msg">${msg}</div>
+    <p style="color:var(--muted);font-size:14px;margin-top:6px">${pct}% de aciertos</p>
+    <button class="retry-btn" onclick="loadVariant(currentVariant)">🔄 Repetir este examen</button>
+  `;
+  panel.classList.add('show');
+  panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  updateProgress();
+}
+
+loadVariant(0);
+</script>
+</body>
+</html>
