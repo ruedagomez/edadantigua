@@ -3,432 +3,529 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Examen: La Edad Antigua</title>
+<title>Mis Exámenes Interactivos</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --sky: #E8F4FD;
-    --sand: #FDF6E3;
-    --gold: #F4B942;
-    --gold-dark: #C8860A;
-    --blue: #3A86D4;
-    --blue-dark: #1A5FA0;
-    --green: #4CAF50;
-    --green-dark: #2E7D32;
-    --red: #E53935;
-    --red-light: #FFEBEE;
-    --green-light: #E8F5E9;
-    --purple: #7B5EA7;
-    --orange: #F77F00;
-    --teal: #00897B;
-    --bg: #FDF6E3;
-    --white: #FFFFFF;
-    --text: #2D2D2D;
-    --muted: #6B6B6B;
-    --border: #E0D5C0;
-    --radius: 16px;
-    --radius-lg: 24px;
-  }
+/* ═══ RESET & BASE ═══ */
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:#F0F4FF;color:#1A2036;min-height:100vh}
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+/* ═══ SCREENS ═══ */
+.screen{display:none}
+.screen.active{display:block}
 
-  body {
-    font-family: 'Nunito', sans-serif;
-    background: var(--sky);
-    color: var(--text);
-    min-height: 100vh;
-    padding: 0;
-  }
+/* ═══ HOME ═══ */
+#screen-home{max-width:700px;margin:0 auto;padding:24px 16px 60px}
 
-  /* STARS BACKGROUND */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      radial-gradient(circle, rgba(255,255,200,0.6) 1px, transparent 1px),
-      radial-gradient(circle, rgba(255,255,200,0.4) 1px, transparent 1px);
-    background-size: 80px 80px, 40px 40px;
-    background-position: 0 0, 20px 20px;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.3;
-  }
+.home-header{
+  text-align:center;padding:36px 24px 28px;
+  background:linear-gradient(135deg,#0F2167 0%,#1A3FAA 50%,#2E6DD4 100%);
+  border-radius:28px;margin-bottom:32px;color:white;
+  position:relative;overflow:hidden;
+}
+.home-header::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.home-title{font-family:'Fredoka One',cursive;font-size:clamp(26px,6vw,42px);letter-spacing:1px;margin-bottom:8px;text-shadow:2px 3px 6px rgba(0,0,0,0.3)}
+.home-sub{font-size:15px;opacity:0.85}
+.stars{font-size:28px;margin-bottom:12px;letter-spacing:4px}
 
-  .app { position: relative; z-index: 1; max-width: 760px; margin: 0 auto; padding: 20px 16px 60px; }
+/* ═══ SUBJECT CARDS ═══ */
+.subject-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:32px}
+.subject-card{
+  border-radius:20px;padding:24px 20px;cursor:pointer;
+  display:flex;align-items:center;gap:20px;
+  border:3px solid transparent;transition:all 0.22s;
+  position:relative;overflow:hidden;
+  box-shadow:0 4px 18px rgba(0,0,0,0.08);
+}
+.subject-card:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(0,0,0,0.14)}
+.subject-card.ea{background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border-color:#BFDBFE}
+.subject-card.ea:hover{border-color:#3B82F6}
+.subject-card.pre{background:linear-gradient(135deg,#FFF7ED,#FFEDD5);border-color:#FED7AA}
+.subject-card.pre:hover{border-color:#F97316}
+.subject-card.inv{background:linear-gradient(135deg,#F0FFFE,#CCFBF1);border-color:#99F6E4}
+.subject-card.inv:hover{border-color:#14B8A6}
 
-  /* HEADER */
-  .header {
-    text-align: center;
-    padding: 28px 24px 20px;
-    background: linear-gradient(135deg, #1A3A6B 0%, #2E5EAA 60%, #3A86D4 100%);
-    border-radius: var(--radius-lg);
-    margin-bottom: 24px;
-    color: white;
-    position: relative;
-    overflow: hidden;
-  }
-  .header::after {
-    content: '';
-    position: absolute;
-    bottom: -20px; left: 50%; transform: translateX(-50%);
-    width: 0; height: 0;
-    border-left: 20px solid transparent;
-    border-right: 20px solid transparent;
-    border-top: 20px solid #2E5EAA;
-  }
-  .header h1 {
-    font-family: 'Fredoka One', cursive;
-    font-size: clamp(22px, 5vw, 34px);
-    letter-spacing: 1px;
-    margin-bottom: 6px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-  }
-  .header p { font-size: 14px; opacity: 0.9; }
+.sc-emoji{font-size:48px;flex-shrink:0;filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.15))}
+.sc-info{flex:1}
+.sc-title{font-family:'Fredoka One',cursive;font-size:22px;margin-bottom:4px}
+.sc-title.ea{color:#1D4ED8}
+.sc-title.pre{color:#C2410C}
+.sc-title.inv{color:#0F766E}
+.sc-desc{font-size:13px;color:#555;line-height:1.5}
+.sc-badge{
+  position:absolute;top:14px;right:16px;
+  font-family:'Fredoka One',cursive;font-size:12px;
+  padding:3px 12px;border-radius:50px;
+  background:white;opacity:0.9;
+}
+.sc-badge.ea{color:#1D4ED8}
+.sc-badge.pre{color:#C2410C}
+.sc-badge.inv{color:#0F766E}
 
-  /* VARIANT SELECTOR */
-  .variant-selector {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    margin-bottom: 28px;
-    flex-wrap: wrap;
-  }
-  .variant-btn {
-    font-family: 'Fredoka One', cursive;
-    font-size: 15px;
-    padding: 10px 22px;
-    border-radius: 50px;
-    border: 3px solid var(--blue);
-    background: white;
-    color: var(--blue);
-    cursor: pointer;
-    transition: all 0.2s;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .variant-btn:hover { background: var(--blue); color: white; transform: translateY(-2px); }
-  .variant-btn.active { background: var(--blue); color: white; box-shadow: 0 4px 12px rgba(58,134,212,0.4); }
-  .variant-emoji { font-size: 20px; }
+/* ═══ DASHBOARD ═══ */
+.dashboard-section{background:white;border-radius:20px;padding:24px;border:2px solid #E5E7EB;box-shadow:0 2px 12px rgba(0,0,0,0.05)}
+.dash-title{font-family:'Fredoka One',cursive;font-size:20px;color:#1A2036;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.dash-card{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-radius:14px;background:#F8FAFF;border:2px solid #E5E7EB;margin-bottom:10px}
+.dash-card-left{display:flex;align-items:center;gap:14px}
+.dash-emoji{font-size:32px}
+.dash-label{font-family:'Fredoka One',cursive;font-size:16px;color:#1A2036}
+.dash-attempts{font-size:13px;color:#888;margin-top:2px}
+.dash-ring{
+  width:52px;height:52px;border-radius:50%;
+  background:conic-gradient(var(--ring) calc(var(--pct)*1%),#E5E7EB 0);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Fredoka One',cursive;font-size:14px;color:#1A2036;
+  flex-shrink:0;position:relative;
+}
+.dash-ring::before{content:'';position:absolute;width:36px;height:36px;border-radius:50%;background:white}
+.dash-ring>*{position:relative;z-index:1}
+.dash-ring span{position:relative;z-index:1}
+.dash-clear{font-family:'Fredoka One',cursive;font-size:13px;padding:6px 16px;border-radius:50px;border:2px solid #E5E7EB;background:white;color:#888;cursor:pointer;transition:all 0.18s;margin-top:12px}
+.dash-clear:hover{border-color:#E53935;color:#E53935}
 
-  /* PROGRESS */
-  .progress-bar-wrap {
-    background: #D0E8F8;
-    border-radius: 50px;
-    height: 12px;
-    margin-bottom: 8px;
-    overflow: hidden;
-  }
-  .progress-bar-fill {
-    height: 100%;
-    border-radius: 50px;
-    background: linear-gradient(90deg, var(--blue), var(--teal));
-    transition: width 0.4s ease;
-  }
-  .progress-label {
-    font-size: 13px;
-    color: var(--muted);
-    text-align: right;
-    margin-bottom: 20px;
-  }
+/* ═══ QUIZ SCREEN ═══ */
+#screen-quiz{max-width:760px;margin:0 auto;padding:0 16px 60px}
 
-  /* QUESTION CARD */
-  .question-card {
-    background: white;
-    border-radius: var(--radius-lg);
-    padding: 24px;
-    margin-bottom: 20px;
-    border: 2px solid var(--border);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-    animation: slideIn 0.3s ease;
-  }
-  @keyframes slideIn {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+.quiz-top-bar{
+  display:flex;align-items:center;gap:14px;padding:14px 20px;
+  background:white;border-radius:0 0 20px 20px;
+  border-bottom:2px solid #E5E7EB;
+  box-shadow:0 2px 12px rgba(0,0,0,0.06);
+  margin-bottom:24px;position:sticky;top:0;z-index:100;
+}
+.back-btn{
+  font-family:'Fredoka One',cursive;font-size:15px;padding:8px 18px;
+  border-radius:50px;border:2.5px solid #E5E7EB;background:white;
+  color:#555;cursor:pointer;transition:all 0.18s;display:flex;align-items:center;gap:6px;
+  white-space:nowrap;
+}
+.back-btn:hover{border-color:#1A3FAA;color:#1A3FAA;transform:translateX(-2px)}
+#quiz-subject-header{
+  font-family:'Fredoka One',cursive;font-size:18px;color:white;
+  padding:8px 18px;border-radius:50px;flex:1;text-align:center;
+  letter-spacing:0.5px;text-shadow:1px 1px 3px rgba(0,0,0,0.3);
+}
 
-  .q-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    margin-bottom: 16px;
-  }
-  .q-badge {
-    font-family: 'Fredoka One', cursive;
-    font-size: 13px;
-    padding: 4px 12px;
-    border-radius: 50px;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .badge-test { background: #E8F0FF; color: #3A5EAA; }
-  .badge-vf { background: #FFF3E0; color: #E65100; }
-  .badge-fill { background: #E8F5E9; color: #2E7D32; }
-  .badge-match { background: #F3E5F5; color: #6A1B9A; }
+/* ═══ QUIZ COMPONENTS ═══ */
+.variant-selector{display:flex;gap:10px;justify-content:center;margin-bottom:24px;flex-wrap:wrap}
+.variant-btn{font-family:'Fredoka One',cursive;font-size:15px;padding:10px 22px;border-radius:50px;border:3px solid #C0CADD;background:white;color:#555;cursor:pointer;transition:all 0.2s}
+.variant-btn:hover{border-color:#1A3FAA;color:#1A3FAA;transform:translateY(-2px)}
+.variant-btn.active{background:#1A3FAA;color:white;border-color:#1A3FAA;box-shadow:0 4px 12px rgba(26,63,170,0.35)}
 
-  .q-number {
-    font-family: 'Fredoka One', cursive;
-    font-size: 28px;
-    color: var(--blue);
-    line-height: 1;
-    min-width: 36px;
-  }
-  .q-text {
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1.5;
-    color: var(--text);
-    flex: 1;
-  }
+.progress-bar-wrap{background:#E5E7EB;border-radius:50px;height:12px;margin-bottom:8px;overflow:hidden}
+.progress-bar-fill{height:100%;border-radius:50px;background:linear-gradient(90deg,#3B82F6,#06B6D4);transition:width 0.4s ease}
+.progress-label{font-size:13px;color:#888;text-align:right;margin-bottom:20px}
 
-  /* ILLUSTRATION */
-  .q-illustration {
-    display: flex;
-    justify-content: center;
-    margin: 12px 0 16px;
-  }
-  .q-illustration svg { max-width: 180px; }
+.question-card{background:white;border-radius:20px;padding:24px;margin-bottom:20px;border:2px solid #E5E7EB;box-shadow:0 4px 14px rgba(0,0,0,0.05);animation:slideIn 0.3s ease}
+@keyframes slideIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
-  /* TEST OPTIONS */
-  .options-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 4px;
-  }
-  @media (max-width: 480px) { .options-grid { grid-template-columns: 1fr; } }
+.q-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px}
+.q-badge{font-family:'Fredoka One',cursive;font-size:13px;padding:4px 12px;border-radius:50px;white-space:nowrap;flex-shrink:0}
+.badge-test{background:#EFF6FF;color:#1D4ED8}
+.badge-vf{background:#FFF7ED;color:#C2410C}
+.badge-fill{background:#F0FDF4;color:#166534}
+.badge-match{background:#F5F3FF;color:#6D28D9}
+.q-number{font-family:'Fredoka One',cursive;font-size:28px;color:#1A3FAA;line-height:1;min-width:36px}
+.q-text{font-size:16px;font-weight:700;line-height:1.5;flex:1}
+.blank-span{color:#1A3FAA}
+.q-illustration{display:flex;justify-content:center;margin:12px 0 16px}
+.q-illustration svg{max-width:190px}
 
-  .option-btn {
-    padding: 12px 16px;
-    border-radius: var(--radius);
-    border: 2.5px solid var(--border);
-    background: var(--sand);
-    font-family: 'Nunito', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--text);
-    cursor: pointer;
-    text-align: left;
-    transition: all 0.18s;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .option-btn:hover:not(:disabled) {
-    border-color: var(--blue);
-    background: #EFF6FF;
-    transform: translateY(-2px);
-  }
-  .option-btn.correct { background: var(--green-light); border-color: var(--green); color: var(--green-dark); }
-  .option-btn.wrong { background: var(--red-light); border-color: var(--red); color: var(--red); }
-  .option-btn:disabled { cursor: default; }
-  .option-letter {
-    width: 26px; height: 26px;
-    border-radius: 50%;
-    background: var(--blue);
-    color: white;
-    font-family: 'Fredoka One', cursive;
-    font-size: 13px;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-  }
-  .option-btn.correct .option-letter { background: var(--green); }
-  .option-btn.wrong .option-letter { background: var(--red); }
+/* civ tags */
+.civ-tag{display:inline-block;font-size:11px;font-weight:800;padding:2px 10px;border-radius:50px;margin-bottom:8px;letter-spacing:0.5px;text-transform:uppercase}
+/* EA */
+.civ-general{background:#E9D5FF;color:#5B21B6}
+.civ-egipto{background:#FEF9C3;color:#854D0E}
+.civ-roma{background:#FEE2E2;color:#991B1B}
+.civ-grecia{background:#CFFAFE;color:#0E7490}
+.civ-mesopotamia{background:#D1FAE5;color:#065F46}
+/* PRE */
+.civ-paleo{background:#FFEDD5;color:#9A3412}
+.civ-neo{background:#D1FAE5;color:#065F46}
+.civ-metales{background:#F1F5F9;color:#334155}
+.civ-historia{background:#EDE9FE;color:#4C1D95}
+/* INV */
+.civ-anelidos{background:#FFF3E0;color:#E65100}
+.civ-cnidarios{background:#E0F7FA;color:#006064}
+.civ-moluscos{background:#F3E5F5;color:#6A1B9A}
+.civ-equinodermos{background:#FFF8E1;color:#F57F17}
+.civ-poriferos{background:#E8F5E9;color:#1B5E20}
+.civ-artropodos{background:#FCE4EC;color:#880E4F}
 
-  /* VF BUTTONS */
-  .vf-buttons { display: flex; gap: 12px; margin-top: 4px; }
-  .vf-btn {
-    flex: 1;
-    padding: 14px;
-    border-radius: var(--radius);
-    border: 2.5px solid var(--border);
-    background: var(--sand);
-    font-family: 'Fredoka One', cursive;
-    font-size: 18px;
-    cursor: pointer;
-    transition: all 0.18s;
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-  }
-  .vf-btn:hover:not(:disabled) { transform: translateY(-2px); }
-  .vf-btn.vf-true:hover:not(:disabled) { background: var(--green-light); border-color: var(--green); }
-  .vf-btn.vf-false:hover:not(:disabled) { background: var(--red-light); border-color: var(--red); }
-  .vf-btn.correct { background: var(--green-light); border-color: var(--green); color: var(--green-dark); }
-  .vf-btn.wrong { background: var(--red-light); border-color: var(--red); color: var(--red); }
-  .vf-btn:disabled { cursor: default; }
+/* Options */
+.options-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+@media(max-width:480px){.options-grid{grid-template-columns:1fr}}
+.option-btn{padding:12px 16px;border-radius:14px;border:2.5px solid #E5E7EB;background:#F8FAFF;font-family:'Nunito',sans-serif;font-size:14px;font-weight:700;color:#1A2036;cursor:pointer;text-align:left;transition:all 0.18s;display:flex;align-items:center;gap:10px}
+.option-btn:hover:not(:disabled){border-color:#1A3FAA;background:#EFF6FF;transform:translateY(-2px)}
+.option-btn.correct{background:#F0FDF4;border-color:#22C55E;color:#15803D}
+.option-btn.wrong{background:#FEF2F2;border-color:#EF4444;color:#B91C1C}
+.option-btn:disabled{cursor:default}
+.option-letter{width:26px;height:26px;border-radius:50%;background:#1A3FAA;color:white;font-family:'Fredoka One',cursive;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.option-btn.correct .option-letter{background:#22C55E}
+.option-btn.wrong .option-letter{background:#EF4444}
 
-  /* FILL IN THE BLANK */
-  .fill-wrap { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
-  .fill-input {
-    font-family: 'Nunito', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    padding: 8px 14px;
-    border-radius: 10px;
-    border: 2.5px solid var(--blue);
-    background: white;
-    color: var(--text);
-    width: 180px;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-  .fill-input:focus { border-color: var(--purple); box-shadow: 0 0 0 3px rgba(123,94,167,0.15); }
-  .fill-input.correct { border-color: var(--green); background: var(--green-light); }
-  .fill-input.wrong { border-color: var(--red); background: var(--red-light); }
-  .fill-check-btn {
-    font-family: 'Fredoka One', cursive;
-    font-size: 15px;
-    padding: 8px 20px;
-    border-radius: 50px;
-    border: none;
-    background: var(--blue);
-    color: white;
-    cursor: pointer;
-    transition: all 0.18s;
-  }
-  .fill-check-btn:hover { background: var(--blue-dark); transform: translateY(-1px); }
-  .fill-check-btn:disabled { opacity: 0.5; cursor: default; }
+/* V/F */
+.vf-buttons{display:flex;gap:12px;margin-top:4px}
+.vf-btn{flex:1;padding:14px;border-radius:14px;border:2.5px solid #E5E7EB;background:#F8FAFF;font-family:'Fredoka One',cursive;font-size:18px;cursor:pointer;transition:all 0.18s;display:flex;align-items:center;justify-content:center;gap:10px}
+.vf-btn:hover:not(:disabled){transform:translateY(-2px)}
+.vf-btn.vf-true:hover:not(:disabled){background:#F0FDF4;border-color:#22C55E}
+.vf-btn.vf-false:hover:not(:disabled){background:#FEF2F2;border-color:#EF4444}
+.vf-btn.correct{background:#F0FDF4;border-color:#22C55E;color:#15803D}
+.vf-btn.wrong{background:#FEF2F2;border-color:#EF4444;color:#B91C1C}
+.vf-btn:disabled{cursor:default}
 
-  /* MATCH */
-  .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
-  .match-item {
-    padding: 10px 14px;
-    border-radius: var(--radius);
-    border: 2.5px solid var(--border);
-    background: var(--sand);
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.18s;
-    text-align: center;
-  }
-  .match-item.left-item { color: var(--blue-dark); border-color: var(--blue); background: #EFF6FF; }
-  .match-item.right-item { color: var(--purple); border-color: var(--purple); background: #F3E5F5; }
-  .match-item.selected { transform: scale(1.04); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
-  .match-item.matched { opacity: 0.5; cursor: default; background: var(--green-light); border-color: var(--green); color: var(--green-dark); }
-  .match-item.wrong-match { background: var(--red-light); border-color: var(--red); }
+/* Fill */
+.fill-wrap{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:8px}
+.fill-input{font-family:'Nunito',sans-serif;font-size:16px;font-weight:700;padding:8px 14px;border-radius:10px;border:2.5px solid #1A3FAA;background:white;color:#1A2036;width:200px;outline:none;transition:all 0.2s}
+.fill-input:focus{border-color:#7C3AED;box-shadow:0 0 0 3px rgba(124,58,237,0.15)}
+.fill-input.correct{border-color:#22C55E;background:#F0FDF4}
+.fill-input.wrong{border-color:#EF4444;background:#FEF2F2}
+.fill-check-btn{font-family:'Fredoka One',cursive;font-size:15px;padding:8px 20px;border-radius:50px;border:none;background:#1A3FAA;color:white;cursor:pointer;transition:all 0.18s}
+.fill-check-btn:hover{background:#0F2167;transform:translateY(-1px)}
+.fill-check-btn:disabled{opacity:0.5;cursor:default}
 
-  /* FEEDBACK */
-  .feedback {
-    margin-top: 14px;
-    padding: 10px 16px;
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: 700;
-    display: none;
-    align-items: center;
-    gap: 8px;
-  }
-  .feedback.show { display: flex; }
-  .feedback.correct-fb { background: var(--green-light); color: var(--green-dark); }
-  .feedback.wrong-fb { background: var(--red-light); color: var(--red); }
-  .feedback-icon { font-size: 20px; }
+/* Match */
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px}
+.match-item{padding:10px 14px;border-radius:14px;border:2.5px solid #E5E7EB;background:#F8FAFF;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.18s;text-align:center}
+.match-item.left-item{color:#1D4ED8;border-color:#BFDBFE;background:#EFF6FF}
+.match-item.right-item{color:#6D28D9;border-color:#DDD6FE;background:#F5F3FF}
+.match-item.selected{transform:scale(1.04);box-shadow:0 4px 12px rgba(0,0,0,0.12)}
+.match-item.matched{opacity:0.55;cursor:default;background:#F0FDF4;border-color:#22C55E;color:#15803D}
+.match-item.wrong-match{background:#FEF2F2;border-color:#EF4444}
+.match-status{font-size:13px;color:#888;margin-top:8px;font-weight:700}
 
-  /* SCORE PANEL */
-  .score-panel {
-    background: white;
-    border-radius: var(--radius-lg);
-    padding: 32px 24px;
-    text-align: center;
-    border: 2px solid var(--border);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-    display: none;
-    animation: slideIn 0.4s ease;
-  }
-  .score-panel.show { display: block; }
-  .score-title { font-family: 'Fredoka One', cursive; font-size: 28px; color: var(--blue-dark); margin-bottom: 8px; }
-  .score-big { font-family: 'Fredoka One', cursive; font-size: 72px; line-height: 1; color: var(--gold-dark); }
-  .score-denom { font-size: 28px; color: var(--muted); }
-  .score-msg { font-size: 18px; font-weight: 700; margin: 14px 0 6px; }
-  .score-emoji { font-size: 48px; margin: 10px 0; }
-  .retry-btn {
-    font-family: 'Fredoka One', cursive;
-    font-size: 18px;
-    padding: 14px 36px;
-    border-radius: 50px;
-    border: none;
-    background: linear-gradient(135deg, var(--blue), var(--teal));
-    color: white;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: all 0.2s;
-    box-shadow: 0 4px 14px rgba(58,134,212,0.4);
-  }
-  .retry-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(58,134,212,0.5); }
+/* Feedback */
+.feedback{margin-top:14px;padding:10px 16px;border-radius:12px;font-size:14px;font-weight:700;display:none;align-items:center;gap:8px}
+.feedback.show{display:flex}
+.feedback.correct-fb{background:#F0FDF4;color:#15803D}
+.feedback.wrong-fb{background:#FEF2F2;color:#B91C1C}
+.feedback-icon{font-size:20px}
 
-  /* CIVILIZATION TAGS */
-  .civ-tag {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 800;
-    padding: 2px 10px;
-    border-radius: 50px;
-    margin-bottom: 8px;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-  }
-  .civ-egipto { background: #FFF3CD; color: #856404; }
-  .civ-roma { background: #F8D7DA; color: #842029; }
-  .civ-grecia { background: #CFF4FC; color: #055160; }
-  .civ-mesopotamia { background: #D1E7DD; color: #0A3622; }
-  .civ-general { background: #E2D9F3; color: #432874; }
+/* Score */
+.score-panel{background:white;border-radius:20px;padding:32px 24px;text-align:center;border:2px solid #E5E7EB;box-shadow:0 4px 18px rgba(0,0,0,0.07);display:none;animation:slideIn 0.4s ease;margin-top:20px}
+.score-panel.show{display:block}
+.score-title{font-family:'Fredoka One',cursive;font-size:22px;color:#1A2036;margin-bottom:8px}
+.score-big{font-family:'Fredoka One',cursive;font-size:72px;line-height:1;color:#1A3FAA}
+.score-denom{font-size:28px;color:#888}
+.score-msg{font-size:18px;font-weight:700;margin:14px 0 6px}
+.score-emoji{font-size:48px;margin:10px 0}
+.retry-btn{font-family:'Fredoka One',cursive;font-size:17px;padding:13px 32px;border-radius:50px;border:none;background:linear-gradient(135deg,#1A3FAA,#2E6DD4);color:white;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 14px rgba(26,63,170,0.35)}
+.retry-btn:hover{transform:translateY(-2px)}
+.home-btn{font-family:'Fredoka One',cursive;font-size:17px;padding:13px 32px;border-radius:50px;border:3px solid #1A3FAA;background:white;color:#1A3FAA;cursor:pointer;transition:all 0.2s}
+.home-btn:hover{background:#EFF6FF;transform:translateY(-2px)}
 
-  /* SECTION DIVIDER */
-  .section-divider {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 28px 0 20px;
-  }
-  .section-divider-line { flex: 1; height: 2px; background: var(--border); border-radius: 2px; }
-  .section-divider-label {
-    font-family: 'Fredoka One', cursive;
-    font-size: 15px;
-    color: var(--muted);
-    white-space: nowrap;
-  }
-  .section-divider-icon { font-size: 22px; }
-
-  /* MATCH STATUS */
-  .match-status { font-size: 13px; color: var(--muted); margin-top: 8px; font-weight: 700; }
-
-  /* SUBMIT */
-  .submit-area { text-align: center; margin-top: 32px; }
-  .submit-btn {
-    font-family: 'Fredoka One', cursive;
-    font-size: 20px;
-    padding: 16px 48px;
-    border-radius: 50px;
-    border: none;
-    background: linear-gradient(135deg, var(--gold), var(--orange));
-    color: white;
-    cursor: pointer;
-    transition: all 0.2s;
-    box-shadow: 0 4px 14px rgba(244,185,66,0.5);
-    letter-spacing: 0.5px;
-  }
-  .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(244,185,66,0.6); }
+.submit-area{text-align:center;margin-top:32px}
+.submit-btn{font-family:'Fredoka One',cursive;font-size:20px;padding:16px 48px;border-radius:50px;border:none;background:linear-gradient(135deg,#F4B942,#F97316);color:white;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 14px rgba(249,115,22,0.4);letter-spacing:0.5px}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(249,115,22,0.5)}
 </style>
 </head>
 <body>
-<div class="app">
 
-  <div class="header">
-    <h1>🏛️ La Edad Antigua</h1>
-    <p>¡Demuestra lo que has aprendido! Elige un examen y a por ello 🚀</p>
+<!-- ══════════ HOME ══════════ -->
+<div id="screen-home" class="screen">
+  <div id="screen-home-inner" style="max-width:700px;margin:0 auto;padding:24px 16px 60px">
+    <div class="home-header">
+      <div class="stars">⭐ 🌟 ✨</div>
+      <h1 class="home-title">Mis Exámenes</h1>
+      <p class="home-sub">Elige una materia y ¡a demostrar lo que sabes! 🚀</p>
+    </div>
+
+    <div class="subject-grid">
+      <div class="subject-card ea" onclick="goToSubject('ea')">
+        <span class="sc-emoji">🏛️</span>
+        <div class="sc-info">
+          <div class="sc-title ea">La Edad Antigua</div>
+          <div class="sc-desc">Mesopotamia · Egipto · Grecia · Roma<br>3 exámenes · 10 preguntas cada uno</div>
+        </div>
+        <span class="sc-badge ea">3 variantes</span>
+      </div>
+      <div class="subject-card pre" onclick="goToSubject('pre')">
+        <span class="sc-emoji">🦣</span>
+        <div class="sc-info">
+          <div class="sc-title pre">La Prehistoria</div>
+          <div class="sc-desc">Paleolítico · Neolítico · Edad de los Metales · Las Edades<br>3 exámenes · 10 preguntas cada uno</div>
+        </div>
+        <span class="sc-badge pre">3 variantes</span>
+      </div>
+      <div class="subject-card inv" onclick="goToSubject('inv')">
+        <span class="sc-emoji">🐙</span>
+        <div class="sc-info">
+          <div class="sc-title inv">Los Invertebrados</div>
+          <div class="sc-desc">Anélidos · Cnidarios · Moluscos · Equinodermos · Poríferos · Artrópodos<br>3 exámenes · 10 preguntas cada uno</div>
+        </div>
+        <span class="sc-badge inv">3 variantes</span>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="dashboard-section">
+      <div class="dash-title">📊 Mi progreso</div>
+      <div id="dashboard"></div>
+      <div style="text-align:right;margin-top:8px">
+        <button class="dash-clear" onclick="clearScores()">🗑 Borrar puntuaciones</button>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="variant-selector">
-    <button class="variant-btn active" onclick="loadVariant(0)"><span class="variant-emoji">🌟</span> Examen 1</button>
-    <button class="variant-btn" onclick="loadVariant(1)"><span class="variant-emoji">⚡</span> Examen 2</button>
-    <button class="variant-btn" onclick="loadVariant(2)"><span class="variant-emoji">🔥</span> Examen 3</button>
+<!-- ══════════ QUIZ ══════════ -->
+<div id="screen-quiz" class="screen">
+  <div class="quiz-top-bar">
+    <button class="back-btn" onclick="goHome()">← Inicio</button>
+    <div id="quiz-subject-header">Examen</div>
   </div>
-
-  <div id="quiz-area"></div>
-  <div id="score-panel" class="score-panel"></div>
-
+  <div style="max-width:760px;margin:0 auto;padding:0 16px">
+    <div id="quiz-area"></div>
+    <div id="score-panel" class="score-panel"></div>
+  </div>
 </div>
 
 <script>
-const VARIANTS = [
+const ILLUS_EA = {
+  timeline: `<svg viewBox="0 0 180 80" xmlns="http://www.w3.org/2000/svg">
+    <rect x="10" y="35" width="160" height="8" rx="4" fill="#3A86D4" opacity="0.3"/>
+    <circle cx="20" cy="39" r="10" fill="#3A86D4"/><text x="20" y="43" text-anchor="middle" font-size="8" fill="white" font-family="Fredoka One">4000</text>
+    <circle cx="90" cy="39" r="10" fill="#7B5EA7"/><text x="90" y="43" text-anchor="middle" font-size="8" fill="white" font-family="Fredoka One">...</text>
+    <circle cx="160" cy="39" r="10" fill="#E53935"/><text x="160" y="43" text-anchor="middle" font-size="8" fill="white" font-family="Fredoka One">476</text>
+    <text x="20" y="22" text-anchor="middle" font-size="9" fill="#1A5FA0" font-family="Nunito" font-weight="800">Inicio</text>
+    <text x="160" y="22" text-anchor="middle" font-size="9" fill="#B71C1C" font-family="Nunito" font-weight="800">Fin</text>
+    <text x="20" y="62" text-anchor="middle" font-size="8" fill="#555" font-family="Nunito">a.C.</text>
+    <text x="160" y="62" text-anchor="middle" font-size="8" fill="#555" font-family="Nunito">d.C.</text>
+  </svg>`,
+
+  nile: `<svg viewBox="0 0 180 90" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="90" rx="12" fill="#FFF8E1"/>
+    <path d="M80 10 Q70 30 75 50 Q80 70 78 85" stroke="#1565C0" stroke-width="12" fill="none" stroke-linecap="round" opacity="0.7"/>
+    <rect x="20" y="40" width="55" height="35" rx="4" fill="#C8A96E" opacity="0.6"/>
+    <rect x="100" y="40" width="55" height="35" rx="4" fill="#C8A96E" opacity="0.6"/>
+    <polygon points="35,40 50,10 65,40" fill="#C8A96E"/>
+    <polygon points="110,40 125,15 140,40" fill="#C8A96E"/>
+    <circle cx="130" cy="20" r="8" fill="#F4B942"/>
+    <text x="90" y="88" text-anchor="middle" font-size="10" fill="#1565C0" font-family="Nunito" font-weight="800">Río Nilo</text>
+  </svg>`,
+
+  pharaoh: `<svg viewBox="0 0 180 110" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="110" rx="12" fill="#FFF8E1"/>
+    <rect x="70" y="8" width="40" height="50" rx="4" fill="#F4B942"/>
+    <rect x="74" y="8" width="32" height="10" rx="2" fill="#1565C0"/>
+    <circle cx="90" cy="45" r="18" fill="#FFCC80"/>
+    <ellipse cx="90" cy="42" rx="9" ry="5" fill="#BF8040"/>
+    <circle cx="85" cy="44" r="2" fill="#5D4037"/>
+    <circle cx="95" cy="44" r="2" fill="#5D4037"/>
+    <path d="M85 50 Q90 54 95 50" stroke="#5D4037" stroke-width="1.5" fill="none"/>
+    <rect x="72" y="63" width="36" height="35" rx="4" fill="#F4B942"/>
+    <line x1="72" y1="65" x2="72" y2="98" stroke="#C8A000" stroke-width="2"/>
+    <line x1="108" y1="65" x2="108" y2="98" stroke="#C8A000" stroke-width="2"/>
+    <rect x="60" y="65" width="12" height="22" rx="3" fill="#FFCC80"/>
+    <rect x="108" y="65" width="12" height="22" rx="3" fill="#FFCC80"/>
+    <text x="90" y="108" text-anchor="middle" font-size="10" fill="#856404" font-family="Nunito" font-weight="800">Faraón</text>
+  </svg>`,
+
+  pyramid: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="100" rx="12" fill="#FFF8E1"/>
+    <polygon points="90,15 20,85 160,85" fill="#C8A96E"/>
+    <polygon points="90,15 90,85 160,85" fill="#BF9060"/>
+    <line x1="90" y1="15" x2="20" y2="85" stroke="#856404" stroke-width="1" opacity="0.4"/>
+    <line x1="90" y1="15" x2="160" y2="85" stroke="#856404" stroke-width="1" opacity="0.4"/>
+    <line x1="35" y1="75" x2="145" y2="75" stroke="#856404" stroke-width="1" opacity="0.4"/>
+    <line x1="50" y1="65" x2="130" y2="65" stroke="#856404" stroke-width="1" opacity="0.4"/>
+    <circle cx="157" cy="25" r="10" fill="#F4B942"/>
+    <rect x="74" y="72" width="16" height="13" rx="2" fill="#8D6E63"/>
+    <text x="90" y="98" text-anchor="middle" font-size="10" fill="#856404" font-family="Nunito" font-weight="800">Pirámide</text>
+  </svg>`,
+
+  ziggurat: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="100" rx="12" fill="#E8F5E9"/>
+    <rect x="10" y="75" width="160" height="18" rx="3" fill="#8D6E63"/>
+    <rect x="25" y="57" width="130" height="18" rx="3" fill="#A1887F"/>
+    <rect x="40" y="40" width="100" height="17" rx="3" fill="#BCAAA4"/>
+    <rect x="60" y="25" width="60" height="15" rx="3" fill="#D7CCC8"/>
+    <rect x="75" y="15" width="30" height="10" rx="2" fill="#EFEBE9"/>
+    <line x1="55" y1="57" x2="55" y2="75" stroke="#795548" stroke-width="2"/>
+    <line x1="125" y1="57" x2="125" y2="75" stroke="#795548" stroke-width="2"/>
+    <text x="90" y="98" text-anchor="middle" font-size="10" fill="#4E342E" font-family="Nunito" font-weight="800">Zigurat</text>
+  </svg>`,
+
+  olympics: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="100" rx="12" fill="#E3F2FD"/>
+    <circle cx="55" cy="45" r="16" fill="none" stroke="#1565C0" stroke-width="4"/>
+    <circle cx="90" cy="45" r="16" fill="none" stroke="#E53935" stroke-width="4"/>
+    <circle cx="125" cy="45" r="16" fill="none" stroke="#FDD835" stroke-width="4"/>
+    <circle cx="72" cy="58" r="16" fill="none" stroke="#2E7D32" stroke-width="4"/>
+    <circle cx="108" cy="58" r="16" fill="none" stroke="#E65100" stroke-width="4"/>
+    <text x="90" y="90" text-anchor="middle" font-size="10" fill="#0D47A1" font-family="Nunito" font-weight="800">Olimpiadas</text>
+  </svg>`,
+
+  agora: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="100" rx="12" fill="#E0F7FA"/>
+    <rect x="10" y="60" width="160" height="8" rx="2" fill="#B0BEC5"/>
+    <line x1="25" y1="25" x2="25" y2="60" stroke="#90A4AE" stroke-width="5" stroke-linecap="round"/>
+    <line x1="55" y1="25" x2="55" y2="60" stroke="#90A4AE" stroke-width="5" stroke-linecap="round"/>
+    <line x1="85" y1="25" x2="85" y2="60" stroke="#90A4AE" stroke-width="5" stroke-linecap="round"/>
+    <line x1="115" y1="25" x2="115" y2="60" stroke="#90A4AE" stroke-width="5" stroke-linecap="round"/>
+    <line x1="145" y1="25" x2="145" y2="60" stroke="#90A4AE" stroke-width="5" stroke-linecap="round"/>
+    <line x1="155" y1="25" x2="155" y2="60" stroke="#90A4AE" stroke-width="5" stroke-linecap="round"/>
+    <polygon points="10,25 90,10 170,25" fill="#CFD8DC"/>
+    <circle cx="65" cy="78" r="7" fill="#FFCC80"/>
+    <circle cx="90" cy="78" r="7" fill="#FFCC80"/>
+    <circle cx="115" cy="78" r="7" fill="#FFCC80"/>
+    <text x="90" y="98" text-anchor="middle" font-size="10" fill="#006064" font-family="Nunito" font-weight="800">Ágora griega</text>
+  </svg>`,
+
+  philosophers: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="100" rx="12" fill="#F3E5F5"/>
+    <circle cx="45" cy="40" r="16" fill="#CE93D8"/>
+    <text x="45" y="45" text-anchor="middle" font-size="11" fill="white" font-family="Fredoka One">S</text>
+    <text x="45" y="68" text-anchor="middle" font-size="9" fill="#6A1B9A" font-family="Nunito" font-weight="800">Sócrates</text>
+    <circle cx="90" cy="40" r="16" fill="#AB47BC"/>
+    <text x="90" y="45" text-anchor="middle" font-size="11" fill="white" font-family="Fredoka One">P</text>
+    <text x="90" y="68" text-anchor="middle" font-size="9" fill="#6A1B9A" font-family="Nunito" font-weight="800">Platón</text>
+    <circle cx="135" cy="40" r="16" fill="#8E24AA"/>
+    <text x="135" y="45" text-anchor="middle" font-size="11" fill="white" font-family="Fredoka One">A</text>
+    <text x="135" y="68" text-anchor="middle" font-size="9" fill="#6A1B9A" font-family="Nunito" font-weight="800">Aristóteles</text>
+    <text x="90" y="92" text-anchor="middle" font-size="10" fill="#4A148C" font-family="Nunito" font-weight="800">Los tres grandes filósofos</text>
+  </svg>`,
+
+  wolf: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="100" rx="12" fill="#FFF3E0"/>
+    <ellipse cx="90" cy="65" rx="45" ry="28" fill="#9E9E9E"/>
+    <circle cx="90" cy="48" r="20" fill="#9E9E9E"/>
+    <polygon points="78,35 72,18 84,32" fill="#9E9E9E"/>
+    <polygon points="102,35 108,18 96,32" fill="#9E9E9E"/>
+    <ellipse cx="82" cy="48" rx="5" ry="6" fill="white"/>
+    <ellipse cx="98" cy="48" rx="5" ry="6" fill="white"/>
+    <circle cx="82" cy="49" r="3" fill="#333"/>
+    <circle cx="98" cy="49" r="3" fill="#333"/>
+    <ellipse cx="90" cy="57" rx="7" ry="4" fill="#BDBDBD"/>
+    <circle cx="55" cy="72" r="8" fill="#FFCC80"/>
+    <circle cx="72" cy="72" r="8" fill="#FFCC80"/>
+    <text x="90" y="97" text-anchor="middle" font-size="9" fill="#E65100" font-family="Nunito" font-weight="800">Rómulo y Remo</text>
+  </svg>`,
+
+  rome_society: `<svg viewBox="0 0 180 95" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="95" rx="12" fill="#FFEBEE"/>
+    <rect x="55" y="15" width="70" height="22" rx="4" fill="#C62828"/>
+    <text x="90" y="30" text-anchor="middle" font-size="10" fill="white" font-family="Nunito" font-weight="800">Patricios 👑</text>
+    <rect x="35" y="42" width="110" height="22" rx="4" fill="#EF9A9A"/>
+    <text x="90" y="57" text-anchor="middle" font-size="10" fill="#7F0000" font-family="Nunito" font-weight="800">Plebeyos 🌾</text>
+    <rect x="15" y="69" width="150" height="22" rx="4" fill="#FFCDD2"/>
+    <text x="90" y="84" text-anchor="middle" font-size="10" fill="#B71C1C" font-family="Nunito" font-weight="800">Esclavos ⛓️</text>
+  </svg>`,
+
+  rome_map: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="100" rx="12" fill="#E3F2FD"/>
+    <ellipse cx="90" cy="55" rx="75" ry="38" fill="#E8D5A3" opacity="0.8"/>
+    <ellipse cx="90" cy="60" rx="70" ry="15" fill="#4FC3F7" opacity="0.5"/>
+    <circle cx="90" cy="50" r="6" fill="#C62828"/>
+    <text x="90" y="48" text-anchor="middle" font-size="7" fill="white" font-family="Fredoka One">R</text>
+    <text x="90" y="93" text-anchor="middle" font-size="9" fill="#0D47A1" font-family="Nunito" font-weight="800">El Imperio Romano</text>
+  </svg>`,
+
+  cuneiform: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="100" rx="12" fill="#FFF8E1"/>
+    <rect x="20" y="15" width="140" height="70" rx="6" fill="#D7CCC8"/>
+    <line x1="35" y1="30" x2="55" y2="30" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="35" y1="30" x2="35" y2="38" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="65" y1="25" x2="65" y2="40" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="65" y1="25" x2="80" y2="30" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="90" y1="28" x2="110" y2="28" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="100" y1="28" x2="100" y2="40" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="35" y1="52" x2="45" y2="52" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="40" y1="52" x2="40" y2="65" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="60" y1="50" x2="80" y2="55" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="95" y1="52" x2="120" y2="52" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="130" y1="50" x2="145" y2="65" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="90" y="97" text-anchor="middle" font-size="10" fill="#4E342E" font-family="Nunito" font-weight="800">Escritura cuneiforme</text>
+  </svg>`,
+
+  polis: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="100" rx="12" fill="#E8F5E9"/>
+    <rect x="15" y="50" width="65" height="35" rx="4" fill="#81C784"/>
+    <polygon points="47,20 15,50 80,50" fill="#4CAF50"/>
+    <text x="47" y="80" text-anchor="middle" font-size="9" fill="white" font-family="Nunito" font-weight="800">Esparta</text>
+    <rect x="100" y="50" width="65" height="35" rx="4" fill="#64B5F6"/>
+    <polygon points="132,20 100,50 165,50" fill="#2196F3"/>
+    <text x="132" y="80" text-anchor="middle" font-size="9" fill="white" font-family="Nunito" font-weight="800">Atenas</text>
+    <text x="90" y="98" text-anchor="middle" font-size="9" fill="#1B5E20" font-family="Nunito" font-weight="800">Las dos grandes polis</text>
+  </svg>`,
+
+  hygiene: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="100" rx="12" fill="#E0F7FA"/>
+    <rect x="25" y="30" width="12" height="40" rx="4" fill="#B2DFDB"/>
+    <rect x="21" y="26" width="20" height="10" rx="3" fill="#80CBC4"/>
+    <rect x="24" y="62" width="14" height="15" rx="4" fill="#00838F"/>
+    <text x="31" y="85" text-anchor="middle" font-size="8" fill="#006064" font-family="Nunito" font-weight="800">cepillo</text>
+    <ellipse cx="75" cy="55" rx="18" ry="10" fill="#F48FB1"/>
+    <rect x="73" y="38" width="4" height="17" rx="2" fill="#CE93D8"/>
+    <text x="75" y="83" text-anchor="middle" font-size="8" fill="#880E4F" font-family="Nunito" font-weight="800">maquillaje</text>
+    <ellipse cx="125" cy="50" rx="20" ry="14" fill="#FFF9C4"/>
+    <path d="M115 42 Q125 35 135 42" fill="#F4B942"/>
+    <text x="125" y="80" text-anchor="middle" font-size="8" fill="#856404" font-family="Nunito" font-weight="800">perfume</text>
+    <rect x="148" y="35" width="12" height="28" rx="3" fill="#BDBDBD"/>
+    <line x1="154" y1="32" x2="154" y2="35" stroke="#757575" stroke-width="2"/>
+    <text x="154" y="83" text-anchor="middle" font-size="8" fill="#424242" font-family="Nunito" font-weight="800">tijeras</text>
+  </svg>`,
+
+  zeus: `<svg viewBox="0 0 180 110" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="110" rx="12" fill="#E3F2FD"/>
+    <circle cx="90" cy="35" r="22" fill="#FFCC80"/>
+    <ellipse cx="90" cy="28" rx="12" ry="6" fill="#E0E0E0"/>
+    <circle cx="84" cy="36" r="3" fill="#5D4037"/>
+    <circle cx="96" cy="36" r="3" fill="#5D4037"/>
+    <path d="M84 44 Q90 49 96 44" stroke="#5D4037" stroke-width="1.5" fill="none"/>
+    <path d="M78 44 Q74 60 70 65" stroke="#BF8040" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M102 44 Q106 60 110 65" stroke="#BF8040" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <rect x="72" y="57" width="36" height="42" rx="4" fill="#90CAF9"/>
+    <polygon points="95,68 108,90 82,90" fill="#FDD835" opacity="0.85"/>
+    <text x="90" y="107" text-anchor="middle" font-size="10" fill="#0D47A1" font-family="Nunito" font-weight="800">Zeus ⚡</text>
+  </svg>`,
+
+  arch: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="100" rx="12" fill="#FFF8E1"/>
+    <rect x="30" y="35" width="20" height="52" rx="3" fill="#D7CCC8"/>
+    <rect x="130" y="35" width="20" height="52" rx="3" fill="#D7CCC8"/>
+    <path d="M30 35 Q90 -10 150 35" fill="#BCAAA4" stroke="#8D6E63" stroke-width="3"/>
+    <rect x="10" y="85" width="160" height="12" rx="3" fill="#8D6E63"/>
+    <text x="90" y="98" text-anchor="middle" font-size="10" fill="#4E342E" font-family="Nunito" font-weight="800">El arco</text>
+  </svg>`,
+
+  scales: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="100" rx="12" fill="#FFF3E0"/>
+    <line x1="90" y1="15" x2="90" y2="75" stroke="#795548" stroke-width="3"/>
+    <line x1="50" y1="35" x2="130" y2="35" stroke="#795548" stroke-width="3"/>
+    <line x1="50" y1="35" x2="50" y2="55" stroke="#795548" stroke-width="2"/>
+    <line x1="130" y1="35" x2="130" y2="45" stroke="#795548" stroke-width="2"/>
+    <ellipse cx="50" cy="60" rx="22" ry="8" fill="#AED6F1"/>
+    <ellipse cx="130" cy="50" rx="22" ry="8" fill="#F1948A"/>
+    <text x="50" y="63" text-anchor="middle" font-size="8" fill="#1565C0" font-family="Nunito" font-weight="800">Libres</text>
+    <text x="130" y="53" text-anchor="middle" font-size="8" fill="#C0392B" font-family="Nunito" font-weight="800">Esclavos</text>
+    <rect x="82" y="72" width="16" height="16" rx="3" fill="#795548"/>
+    <text x="90" y="97" text-anchor="middle" font-size="9" fill="#4E342E" font-family="Nunito" font-weight="800">Sociedad dividida</text>
+  </svg>`,
+
+  trade: `<svg viewBox="0 0 180 90" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="90" rx="12" fill="#E8F5E9"/>
+    <rect x="10" y="30" width="35" height="30" rx="5" fill="#A5D6A7"/>
+    <rect x="135" y="30" width="35" height="30" rx="5" fill="#80DEEA"/>
+    <line x1="45" y1="42" x2="135" y2="42" stroke="#795548" stroke-width="2" stroke-dasharray="6,4"/>
+    <polygon points="60,32 80,42 60,52" fill="#F4B942"/>
+    <polygon points="120,32 100,42 120,52" fill="#F4B942"/>
+    <text x="90" y="72" text-anchor="middle" font-size="10" fill="#2E7D32" font-family="Nunito" font-weight="800">Intercambio comercial</text>
+  </svg>`,
+
+  tigris: `<svg viewBox="0 0 180 90" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" width="180" height="90" rx="12" fill="#FFF8E1"/>
+    <path d="M20 30 Q40 20 60 35 Q80 50 100 30 Q120 15 140 28 Q160 40 170 35" stroke="#1565C0" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.6"/>
+    <path d="M20 55 Q40 45 60 60 Q80 75 100 55 Q120 40 140 53 Q160 65 170 60" stroke="#42A5F5" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.6"/>
+    <text x="30" y="32" font-size="9" fill="#1A237E" font-family="Nunito" font-weight="800">Tigris</text>
+    <text x="30" y="57" font-size="9" fill="#0277BD" font-family="Nunito" font-weight="800">Éufrates</text>
+    <text x="90" y="84" text-anchor="middle" font-size="10" fill="#4E342E" font-family="Nunito" font-weight="800">Los dos grandes ríos</text>
+  </svg>`
+};
+const VARIANTS_EA = [
 
 /* ═══════════════ VARIANT 1 ═══════════════ */
 {
@@ -746,258 +843,597 @@ const VARIANTS = [
   ]
 }
 ];
+const ILLUS_PRE = {
+  cave: `<svg viewBox="0 0 190 90" xmlns="http://www.w3.org/2000/svg"><rect width="190" height="90" rx="12" fill="#FFF8EC"/>
+    <ellipse cx="95" cy="75" rx="60" ry="18" fill="#D4A96A"/>
+    <path d="M35 75 Q50 20 95 15 Q140 20 155 75 Z" fill="#C8956A"/>
+    <ellipse cx="95" cy="75" rx="32" ry="12" fill="#3D2B1A"/>
+    <circle cx="145" cy="30" r="10" fill="#F4B942"/>
+    <text x="95" y="88" text-anchor="middle" font-size="10" fill="#7B4F2E" font-family="Nunito" font-weight="800">Cueva paleolítica</text></svg>`,
 
-/* ═══════ ILLUSTRATIONS ═══════ */
-const ILLUSTRATIONS = {
-  timeline: `<svg viewBox="0 0 180 80" xmlns="http://www.w3.org/2000/svg">
-    <rect x="10" y="35" width="160" height="8" rx="4" fill="#3A86D4" opacity="0.3"/>
-    <circle cx="20" cy="39" r="10" fill="#3A86D4"/><text x="20" y="43" text-anchor="middle" font-size="8" fill="white" font-family="Fredoka One">4000</text>
-    <circle cx="90" cy="39" r="10" fill="#7B5EA7"/><text x="90" y="43" text-anchor="middle" font-size="8" fill="white" font-family="Fredoka One">...</text>
-    <circle cx="160" cy="39" r="10" fill="#E53935"/><text x="160" y="43" text-anchor="middle" font-size="8" fill="white" font-family="Fredoka One">476</text>
-    <text x="20" y="22" text-anchor="middle" font-size="9" fill="#1A5FA0" font-family="Nunito" font-weight="800">Inicio</text>
-    <text x="160" y="22" text-anchor="middle" font-size="9" fill="#B71C1C" font-family="Nunito" font-weight="800">Fin</text>
-    <text x="20" y="62" text-anchor="middle" font-size="8" fill="#555" font-family="Nunito">a.C.</text>
-    <text x="160" y="62" text-anchor="middle" font-size="8" fill="#555" font-family="Nunito">d.C.</text>
-  </svg>`,
+  fire: `<svg viewBox="0 0 190 90" xmlns="http://www.w3.org/2000/svg"><rect width="190" height="90" rx="12" fill="#FFF8EC"/>
+    <ellipse cx="95" cy="78" rx="30" ry="8" fill="#8B6A3A"/>
+    <path d="M80 78 Q78 55 95 40 Q112 55 110 78 Z" fill="#E53935" opacity="0.85"/>
+    <path d="M85 78 Q83 60 95 48 Q107 60 105 78 Z" fill="#F4B942"/>
+    <path d="M90 78 Q89 65 95 55 Q101 65 100 78 Z" fill="#FFF176"/>
+    <text x="95" y="88" text-anchor="middle" font-size="10" fill="#7B4F2E" font-family="Nunito" font-weight="800">El fuego</text></svg>`,
 
-  nile: `<svg viewBox="0 0 180 90" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="180" height="90" rx="12" fill="#FFF8E1"/>
-    <path d="M80 10 Q70 30 75 50 Q80 70 78 85" stroke="#1565C0" stroke-width="12" fill="none" stroke-linecap="round" opacity="0.7"/>
-    <rect x="20" y="40" width="55" height="35" rx="4" fill="#C8A96E" opacity="0.6"/>
-    <rect x="100" y="40" width="55" height="35" rx="4" fill="#C8A96E" opacity="0.6"/>
-    <polygon points="35,40 50,10 65,40" fill="#C8A96E"/>
-    <polygon points="110,40 125,15 140,40" fill="#C8A96E"/>
-    <circle cx="130" cy="20" r="8" fill="#F4B942"/>
-    <text x="90" y="88" text-anchor="middle" font-size="10" fill="#1565C0" font-family="Nunito" font-weight="800">Río Nilo</text>
-  </svg>`,
+  hunter: `<svg viewBox="0 0 190 100" xmlns="http://www.w3.org/2000/svg"><rect width="190" height="100" rx="12" fill="#FFF8EC"/>
+    <circle cx="60" cy="30" r="14" fill="#FFCC80"/>
+    <ellipse cx="60" cy="25" rx="7" ry="5" fill="#8D6E63"/>
+    <circle cx="56" cy="30" r="2.5" fill="#5D4037"/>
+    <circle cx="64" cy="30" r="2.5" fill="#5D4037"/>
+    <rect x="52" y="44" width="16" height="30" rx="3" fill="#A1887F"/>
+    <rect x="38" y="46" width="14" height="6" rx="3" fill="#FFCC80"/>
+    <rect x="66" y="46" width="14" height="6" rx="3" fill="#FFCC80"/>
+    <line x1="66" y1="49" x2="115" y2="42" stroke="#8D6E63" stroke-width="2.5" stroke-linecap="round"/>
+    <polygon points="115,40 122,42 115,46" fill="#795548"/>
+    <ellipse cx="150" cy="55" rx="25" ry="18" fill="#D4A96A"/>
+    <circle cx="135" cy="48" r="6" fill="#8D6E63"/>
+    <text x="95" y="97" text-anchor="middle" font-size="10" fill="#7B4F2E" font-family="Nunito" font-weight="800">Cazador del Paleolítico</text></svg>`,
 
-  pharaoh: `<svg viewBox="0 0 180 110" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="180" height="110" rx="12" fill="#FFF8E1"/>
-    <rect x="70" y="8" width="40" height="50" rx="4" fill="#F4B942"/>
-    <rect x="74" y="8" width="32" height="10" rx="2" fill="#1565C0"/>
-    <circle cx="90" cy="45" r="18" fill="#FFCC80"/>
-    <ellipse cx="90" cy="42" rx="9" ry="5" fill="#BF8040"/>
-    <circle cx="85" cy="44" r="2" fill="#5D4037"/>
-    <circle cx="95" cy="44" r="2" fill="#5D4037"/>
-    <path d="M85 50 Q90 54 95 50" stroke="#5D4037" stroke-width="1.5" fill="none"/>
-    <rect x="72" y="63" width="36" height="35" rx="4" fill="#F4B942"/>
-    <line x1="72" y1="65" x2="72" y2="98" stroke="#C8A000" stroke-width="2"/>
-    <line x1="108" y1="65" x2="108" y2="98" stroke="#C8A000" stroke-width="2"/>
-    <rect x="60" y="65" width="12" height="22" rx="3" fill="#FFCC80"/>
-    <rect x="108" y="65" width="12" height="22" rx="3" fill="#FFCC80"/>
-    <text x="90" y="108" text-anchor="middle" font-size="10" fill="#856404" font-family="Nunito" font-weight="800">Faraón</text>
-  </svg>`,
+  village: `<svg viewBox="0 0 190 90" xmlns="http://www.w3.org/2000/svg"><rect width="190" height="90" rx="12" fill="#E8F5E9"/>
+    <rect x="10" y="82" width="170" height="5" rx="2" fill="#8BC34A"/>
+    <rect x="20" y="50" width="40" height="32" rx="4" fill="#D7CCC8"/>
+    <polygon points="40,20 20,50 60,50" fill="#BCAAA4"/>
+    <rect x="75" y="55" width="35" height="27" rx="4" fill="#EFEBE9"/>
+    <polygon points="92,28 75,55 110,55" fill="#D7CCC8"/>
+    <rect x="125" y="52" width="42" height="30" rx="4" fill="#D7CCC8"/>
+    <polygon points="146,24 125,52 167,52" fill="#BCAAA4"/>
+    <circle cx="155" cy="20" r="10" fill="#F4B942"/>
+    <text x="95" y="88" text-anchor="middle" font-size="10" fill="#2E7D32" font-family="Nunito" font-weight="800">Aldea neolítica</text></svg>`,
 
-  pyramid: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="180" height="100" rx="12" fill="#FFF8E1"/>
-    <polygon points="90,15 20,85 160,85" fill="#C8A96E"/>
-    <polygon points="90,15 90,85 160,85" fill="#BF9060"/>
-    <line x1="90" y1="15" x2="20" y2="85" stroke="#856404" stroke-width="1" opacity="0.4"/>
-    <line x1="90" y1="15" x2="160" y2="85" stroke="#856404" stroke-width="1" opacity="0.4"/>
-    <line x1="35" y1="75" x2="145" y2="75" stroke="#856404" stroke-width="1" opacity="0.4"/>
-    <line x1="50" y1="65" x2="130" y2="65" stroke="#856404" stroke-width="1" opacity="0.4"/>
-    <circle cx="157" cy="25" r="10" fill="#F4B942"/>
-    <rect x="74" y="72" width="16" height="13" rx="2" fill="#8D6E63"/>
-    <text x="90" y="98" text-anchor="middle" font-size="10" fill="#856404" font-family="Nunito" font-weight="800">Pirámide</text>
-  </svg>`,
+  farming: `<svg viewBox="0 0 190 90" xmlns="http://www.w3.org/2000/svg"><rect width="190" height="90" rx="12" fill="#E8F5E9"/>
+    <rect x="0" y="60" width="190" height="30" rx="0" fill="#8BC34A" opacity="0.4"/>
+    <rect x="0" y="70" width="190" height="20" rx="0" fill="#795548" opacity="0.3"/>
+    <line x1="30" y1="70" x2="30" y2="30" stroke="#558B2F" stroke-width="3"/>
+    <ellipse cx="30" cy="28" rx="8" ry="12" fill="#AED581"/>
+    <line x1="60" y1="70" x2="60" y2="25" stroke="#558B2F" stroke-width="3"/>
+    <ellipse cx="60" cy="22" rx="8" ry="12" fill="#AED581"/>
+    <line x1="90" y1="70" x2="90" y2="30" stroke="#558B2F" stroke-width="3"/>
+    <ellipse cx="90" cy="28" rx="8" ry="12" fill="#AED581"/>
+    <line x1="120" y1="70" x2="120" y2="27" stroke="#558B2F" stroke-width="3"/>
+    <ellipse cx="120" cy="24" rx="8" ry="12" fill="#AED581"/>
+    <ellipse cx="160" cy="55" rx="18" ry="12" fill="#F5F5F5"/>
+    <circle cx="152" cy="50" r="4" fill="#616161"/>
+    <circle cx="168" cy="50" r="4" fill="#616161"/>
+    <text x="95" y="88" text-anchor="middle" font-size="10" fill="#2E7D32" font-family="Nunito" font-weight="800">Agricultura neolítica</text></svg>`,
 
-  ziggurat: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="180" height="100" rx="12" fill="#E8F5E9"/>
-    <rect x="10" y="75" width="160" height="18" rx="3" fill="#8D6E63"/>
-    <rect x="25" y="57" width="130" height="18" rx="3" fill="#A1887F"/>
-    <rect x="40" y="40" width="100" height="17" rx="3" fill="#BCAAA4"/>
-    <rect x="60" y="25" width="60" height="15" rx="3" fill="#D7CCC8"/>
-    <rect x="75" y="15" width="30" height="10" rx="2" fill="#EFEBE9"/>
-    <line x1="55" y1="57" x2="55" y2="75" stroke="#795548" stroke-width="2"/>
-    <line x1="125" y1="57" x2="125" y2="75" stroke="#795548" stroke-width="2"/>
-    <text x="90" y="98" text-anchor="middle" font-size="10" fill="#4E342E" font-family="Nunito" font-weight="800">Zigurat</text>
-  </svg>`,
+  metals: `<svg viewBox="0 0 190 90" xmlns="http://www.w3.org/2000/svg"><rect width="190" height="90" rx="12" fill="#F1F5F9"/>
+    <rect x="35" y="58" width="50" height="22" rx="4" fill="#78909C"/>
+    <path d="M40 58 Q60 30 80 58 Z" fill="#90A4AE"/>
+    <path d="M50 58 Q60 40 70 58 Z" fill="#E53935" opacity="0.6"/>
+    <rect x="30" y="75" width="60" height="8" rx="3" fill="#546E7A"/>
+    <rect x="110" y="35" width="12" height="45" rx="3" fill="#9E9E9E"/>
+    <rect x="100" y="32" width="32" height="8" rx="3" fill="#757575"/>
+    <polygon points="130,20 148,38 112,38" fill="#BDBDBD"/>
+    <rect x="135" y="55" width="30" height="6" rx="3" fill="#9E9E9E"/>
+    <text x="95" y="88" text-anchor="middle" font-size="10" fill="#334155" font-family="Nunito" font-weight="800">Forja de metales</text></svg>`,
 
-  olympics: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="180" height="100" rx="12" fill="#E3F2FD"/>
-    <circle cx="55" cy="45" r="16" fill="none" stroke="#1565C0" stroke-width="4"/>
-    <circle cx="90" cy="45" r="16" fill="none" stroke="#E53935" stroke-width="4"/>
-    <circle cx="125" cy="45" r="16" fill="none" stroke="#FDD835" stroke-width="4"/>
-    <circle cx="72" cy="58" r="16" fill="none" stroke="#2E7D32" stroke-width="4"/>
-    <circle cx="108" cy="58" r="16" fill="none" stroke="#E65100" stroke-width="4"/>
-    <text x="90" y="90" text-anchor="middle" font-size="10" fill="#0D47A1" font-family="Nunito" font-weight="800">Olimpiadas</text>
-  </svg>`,
+  tools_paleo: `<svg viewBox="0 0 190 90" xmlns="http://www.w3.org/2000/svg"><rect width="190" height="90" rx="12" fill="#FFF8EC"/>
+    <polygon points="40,20 20,55 60,55" fill="#9E9E9E"/>
+    <polygon points="40,22 28,50 52,50" fill="#BDBDBD"/>
+    <rect x="75" y="15" width="10" height="55" rx="3" fill="#8D6E63"/>
+    <ellipse cx="80" cy="15" rx="12" ry="8" fill="#9E9E9E"/>
+    <rect x="120" y="45" width="50" height="8" rx="4" fill="#8D6E63"/>
+    <ellipse cx="122" cy="49" rx="10" ry="12" fill="#9E9E9E"/>
+    <text x="95" y="85" text-anchor="middle" font-size="10" fill="#7B4F2E" font-family="Nunito" font-weight="800">Herramientas de piedra</text></svg>`,
 
-  agora: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="180" height="100" rx="12" fill="#E0F7FA"/>
-    <rect x="10" y="60" width="160" height="8" rx="2" fill="#B0BEC5"/>
-    <line x1="25" y1="25" x2="25" y2="60" stroke="#90A4AE" stroke-width="5" stroke-linecap="round"/>
-    <line x1="55" y1="25" x2="55" y2="60" stroke="#90A4AE" stroke-width="5" stroke-linecap="round"/>
-    <line x1="85" y1="25" x2="85" y2="60" stroke="#90A4AE" stroke-width="5" stroke-linecap="round"/>
-    <line x1="115" y1="25" x2="115" y2="60" stroke="#90A4AE" stroke-width="5" stroke-linecap="round"/>
-    <line x1="145" y1="25" x2="145" y2="60" stroke="#90A4AE" stroke-width="5" stroke-linecap="round"/>
-    <line x1="155" y1="25" x2="155" y2="60" stroke="#90A4AE" stroke-width="5" stroke-linecap="round"/>
-    <polygon points="10,25 90,10 170,25" fill="#CFD8DC"/>
-    <circle cx="65" cy="78" r="7" fill="#FFCC80"/>
-    <circle cx="90" cy="78" r="7" fill="#FFCC80"/>
-    <circle cx="115" cy="78" r="7" fill="#FFCC80"/>
-    <text x="90" y="98" text-anchor="middle" font-size="10" fill="#006064" font-family="Nunito" font-weight="800">Ágora griega</text>
-  </svg>`,
+  ages: `<svg viewBox="0 0 190 100" xmlns="http://www.w3.org/2000/svg"><rect width="190" height="100" rx="12" fill="#EDE9FE"/>
+    <rect x="5" y="38" width="180" height="10" rx="5" fill="#7C3AED" opacity="0.3"/>
+    <rect x="5" y="40" width="38" height="6" rx="3" fill="#7C3AED"/>
+    <text x="24" y="36" text-anchor="middle" font-size="8" fill="#4C1D95" font-family="Nunito" font-weight="800">Antigua</text>
+    <rect x="52" y="40" width="38" height="6" rx="3" fill="#2563EB"/>
+    <text x="71" y="36" text-anchor="middle" font-size="8" fill="#1E3A8A" font-family="Nunito" font-weight="800">Media</text>
+    <rect x="99" y="40" width="38" height="6" rx="3" fill="#059669"/>
+    <text x="118" y="36" text-anchor="middle" font-size="8" fill="#064E3B" font-family="Nunito" font-weight="800">Moderna</text>
+    <rect x="146" y="40" width="38" height="6" rx="3" fill="#DC2626"/>
+    <text x="165" y="36" text-anchor="middle" font-size="8" fill="#7F1D1D" font-family="Nunito" font-weight="800">Contemp.</text>
+    <text x="5" y="60" font-size="8" fill="#4C1D95" font-family="Nunito" font-weight="700">4000 a.C.</text>
+    <text x="50" y="60" font-size="8" fill="#1E3A8A" font-family="Nunito" font-weight="700">476 d.C.</text>
+    <text x="97" y="60" font-size="8" fill="#064E3B" font-family="Nunito" font-weight="700">1492</text>
+    <text x="144" y="60" font-size="8" fill="#7F1D1D" font-family="Nunito" font-weight="700">1789</text>
+    <text x="95" y="80" text-anchor="middle" font-size="10" fill="#4C1D95" font-family="Nunito" font-weight="800">Las Edades de la Historia</text></svg>`,
 
-  philosophers: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="180" height="100" rx="12" fill="#F3E5F5"/>
-    <circle cx="45" cy="40" r="16" fill="#CE93D8"/>
-    <text x="45" y="45" text-anchor="middle" font-size="11" fill="white" font-family="Fredoka One">S</text>
-    <text x="45" y="68" text-anchor="middle" font-size="9" fill="#6A1B9A" font-family="Nunito" font-weight="800">Sócrates</text>
-    <circle cx="90" cy="40" r="16" fill="#AB47BC"/>
-    <text x="90" y="45" text-anchor="middle" font-size="11" fill="white" font-family="Fredoka One">P</text>
-    <text x="90" y="68" text-anchor="middle" font-size="9" fill="#6A1B9A" font-family="Nunito" font-weight="800">Platón</text>
-    <circle cx="135" cy="40" r="16" fill="#8E24AA"/>
-    <text x="135" y="45" text-anchor="middle" font-size="11" fill="white" font-family="Fredoka One">A</text>
-    <text x="135" y="68" text-anchor="middle" font-size="9" fill="#6A1B9A" font-family="Nunito" font-weight="800">Aristóteles</text>
-    <text x="90" y="92" text-anchor="middle" font-size="10" fill="#4A148C" font-family="Nunito" font-weight="800">Los tres grandes filósofos</text>
-  </svg>`,
+  pottery: `<svg viewBox="0 0 190 90" xmlns="http://www.w3.org/2000/svg"><rect width="190" height="90" rx="12" fill="#FFF8EC"/>
+    <ellipse cx="60" cy="30" rx="20" ry="8" fill="#D4A96A"/>
+    <path d="M40 30 Q38 60 60 68 Q82 60 80 30 Z" fill="#C8956A"/>
+    <ellipse cx="60" cy="68" rx="20" ry="6" fill="#B8832A"/>
+    <path d="M42 40 Q38 42 40 50 Q42 54 44 52 Q45 44 42 40 Z" fill="#B8832A"/>
+    <ellipse cx="130" cy="55" rx="28" ry="10" fill="#D4A96A"/>
+    <path d="M102 55 Q100 40 130 35 Q160 40 158 55 Z" fill="#C8956A"/>
+    <text x="95" y="85" text-anchor="middle" font-size="10" fill="#7B4F2E" font-family="Nunito" font-weight="800">Cerámica neolítica</text></svg>`,
 
-  wolf: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="180" height="100" rx="12" fill="#FFF3E0"/>
-    <ellipse cx="90" cy="65" rx="45" ry="28" fill="#9E9E9E"/>
-    <circle cx="90" cy="48" r="20" fill="#9E9E9E"/>
-    <polygon points="78,35 72,18 84,32" fill="#9E9E9E"/>
-    <polygon points="102,35 108,18 96,32" fill="#9E9E9E"/>
-    <ellipse cx="82" cy="48" rx="5" ry="6" fill="white"/>
-    <ellipse cx="98" cy="48" rx="5" ry="6" fill="white"/>
-    <circle cx="82" cy="49" r="3" fill="#333"/>
-    <circle cx="98" cy="49" r="3" fill="#333"/>
-    <ellipse cx="90" cy="57" rx="7" ry="4" fill="#BDBDBD"/>
-    <circle cx="55" cy="72" r="8" fill="#FFCC80"/>
-    <circle cx="72" cy="72" r="8" fill="#FFCC80"/>
-    <text x="90" y="97" text-anchor="middle" font-size="9" fill="#E65100" font-family="Nunito" font-weight="800">Rómulo y Remo</text>
-  </svg>`,
+  sword: `<svg viewBox="0 0 190 90" xmlns="http://www.w3.org/2000/svg"><rect width="190" height="90" rx="12" fill="#F1F5F9"/>
+    <rect x="88" y="10" width="14" height="60" rx="3" fill="#BDBDBD"/>
+    <polygon points="95,8 88,22 102,22" fill="#9E9E9E"/>
+    <rect x="72" y="65" width="46" height="8" rx="3" fill="#795548"/>
+    <rect x="84" y="70" width="22" height="18" rx="3" fill="#8D6E63"/>
+    <text x="95" y="88" text-anchor="middle" font-size="10" fill="#334155" font-family="Nunito" font-weight="800">Espada de hierro</text></svg>`,
 
-  rome_society: `<svg viewBox="0 0 180 95" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="180" height="95" rx="12" fill="#FFEBEE"/>
-    <rect x="55" y="15" width="70" height="22" rx="4" fill="#C62828"/>
-    <text x="90" y="30" text-anchor="middle" font-size="10" fill="white" font-family="Nunito" font-weight="800">Patricios 👑</text>
-    <rect x="35" y="42" width="110" height="22" rx="4" fill="#EF9A9A"/>
-    <text x="90" y="57" text-anchor="middle" font-size="10" fill="#7F0000" font-family="Nunito" font-weight="800">Plebeyos 🌾</text>
-    <rect x="15" y="69" width="150" height="22" rx="4" fill="#FFCDD2"/>
-    <text x="90" y="84" text-anchor="middle" font-size="10" fill="#B71C1C" font-family="Nunito" font-weight="800">Esclavos ⛓️</text>
-  </svg>`,
-
-  rome_map: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="180" height="100" rx="12" fill="#E3F2FD"/>
-    <ellipse cx="90" cy="55" rx="75" ry="38" fill="#E8D5A3" opacity="0.8"/>
-    <ellipse cx="90" cy="60" rx="70" ry="15" fill="#4FC3F7" opacity="0.5"/>
-    <circle cx="90" cy="50" r="6" fill="#C62828"/>
-    <text x="90" y="48" text-anchor="middle" font-size="7" fill="white" font-family="Fredoka One">R</text>
-    <text x="90" y="93" text-anchor="middle" font-size="9" fill="#0D47A1" font-family="Nunito" font-weight="800">El Imperio Romano</text>
-  </svg>`,
-
-  cuneiform: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="180" height="100" rx="12" fill="#FFF8E1"/>
-    <rect x="20" y="15" width="140" height="70" rx="6" fill="#D7CCC8"/>
-    <line x1="35" y1="30" x2="55" y2="30" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
-    <line x1="35" y1="30" x2="35" y2="38" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
-    <line x1="65" y1="25" x2="65" y2="40" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
-    <line x1="65" y1="25" x2="80" y2="30" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
-    <line x1="90" y1="28" x2="110" y2="28" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
-    <line x1="100" y1="28" x2="100" y2="40" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
-    <line x1="35" y1="52" x2="45" y2="52" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
-    <line x1="40" y1="52" x2="40" y2="65" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
-    <line x1="60" y1="50" x2="80" y2="55" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
-    <line x1="95" y1="52" x2="120" y2="52" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
-    <line x1="130" y1="50" x2="145" y2="65" stroke="#795548" stroke-width="2.5" stroke-linecap="round"/>
-    <text x="90" y="97" text-anchor="middle" font-size="10" fill="#4E342E" font-family="Nunito" font-weight="800">Escritura cuneiforme</text>
-  </svg>`,
-
-  polis: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="180" height="100" rx="12" fill="#E8F5E9"/>
-    <rect x="15" y="50" width="65" height="35" rx="4" fill="#81C784"/>
-    <polygon points="47,20 15,50 80,50" fill="#4CAF50"/>
-    <text x="47" y="80" text-anchor="middle" font-size="9" fill="white" font-family="Nunito" font-weight="800">Esparta</text>
-    <rect x="100" y="50" width="65" height="35" rx="4" fill="#64B5F6"/>
-    <polygon points="132,20 100,50 165,50" fill="#2196F3"/>
-    <text x="132" y="80" text-anchor="middle" font-size="9" fill="white" font-family="Nunito" font-weight="800">Atenas</text>
-    <text x="90" y="98" text-anchor="middle" font-size="9" fill="#1B5E20" font-family="Nunito" font-weight="800">Las dos grandes polis</text>
-  </svg>`,
-
-  hygiene: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="180" height="100" rx="12" fill="#E0F7FA"/>
-    <rect x="25" y="30" width="12" height="40" rx="4" fill="#B2DFDB"/>
-    <rect x="21" y="26" width="20" height="10" rx="3" fill="#80CBC4"/>
-    <rect x="24" y="62" width="14" height="15" rx="4" fill="#00838F"/>
-    <text x="31" y="85" text-anchor="middle" font-size="8" fill="#006064" font-family="Nunito" font-weight="800">cepillo</text>
-    <ellipse cx="75" cy="55" rx="18" ry="10" fill="#F48FB1"/>
-    <rect x="73" y="38" width="4" height="17" rx="2" fill="#CE93D8"/>
-    <text x="75" y="83" text-anchor="middle" font-size="8" fill="#880E4F" font-family="Nunito" font-weight="800">maquillaje</text>
-    <ellipse cx="125" cy="50" rx="20" ry="14" fill="#FFF9C4"/>
-    <path d="M115 42 Q125 35 135 42" fill="#F4B942"/>
-    <text x="125" y="80" text-anchor="middle" font-size="8" fill="#856404" font-family="Nunito" font-weight="800">perfume</text>
-    <rect x="148" y="35" width="12" height="28" rx="3" fill="#BDBDBD"/>
-    <line x1="154" y1="32" x2="154" y2="35" stroke="#757575" stroke-width="2"/>
-    <text x="154" y="83" text-anchor="middle" font-size="8" fill="#424242" font-family="Nunito" font-weight="800">tijeras</text>
-  </svg>`,
-
-  zeus: `<svg viewBox="0 0 180 110" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="180" height="110" rx="12" fill="#E3F2FD"/>
-    <circle cx="90" cy="35" r="22" fill="#FFCC80"/>
-    <ellipse cx="90" cy="28" rx="12" ry="6" fill="#E0E0E0"/>
-    <circle cx="84" cy="36" r="3" fill="#5D4037"/>
-    <circle cx="96" cy="36" r="3" fill="#5D4037"/>
-    <path d="M84 44 Q90 49 96 44" stroke="#5D4037" stroke-width="1.5" fill="none"/>
-    <path d="M78 44 Q74 60 70 65" stroke="#BF8040" stroke-width="6" fill="none" stroke-linecap="round"/>
-    <path d="M102 44 Q106 60 110 65" stroke="#BF8040" stroke-width="6" fill="none" stroke-linecap="round"/>
-    <rect x="72" y="57" width="36" height="42" rx="4" fill="#90CAF9"/>
-    <polygon points="95,68 108,90 82,90" fill="#FDD835" opacity="0.85"/>
-    <text x="90" y="107" text-anchor="middle" font-size="10" fill="#0D47A1" font-family="Nunito" font-weight="800">Zeus ⚡</text>
-  </svg>`,
-
-  arch: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="180" height="100" rx="12" fill="#FFF8E1"/>
-    <rect x="30" y="35" width="20" height="52" rx="3" fill="#D7CCC8"/>
-    <rect x="130" y="35" width="20" height="52" rx="3" fill="#D7CCC8"/>
-    <path d="M30 35 Q90 -10 150 35" fill="#BCAAA4" stroke="#8D6E63" stroke-width="3"/>
-    <rect x="10" y="85" width="160" height="12" rx="3" fill="#8D6E63"/>
-    <text x="90" y="98" text-anchor="middle" font-size="10" fill="#4E342E" font-family="Nunito" font-weight="800">El arco</text>
-  </svg>`,
-
-  scales: `<svg viewBox="0 0 180 100" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="180" height="100" rx="12" fill="#FFF3E0"/>
-    <line x1="90" y1="15" x2="90" y2="75" stroke="#795548" stroke-width="3"/>
-    <line x1="50" y1="35" x2="130" y2="35" stroke="#795548" stroke-width="3"/>
-    <line x1="50" y1="35" x2="50" y2="55" stroke="#795548" stroke-width="2"/>
-    <line x1="130" y1="35" x2="130" y2="45" stroke="#795548" stroke-width="2"/>
-    <ellipse cx="50" cy="60" rx="22" ry="8" fill="#AED6F1"/>
-    <ellipse cx="130" cy="50" rx="22" ry="8" fill="#F1948A"/>
-    <text x="50" y="63" text-anchor="middle" font-size="8" fill="#1565C0" font-family="Nunito" font-weight="800">Libres</text>
-    <text x="130" y="53" text-anchor="middle" font-size="8" fill="#C0392B" font-family="Nunito" font-weight="800">Esclavos</text>
-    <rect x="82" y="72" width="16" height="16" rx="3" fill="#795548"/>
-    <text x="90" y="97" text-anchor="middle" font-size="9" fill="#4E342E" font-family="Nunito" font-weight="800">Sociedad dividida</text>
-  </svg>`,
-
-  trade: `<svg viewBox="0 0 180 90" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="180" height="90" rx="12" fill="#E8F5E9"/>
-    <rect x="10" y="30" width="35" height="30" rx="5" fill="#A5D6A7"/>
-    <rect x="135" y="30" width="35" height="30" rx="5" fill="#80DEEA"/>
-    <line x1="45" y1="42" x2="135" y2="42" stroke="#795548" stroke-width="2" stroke-dasharray="6,4"/>
-    <polygon points="60,32 80,42 60,52" fill="#F4B942"/>
-    <polygon points="120,32 100,42 120,52" fill="#F4B942"/>
-    <text x="90" y="72" text-anchor="middle" font-size="10" fill="#2E7D32" font-family="Nunito" font-weight="800">Intercambio comercial</text>
-  </svg>`,
-
-  tigris: `<svg viewBox="0 0 180 90" xmlns="http://www.w3.org/2000/svg">
-    <rect x="0" y="0" width="180" height="90" rx="12" fill="#FFF8E1"/>
-    <path d="M20 30 Q40 20 60 35 Q80 50 100 30 Q120 15 140 28 Q160 40 170 35" stroke="#1565C0" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.6"/>
-    <path d="M20 55 Q40 45 60 60 Q80 75 100 55 Q120 40 140 53 Q160 65 170 60" stroke="#42A5F5" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.6"/>
-    <text x="30" y="32" font-size="9" fill="#1A237E" font-family="Nunito" font-weight="800">Tigris</text>
-    <text x="30" y="57" font-size="9" fill="#0277BD" font-family="Nunito" font-weight="800">Éufrates</text>
-    <text x="90" y="84" text-anchor="middle" font-size="10" fill="#4E342E" font-family="Nunito" font-weight="800">Los dos grandes ríos</text>
-  </svg>`
+  cave_art: `<svg viewBox="0 0 190 90" xmlns="http://www.w3.org/2000/svg"><rect width="190" height="90" rx="12" fill="#FFF8EC"/>
+    <rect x="10" y="10" width="170" height="65" rx="8" fill="#D7CCC8"/>
+    <ellipse cx="55" cy="40" rx="20" ry="12" fill="#8D6E63" opacity="0.7"/>
+    <line x1="40" y1="35" x2="35" y2="50" stroke="#8D6E63" stroke-width="2" opacity="0.7"/>
+    <line x1="70" y1="35" x2="75" y2="50" stroke="#8D6E63" stroke-width="2" opacity="0.7"/>
+    <circle cx="120" cy="30" r="5" fill="#C8956A" opacity="0.8"/>
+    <circle cx="132" cy="30" r="3" fill="#C8956A" opacity="0.8"/>
+    <circle cx="140" cy="35" r="4" fill="#C8956A" opacity="0.8"/>
+    <path d="M110 50 Q125 42 140 50" stroke="#A1887F" stroke-width="2" fill="none" opacity="0.8"/>
+    <text x="95" y="85" text-anchor="middle" font-size="10" fill="#7B4F2E" font-family="Nunito" font-weight="800">Arte rupestre</text></svg>`,
 };
+const VARIANTS_PRE = [
+/* ═══ VARIANT 1 ═══ */
+{ title: "Examen 1 — ¡El Nómada!", questions: [
+  { type:"test", civ:"paleo", civLabel:"Paleolítico", text:"¿Cuándo comenzó el Paleolítico?", illustration:"cave",
+    options:["Hace 10.000 años","Hace 2,5 millones de años","En el año 3.000 a.C.","Hace 500.000 años"],
+    correct:1, feedback:"¡Correcto! El Paleolítico comenzó hace más de 2,5 millones de años y terminó hacia el 10.000 a.C." },
+  { type:"vf", civ:"paleo", civLabel:"Paleolítico", text:"Las personas del Paleolítico eran sedentarias y vivían siempre en el mismo lugar.", illustration:"hunter",
+    correct:false, feedback:"¡Falso! Eran nómadas: se movían de un lugar a otro buscando alimentos y climas favorables." },
+  { type:"test", civ:"paleo", civLabel:"Paleolítico", text:"¿Cuál fue el gran descubrimiento del Paleolítico?", illustration:"fire",
+    options:["La escritura","La agricultura","El fuego","Los metales"],
+    correct:2, feedback:"¡El fuego! Cambió todo: calentarse, cocinar, iluminar y ahuyentar animales peligrosos." },
+  { type:"fill", civ:"neo", civLabel:"Neolítico", text:"En el Neolítico las personas dejaron de ser nómadas y se convirtieron en",
+    blank:"sedentarios", alternatives:["sedentarias","sedentario"], feedback:"¡Exacto! Se quedaron a vivir en un mismo lugar, formando aldeas." },
+  { type:"test", civ:"neo", civLabel:"Neolítico", text:"¿Qué animales criaban en el Neolítico?", illustration:"farming",
+    options:["Mamuts y ciervos","Ovejas, cabras, cerdos y vacas","Solo caballos","Leones y tigres"],
+    correct:1, feedback:"¡Correcto! Domesticaron ovejas, cabras, cerdos y vacas, entre otros." },
+  { type:"vf", civ:"neo", civLabel:"Neolítico", text:"En el Neolítico inventaron el telar para tejer ropa y redes.", illustration:"pottery",
+    correct:true, feedback:"¡Así es! También inventaron la cerámica para guardar alimentos y agua." },
+  { type:"match", civ:"metales", civLabel:"Edad de los Metales", text:"Une cada período con su metal:",
+    pairs:[["Edad del Cobre","Primer metal usado"],["Edad del Bronce","Cobre + estaño"],["Edad del Hierro","El metal más resistente"],["Desde 1.200 a.C.","Hierro"]],
+    feedback:"¡Perfecto! Los tres períodos: Cobre (5.000 a.C.), Bronce (3.000 a.C.) e Hierro (1.200 a.C.)." },
+  { type:"test", civ:"historia", civLabel:"Edades de la Historia", text:"¿Cuál es la primera edad de la Historia?", illustration:"ages",
+    options:["Edad Media","Edad Moderna","Edad Contemporánea","Edad Antigua"],
+    correct:3, feedback:"¡Exacto! La Edad Antigua es la primera y empieza con la aparición de la escritura." },
+  { type:"vf", civ:"metales", civLabel:"Edad de los Metales", text:"En la Edad de los Metales las personas vivían en poblados amurallados.", illustration:"metals",
+    correct:true, feedback:"¡Correcto! Construían murallas para protegerse de otros pueblos." },
+  { type:"fill", civ:"historia", civLabel:"Edades de la Historia", text:"La Edad Media empieza con la caída del Imperio Romano en el año",
+    blank:"476", alternatives:["476 d.C.", "476"], feedback:"¡Correcto! El año 476 d.C. es el inicio de la Edad Media." },
+]},
 
-/* ═══════════════════════════ STATE ═══════════════════════════ */
+/* ═══ VARIANT 2 ═══ */
+{ title: "Examen 2 — ¡El Agricultor!", questions: [
+  { type:"vf", civ:"paleo", civLabel:"Paleolítico", text:"Los habitantes del Paleolítico usaban herramientas de piedra, hueso y madera.", illustration:"tools_paleo",
+    correct:true, feedback:"¡Correcto! Eran simples pero muy útiles para cortar, raspar, cazar y defenderse." },
+  { type:"test", civ:"paleo", civLabel:"Paleolítico", text:"¿Qué comían las personas del Paleolítico?", illustration:"hunter",
+    options:["Solo plantas","Cocinaban en restaurantes","Cazaban y recolectaban: animales, frutas, raíces, semillas","Solo peces"],
+    correct:2, feedback:"¡Exacto! Eran cazadores y recolectores. Cazaban bisontes, ciervos o caballos." },
+  { type:"fill", civ:"paleo", civLabel:"Paleolítico", text:"Las pinturas y grabados en las paredes de las cuevas se llaman arte",
+    blank:"rupestre", alternatives:["rupestre"], feedback:"¡Bien! El arte rupestre representaba animales, escenas de caza, signos y manos." },
+  { type:"test", civ:"neo", civLabel:"Neolítico", text:"¿Dónde vivían en el Neolítico?", illustration:"village",
+    options:["En cuevas siempre","En casas de barro, piedra y madera en aldeas","En grandes pirámides","En barcos"],
+    correct:1, feedback:"¡Correcto! Eran casas rectangulares de una o dos plantas en aldeas cerca de ríos y tierras fértiles." },
+  { type:"vf", civ:"neo", civLabel:"Neolítico", text:"En el Neolítico aprendieron a cultivar plantas como trigo, cebada y lentejas.", illustration:"farming",
+    correct:true, feedback:"¡Así es! La revolución agrícola fue el gran cambio del Neolítico." },
+  { type:"test", civ:"metales", civLabel:"Edad de los Metales", text:"¿Cómo obtenían los metales?", illustration:"metals",
+    options:["Los compraban a China","Los extraían de minas y los fundían en hornos muy calientes","Los encontraban en el mar","Caían del cielo"],
+    correct:1, feedback:"¡Correcto! Extraían minerales de las minas, los fundían y vertían en moldes para darles forma." },
+  { type:"match", civ:"neo", civLabel:"Neolítico", text:"Une cada cambio con la etapa en que ocurrió:",
+    pairs:[["Nómadas","Paleolítico"],["Sedentarios","Neolítico"],["Herramientas de hierro","Edad de los Metales"],["Arte rupestre","Paleolítico"]],
+    feedback:"¡Genial! Cada etapa trajo cambios importantes en la forma de vivir." },
+  { type:"fill", civ:"historia", civLabel:"Edades de la Historia", text:"La época actual en la que vivimos se llama Edad",
+    blank:"Contemporánea", alternatives:["contemporánea","contemporanea","Contemporanea"], feedback:"¡Correcto! La Edad Contemporánea comienza en 1789 con la Revolución Francesa." },
+  { type:"vf", civ:"metales", civLabel:"Edad de los Metales", text:"El bronce se obtiene mezclando cobre con estaño.", illustration:"sword",
+    correct:true, feedback:"¡Exacto! El bronce es más duro y resistente que el cobre solo." },
+  { type:"test", civ:"historia", civLabel:"Edades de la Historia", text:"¿En qué año se descubrió América, marcando el inicio de la Edad Moderna?", illustration:"ages",
+    options:["1789","1066","1492","476"],
+    correct:2, feedback:"¡Correcto! En 1492 Cristóbal Colón llegó a América, iniciando la Edad Moderna." },
+]},
+
+/* ═══ VARIANT 3 ═══ */
+{ title: "Examen 3 — ¡El Herrero!", questions: [
+  { type:"test", civ:"paleo", civLabel:"Paleolítico", text:"¿Dónde vivían las personas del Paleolítico?", illustration:"cave",
+    options:["En casas de ladrillo","En cuevas, abrigos rocosos o chozas con ramas y pieles","En apartamentos","En barcos"],
+    correct:1, feedback:"¡Correcto! Vivían en cuevas o refugios naturales, y a veces construían chozas con ramas y pieles." },
+  { type:"fill", civ:"paleo", civLabel:"Paleolítico", text:"El Paleolítico es la primera etapa de la",
+    blank:"Prehistoria", alternatives:["prehistoria","Prehistoria"], feedback:"¡Bien! La Prehistoria incluye el Paleolítico, el Neolítico y la Edad de los Metales." },
+  { type:"vf", civ:"neo", civLabel:"Neolítico", text:"El Neolítico comenzó hace aproximadamente 10.000 años.", illustration:"village",
+    correct:true, feedback:"¡Correcto! Empezó hace 10.000 años y terminó hacia el 3.000 a.C." },
+  { type:"test", civ:"neo", civLabel:"Neolítico", text:"¿Qué inventaron en el Neolítico para mejorar las herramientas?", illustration:"tools_paleo",
+    options:["Las pulieron para hacerlas más resistentes y precisas","Las fabricaron con metal","Las hicieron de cristal","Las pintaron de colores"],
+    correct:0, feedback:"¡Exacto! En el Neolítico aprendieron a pulir la piedra para hacer herramientas más precisas." },
+  { type:"match", civ:"paleo", civLabel:"Paleolítico", text:"Une cada elemento con lo que representa:",
+    pairs:[["Fuego","Calor, cocina y protección"],["Arte rupestre","Pinturas en cuevas"],["Herramientas de piedra","Cazar y cortar"],["Nómadas","Se mueven buscando comida"]],
+    feedback:"¡Perfecto! Así vivían las personas del Paleolítico hace millones de años." },
+  { type:"test", civ:"metales", civLabel:"Edad de los Metales", text:"¿Cuándo comenzó la Edad del Cobre?", illustration:"metals",
+    options:["Hace 500 años","Desde aprox. 1.200 a.C.","Desde aprox. 5.000 a.C.","En el año 476 d.C."],
+    correct:2, feedback:"¡Correcto! La Edad del Cobre comenzó hacia el 5.000 a.C., siendo el primer metal usado." },
+  { type:"vf", civ:"metales", civLabel:"Edad de los Metales", text:"En la Edad de los Metales la gente se especializó en distintos oficios como la metalurgia y la alfarería.", illustration:"sword",
+    correct:true, feedback:"¡Así es! También comerciaban con otros pueblos intercambiando productos y metales." },
+  { type:"fill", civ:"neo", civLabel:"Neolítico", text:"En el Neolítico fabricaban vasijas y objetos de",
+    blank:"cerámica", alternatives:["ceramica","Cerámica","Ceramica"], feedback:"¡Bien! La cerámica les permitía guardar alimentos y agua." },
+  { type:"test", civ:"historia", civLabel:"Edades de la Historia", text:"¿Cuántas Edades tiene la Historia?", illustration:"ages",
+    options:["Dos","Tres","Cuatro","Cinco"],
+    correct:2, feedback:"¡Correcto! Cuatro: Edad Antigua, Edad Media, Edad Moderna y Edad Contemporánea." },
+  { type:"vf", civ:"historia", civLabel:"Edades de la Historia", text:"La Prehistoria forma parte de las cuatro Edades de la Historia.", illustration:"cave_art",
+    correct:false, feedback:"¡Falso! La Prehistoria va ANTES de la Historia. Las cuatro edades son: Antigua, Media, Moderna y Contemporánea." },
+]},
+];
+const ILLUS_INV = {
+  worm: `<svg viewBox="0 0 190 90" xmlns="http://www.w3.org/2000/svg"><rect width="190" height="90" rx="12" fill="#FFF8E1"/>
+    <rect x="0" y="60" width="190" height="25" rx="0" fill="#A5D6A7" opacity="0.5"/>
+    <rect x="0" y="72" width="190" height="13" rx="0" fill="#795548" opacity="0.3"/>
+    <path d="M20 55 Q40 30 60 55 Q80 80 100 55 Q120 30 140 55 Q160 80 175 60" stroke="#EF9A9A" stroke-width="16" fill="none" stroke-linecap="round"/>
+    <path d="M20 55 Q40 30 60 55 Q80 80 100 55 Q120 30 140 55 Q160 80 175 60" stroke="#E57373" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <line x1="22" y1="54" x2="22" y2="60" stroke="#B71C1C" stroke-width="2"/>
+    <line x1="26" y1="52" x2="26" y2="58" stroke="#B71C1C" stroke-width="2"/>
+    <circle cx="18" cy="52" r="4" fill="#D32F2F"/>
+    <text x="95" y="88" text-anchor="middle" font-size="10" fill="#6D4C41" font-family="Nunito" font-weight="800">Anélido — Lombriz</text></svg>`,
+
+  leech: `<svg viewBox="0 0 190 90" xmlns="http://www.w3.org/2000/svg"><rect width="190" height="90" rx="12" fill="#FFF8E1"/>
+    <ellipse cx="95" cy="50" rx="70" ry="20" fill="#880E4F" opacity="0.7"/>
+    <ellipse cx="95" cy="50" rx="60" ry="14" fill="#AD1457" opacity="0.8"/>
+    <line x1="55" y1="44" x2="55" y2="56" stroke="#6A0032" stroke-width="2" opacity="0.5"/>
+    <line x1="70" y1="38" x2="70" y2="62" stroke="#6A0032" stroke-width="2" opacity="0.5"/>
+    <line x1="85" y1="37" x2="85" y2="63" stroke="#6A0032" stroke-width="2" opacity="0.5"/>
+    <line x1="100" y1="37" x2="100" y2="63" stroke="#6A0032" stroke-width="2" opacity="0.5"/>
+    <line x1="115" y1="38" x2="115" y2="62" stroke="#6A0032" stroke-width="2" opacity="0.5"/>
+    <line x1="130" y1="40" x2="130" y2="60" stroke="#6A0032" stroke-width="2" opacity="0.5"/>
+    <ellipse cx="30" cy="50" rx="12" ry="10" fill="#6A0032"/>
+    <ellipse cx="162" cy="50" rx="10" ry="8" fill="#6A0032"/>
+    <text x="95" y="83" text-anchor="middle" font-size="10" fill="#6D4C41" font-family="Nunito" font-weight="800">Anélido — Sanguijuela</text></svg>`,
+
+  jellyfish: `<svg viewBox="0 0 190 100" xmlns="http://www.w3.org/2000/svg"><rect width="190" height="100" rx="12" fill="#E0F7FA"/>
+    <ellipse cx="95" cy="40" rx="45" ry="28" fill="#80DEEA" opacity="0.7"/>
+    <ellipse cx="95" cy="40" rx="35" ry="20" fill="#4DD0E1" opacity="0.6"/>
+    <line x1="75" y1="65" x2="68" y2="92" stroke="#00BCD4" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+    <line x1="85" y1="67" x2="80" y2="95" stroke="#00BCD4" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+    <line x1="95" y1="68" x2="95" y2="96" stroke="#00BCD4" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+    <line x1="105" y1="67" x2="110" y2="95" stroke="#00BCD4" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+    <line x1="115" y1="65" x2="122" y2="92" stroke="#00BCD4" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+    <ellipse cx="95" cy="48" rx="15" ry="8" fill="#E0F7FA" opacity="0.6"/>
+    <text x="95" y="99" text-anchor="middle" font-size="9" fill="#006064" font-family="Nunito" font-weight="800">Cnidario — Medusa</text></svg>`,
+
+  coral: `<svg viewBox="0 0 190 100" xmlns="http://www.w3.org/2000/svg"><rect width="190" height="100" rx="12" fill="#E0F7FA"/>
+    <rect x="0" y="75" width="190" height="22" rx="0" fill="#A5D6A7" opacity="0.4"/>
+    <line x1="50" y1="75" x2="50" y2="30" stroke="#FF7043" stroke-width="6" stroke-linecap="round"/>
+    <line x1="50" y1="50" x2="30" y2="30" stroke="#FF7043" stroke-width="4" stroke-linecap="round"/>
+    <line x1="50" y1="45" x2="70" y2="28" stroke="#FF7043" stroke-width="4" stroke-linecap="round"/>
+    <line x1="50" y1="40" x2="38" y2="22" stroke="#FF7043" stroke-width="3" stroke-linecap="round"/>
+    <line x1="50" y1="35" x2="62" y2="18" stroke="#FF7043" stroke-width="3" stroke-linecap="round"/>
+    <line x1="130" y1="75" x2="130" y2="35" stroke="#CE93D8" stroke-width="6" stroke-linecap="round"/>
+    <line x1="130" y1="55" x2="112" y2="38" stroke="#CE93D8" stroke-width="4" stroke-linecap="round"/>
+    <line x1="130" y1="50" x2="148" y2="32" stroke="#CE93D8" stroke-width="4" stroke-linecap="round"/>
+    <line x1="130" y1="42" x2="118" y2="26" stroke="#CE93D8" stroke-width="3" stroke-linecap="round"/>
+    <line x1="130" y1="38" x2="142" y2="22" stroke="#CE93D8" stroke-width="3" stroke-linecap="round"/>
+    <text x="95" y="95" text-anchor="middle" font-size="9" fill="#006064" font-family="Nunito" font-weight="800">Cnidario — Coral</text></svg>`,
+
+  snail: `<svg viewBox="0 0 190 100" xmlns="http://www.w3.org/2000/svg"><rect width="190" height="100" rx="12" fill="#F3E5F5"/>
+    <ellipse cx="95" cy="75" rx="55" ry="18" fill="#CE93D8" opacity="0.3"/>
+    <path d="M75 70 Q60 50 70 35 Q80 20 95 25 Q115 28 118 45 Q122 62 105 70 Q95 75 75 70 Z" fill="#BA68C8" opacity="0.8"/>
+    <path d="M85 65 Q73 52 78 42 Q84 33 95 36 Q107 39 108 50 Q108 62 98 65 Q88 68 85 65 Z" fill="#CE93D8"/>
+    <path d="M93 60 Q87 55 90 48 Q94 43 100 46 Q105 50 103 56 Q100 62 93 60 Z" fill="#E1BEE7"/>
+    <ellipse cx="55" cy="72" rx="40" ry="14" fill="#9C4D8A" opacity="0.8"/>
+    <circle cx="42" cy="60" r="3" fill="#9C4D8A"/>
+    <circle cx="35" cy="57" r="3" fill="#9C4D8A"/>
+    <line x1="42" y1="60" x2="42" y2="72" stroke="#9C4D8A" stroke-width="2"/>
+    <line x1="35" y1="57" x2="35" y2="72" stroke="#9C4D8A" stroke-width="2"/>
+    <text x="95" y="95" text-anchor="middle" font-size="9" fill="#6A1B9A" font-family="Nunito" font-weight="800">Molusco — Caracol (Gasterópodo)</text></svg>`,
+
+  squid: `<svg viewBox="0 0 190 100" xmlns="http://www.w3.org/2000/svg"><rect width="190" height="100" rx="12" fill="#E0F7FA"/>
+    <path d="M95 15 Q130 18 140 45 Q145 65 130 75 L95 80 L60 75 Q45 65 50 45 Q60 18 95 15 Z" fill="#7986CB" opacity="0.8"/>
+    <polygon points="95,15 80,5 95,25" fill="#5C6BC0"/>
+    <polygon points="95,15 110,5 95,25" fill="#5C6BC0"/>
+    <circle cx="80" cy="42" r="6" fill="white"/>
+    <circle cx="110" cy="42" r="6" fill="white"/>
+    <circle cx="80" cy="43" r="3" fill="#1A237E"/>
+    <circle cx="110" cy="43" r="3" fill="#1A237E"/>
+    <line x1="72" y1="78" x2="60" y2="95" stroke="#7986CB" stroke-width="3" stroke-linecap="round"/>
+    <line x1="80" y1="80" x2="72" y2="97" stroke="#7986CB" stroke-width="3" stroke-linecap="round"/>
+    <line x1="88" y1="81" x2="84" y2="98" stroke="#7986CB" stroke-width="3" stroke-linecap="round"/>
+    <line x1="102" y1="81" x2="106" y2="98" stroke="#7986CB" stroke-width="3" stroke-linecap="round"/>
+    <line x1="110" y1="80" x2="118" y2="97" stroke="#7986CB" stroke-width="3" stroke-linecap="round"/>
+    <line x1="118" y1="78" x2="130" y2="95" stroke="#7986CB" stroke-width="3" stroke-linecap="round"/>
+    <text x="95" y="98" text-anchor="middle" font-size="9" fill="#283593" font-family="Nunito" font-weight="800">Molusco — Calamar (Cefalópodo)</text></svg>`,
+
+  starfish: `<svg viewBox="0 0 190 100" xmlns="http://www.w3.org/2000/svg"><rect width="190" height="100" rx="12" fill="#FFF8E1"/>
+    <path d="M95 50 L100 25 L105 50 L128 38 L110 55 L128 70 L105 62 L100 85 L95 62 L72 70 L88 55 L72 38 L90 50 Z" fill="#F4B942" opacity="0.9"/>
+    <circle cx="97" cy="52" r="10" fill="#E65100"/>
+    <circle cx="97" cy="52" r="5" fill="#F4B942"/>
+    <text x="95" y="96" text-anchor="middle" font-size="9" fill="#856404" font-family="Nunito" font-weight="800">Equinodermo — Estrella de mar</text></svg>`,
+
+  urchin: `<svg viewBox="0 0 190 90" xmlns="http://www.w3.org/2000/svg"><rect width="190" height="90" rx="12" fill="#FFF8E1"/>
+    <circle cx="95" cy="48" r="28" fill="#7B1FA2" opacity="0.8"/>
+    <circle cx="95" cy="48" r="20" fill="#9C27B0" opacity="0.7"/>
+    <line x1="95" y1="48" x2="95" y2="14" stroke="#4A148C" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="95" y1="48" x2="95" y2="82" stroke="#4A148C" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="95" y1="48" x2="61" y2="48" stroke="#4A148C" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="95" y1="48" x2="129" y2="48" stroke="#4A148C" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="95" y1="48" x2="71" y2="24" stroke="#4A148C" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="95" y1="48" x2="119" y2="24" stroke="#4A148C" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="95" y1="48" x2="71" y2="72" stroke="#4A148C" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="95" y1="48" x2="119" y2="72" stroke="#4A148C" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="95" y="88" text-anchor="middle" font-size="9" fill="#4A148C" font-family="Nunito" font-weight="800">Equinodermo — Erizo de mar</text></svg>`,
+
+  sponge: `<svg viewBox="0 0 190 100" xmlns="http://www.w3.org/2000/svg"><rect width="190" height="100" rx="12" fill="#E8F5E9"/>
+    <rect x="0" y="78" width="190" height="18" rx="0" fill="#A5D6A7" opacity="0.4"/>
+    <rect x="65" y="30" width="35" height="48" rx="8" fill="#81C784"/>
+    <rect x="100" y="38" width="28" height="40" rx="6" fill="#66BB6A"/>
+    <rect x="55" y="42" width="25" height="36" rx="6" fill="#A5D6A7"/>
+    <circle cx="75" cy="42" r="4" fill="#388E3C" opacity="0.5"/>
+    <circle cx="85" cy="38" r="3" fill="#388E3C" opacity="0.5"/>
+    <circle cx="80" cy="52" r="5" fill="#388E3C" opacity="0.5"/>
+    <circle cx="73" cy="60" r="3" fill="#388E3C" opacity="0.5"/>
+    <circle cx="92" cy="48" r="4" fill="#388E3C" opacity="0.5"/>
+    <circle cx="108" cy="52" r="4" fill="#2E7D32" opacity="0.5"/>
+    <circle cx="114" cy="44" r="3" fill="#2E7D32" opacity="0.5"/>
+    <text x="95" y="96" text-anchor="middle" font-size="9" fill="#1B5E20" font-family="Nunito" font-weight="800">Porífero — Esponja</text></svg>`,
+
+  spider: `<svg viewBox="0 0 190 100" xmlns="http://www.w3.org/2000/svg"><rect width="190" height="100" rx="12" fill="#FCE4EC"/>
+    <ellipse cx="95" cy="55" rx="18" ry="14" fill="#880E4F"/>
+    <circle cx="95" cy="38" r="12" fill="#AD1457"/>
+    <circle cx="90" cy="36" r="2.5" fill="#FCE4EC"/>
+    <circle cx="100" cy="36" r="2.5" fill="#FCE4EC"/>
+    <path d="M95 42 Q91 46 89 42" stroke="#FCE4EC" stroke-width="1" fill="none"/>
+    <line x1="78" y1="52" x2="50" y2="38" stroke="#880E4F" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="77" y1="57" x2="46" y2="55" stroke="#880E4F" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="78" y1="62" x2="50" y2="72" stroke="#880E4F" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="80" y1="67" x2="56" y2="82" stroke="#880E4F" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="112" y1="52" x2="140" y2="38" stroke="#880E4F" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="113" y1="57" x2="144" y2="55" stroke="#880E4F" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="112" y1="62" x2="140" y2="72" stroke="#880E4F" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="110" y1="67" x2="134" y2="82" stroke="#880E4F" stroke-width="2.5" stroke-linecap="round"/>
+    <text x="95" y="97" text-anchor="middle" font-size="9" fill="#880E4F" font-family="Nunito" font-weight="800">Artrópodo — Araña</text></svg>`,
+
+  grasshopper: `<svg viewBox="0 0 190 100" xmlns="http://www.w3.org/2000/svg"><rect width="190" height="100" rx="12" fill="#E8F5E9"/>
+    <ellipse cx="95" cy="62" rx="35" ry="14" fill="#558B2F"/>
+    <circle cx="65" cy="52" r="14" fill="#689F38"/>
+    <circle cx="61" cy="48" r="3" fill="#1B5E20"/>
+    <circle cx="69" cy="48" r="3" fill="#1B5E20"/>
+    <line x1="58" y1="44" x2="52" y2="36" stroke="#558B2F" stroke-width="2" stroke-linecap="round"/>
+    <line x1="66" y1="44" x2="62" y2="35" stroke="#558B2F" stroke-width="2" stroke-linecap="round"/>
+    <line x1="78" y1="62" x2="58" y2="50" stroke="#558B2F" stroke-width="2" stroke-linecap="round"/>
+    <line x1="82" y1="68" x2="55" y2="65" stroke="#558B2F" stroke-width="2" stroke-linecap="round"/>
+    <line x1="82" y1="74" x2="60" y2="80" stroke="#558B2F" stroke-width="2" stroke-linecap="round"/>
+    <line x1="112" y1="62" x2="132" y2="50" stroke="#558B2F" stroke-width="2" stroke-linecap="round"/>
+    <line x1="108" y1="68" x2="135" y2="65" stroke="#558B2F" stroke-width="2" stroke-linecap="round"/>
+    <line x1="108" y1="74" x2="130" y2="80" stroke="#558B2F" stroke-width="2" stroke-linecap="round"/>
+    <path d="M112 55 Q145 35 155 55" fill="#8BC34A" opacity="0.5" stroke="#558B2F" stroke-width="1"/>
+    <text x="95" y="97" text-anchor="middle" font-size="9" fill="#1B5E20" font-family="Nunito" font-weight="800">Artrópodo — Saltamontes</text></svg>`,
+
+  crab: `<svg viewBox="0 0 190 100" xmlns="http://www.w3.org/2000/svg"><rect width="190" height="100" rx="12" fill="#FFF3E0"/>
+    <ellipse cx="95" cy="58" rx="35" ry="24" fill="#E64A19"/>
+    <circle cx="80" cy="48" r="5" fill="#BF360C"/>
+    <circle cx="110" cy="48" r="5" fill="#BF360C"/>
+    <line x1="62" y1="55" x2="32" y2="42" stroke="#E64A19" stroke-width="4" stroke-linecap="round"/>
+    <ellipse cx="26" cy="40" rx="10" ry="7" fill="#E64A19" opacity="0.8"/>
+    <line x1="62" y1="63" x2="35" y2="58" stroke="#E64A19" stroke-width="3" stroke-linecap="round"/>
+    <line x1="62" y1="70" x2="38" y2="72" stroke="#E64A19" stroke-width="3" stroke-linecap="round"/>
+    <line x1="62" y1="75" x2="42" y2="82" stroke="#E64A19" stroke-width="3" stroke-linecap="round"/>
+    <line x1="128" y1="55" x2="158" y2="42" stroke="#E64A19" stroke-width="4" stroke-linecap="round"/>
+    <ellipse cx="164" cy="40" rx="10" ry="7" fill="#E64A19" opacity="0.8"/>
+    <line x1="128" y1="63" x2="155" y2="58" stroke="#E64A19" stroke-width="3" stroke-linecap="round"/>
+    <line x1="128" y1="70" x2="152" y2="72" stroke="#E64A19" stroke-width="3" stroke-linecap="round"/>
+    <line x1="128" y1="75" x2="148" y2="82" stroke="#E64A19" stroke-width="3" stroke-linecap="round"/>
+    <text x="95" y="96" text-anchor="middle" font-size="9" fill="#BF360C" font-family="Nunito" font-weight="800">Artrópodo — Cangrejo</text></svg>`,
+
+  anemone: `<svg viewBox="0 0 190 100" xmlns="http://www.w3.org/2000/svg"><rect width="190" height="100" rx="12" fill="#E0F7FA"/>
+    <rect x="0" y="75" width="190" height="22" rx="0" fill="#A5D6A7" opacity="0.4"/>
+    <ellipse cx="95" cy="78" rx="35" ry="12" fill="#EF5350" opacity="0.8"/>
+    <rect x="80" y="50" width="30" height="28" rx="5" fill="#EF5350" opacity="0.7"/>
+    <line x1="80" y1="52" x2="65" y2="30" stroke="#EF9A9A" stroke-width="4" stroke-linecap="round"/>
+    <line x1="85" y1="50" x2="75" y2="26" stroke="#EF9A9A" stroke-width="4" stroke-linecap="round"/>
+    <line x1="90" y1="50" x2="85" y2="24" stroke="#EF9A9A" stroke-width="4" stroke-linecap="round"/>
+    <line x1="95" y1="50" x2="95" y2="23" stroke="#EF9A9A" stroke-width="4" stroke-linecap="round"/>
+    <line x1="100" y1="50" x2="105" y2="24" stroke="#EF9A9A" stroke-width="4" stroke-linecap="round"/>
+    <line x1="105" y1="50" x2="115" y2="26" stroke="#EF9A9A" stroke-width="4" stroke-linecap="round"/>
+    <line x1="110" y1="52" x2="125" y2="30" stroke="#EF9A9A" stroke-width="4" stroke-linecap="round"/>
+    <text x="95" y="97" text-anchor="middle" font-size="9" fill="#006064" font-family="Nunito" font-weight="800">Cnidario — Anémona</text></svg>`,
+
+  clam: `<svg viewBox="0 0 190 90" xmlns="http://www.w3.org/2000/svg"><rect width="190" height="90" rx="12" fill="#F3E5F5"/>
+    <path d="M40 60 Q50 20 95 18 Q140 20 150 60 Z" fill="#BA68C8" opacity="0.7"/>
+    <path d="M40 60 Q50 75 95 78 Q140 75 150 60 Z" fill="#CE93D8" opacity="0.8"/>
+    <path d="M45 60 Q55 30 95 28 Q135 30 145 60" fill="none" stroke="#9C27B0" stroke-width="1.5" opacity="0.5"/>
+    <path d="M50 60 Q58 38 95 36 Q132 38 140 60" fill="none" stroke="#9C27B0" stroke-width="1.5" opacity="0.5"/>
+    <ellipse cx="95" cy="22" rx="8" ry="5" fill="#7B1FA2"/>
+    <text x="95" y="88" text-anchor="middle" font-size="9" fill="#6A1B9A" font-family="Nunito" font-weight="800">Molusco — Almeja (Bivalvo)</text></svg>`,
+};
+const VARIANTS_INV = [
+/* ═══ VARIANT 1 ═══ */
+{ title: "Examen 1 — ¡El Biólogo!", questions: [
+  { type:"test", civ:"anelidos", civLabel:"Anélidos", text:"¿Cuál es una característica clave de los anélidos?", illustration:"worm",
+    options:["Tienen exoesqueleto","Su cuerpo está dividido en anillos y respiran por todo su cuerpo","Tienen concha","Son solo acuáticos"],
+    correct:1, feedback:"¡Correcto! Los anélidos tienen el cuerpo largo, delgado y dividido en anillos. Ejemplos: lombrices y sanguijuelas." },
+  { type:"vf", civ:"cnidarios", civLabel:"Cnidarios", text:"Los cnidarios son acuáticos y tienen el cuerpo gelatinoso.", illustration:"jellyfish",
+    correct:true, feedback:"¡Así es! Tienen cuerpo gelatinoso, una abertura (boca) y tentáculos para desplazarse y atrapar presas." },
+  { type:"test", civ:"moluscos", civLabel:"Moluscos", text:"¿Cuántas partes tiene el cuerpo de un molusco?", illustration:"snail",
+    options:["2 partes","4 partes","3 partes: cabeza, masa visceral y pie","Solo una"],
+    correct:2, feedback:"¡Exacto! Los moluscos tienen cabeza, masa visceral y pie. La mayoría tienen concha protectora." },
+  { type:"fill", civ:"equinodermos", civLabel:"Equinodermos", text:"Los equinodermos tienen protección corporal: placas", illustration:"urchin",
+    blank:"espinosas", alternatives:["espinosa","espinosas"], feedback:"¡Correcto! Sus placas espinosas los protegen. Son acuáticos y respiran por branquias." },
+  { type:"vf", civ:"poriferos", civLabel:"Poríferos", text:"Los poríferos, también llamados esponjas, están anclados al suelo y se alimentan por sus poros.", illustration:"sponge",
+    correct:true, feedback:"¡Exacto! Las esponjas no se mueven: están fijas al suelo y respiran y se alimentan gracias a sus poros." },
+  { type:"test", civ:"artropodos", civLabel:"Artrópodos", text:"¿Cómo es la protección corporal de los artrópodos?", illustration:"spider",
+    options:["Tienen concha","Tienen piel blanda","Tienen exoesqueleto","No tienen protección"],
+    correct:2, feedback:"¡Correcto! Los artrópodos tienen exoesqueleto: una armadura exterior que los protege." },
+  { type:"match", civ:"general", civLabel:"Invertebrados", text:"Une cada animal con su grupo de invertebrado:",
+    pairs:[["Lombriz","Anélido"],["Medusa","Cnidario"],["Calamar","Molusco"],["Estrella de mar","Equinodermo"]],
+    feedback:"¡Perfecto! Cada animal pertenece a un grupo con características únicas." },
+  { type:"vf", civ:"artropodos", civLabel:"Artrópodos", text:"Los artrópodos pueden ser acuáticos o terrestres y respiran por branquias o tráqueas.", illustration:"crab",
+    correct:true, feedback:"¡Correcto! Los artrópodos se adaptan a muchos entornos: insectos, arañas, cangrejos, langostas..." },
+  { type:"fill", civ:"cnidarios", civLabel:"Cnidarios", text:"Las medusas, anémonas y corales pertenecen al grupo de los", illustration:"coral",
+    blank:"cnidarios", alternatives:["cnidarios","Cnidarios"], feedback:"¡Bien! Los cnidarios son acuáticos, sin protección corporal y con cuerpo gelatinoso." },
+  { type:"test", civ:"moluscos", civLabel:"Moluscos", text:"¿Cómo respiran la mayoría de los moluscos?", illustration:"squid",
+    options:["Por la piel","Por tráqueas","Por pulmones","Por branquias"],
+    correct:3, feedback:"¡Correcto! Casi todos los moluscos respiran por branquias. Sus subgrupos son: gasterópodos, bivalvos y cefalópodos." },
+]},
+
+/* ═══ VARIANT 2 ═══ */
+{ title: "Examen 2 — ¡El Naturalista!", questions: [
+  { type:"vf", civ:"anelidos", civLabel:"Anélidos", text:"Los anélidos tienen protección corporal como una concha o exoesqueleto.", illustration:"worm",
+    correct:false, feedback:"¡Falso! Los anélidos NO tienen protección corporal. Su cuerpo es blando, largo y dividido en anillos." },
+  { type:"test", civ:"moluscos", civLabel:"Moluscos", text:"¿Cómo se llaman los moluscos que tienen dos conchas, como las almejas?", illustration:"clam",
+    options:["Gasterópodos","Cefalópodos","Bivalvos","Anélidos"],
+    correct:2, feedback:"¡Correcto! Los bivalvos tienen dos conchas. Los caracoles son gasterópodos y los calamares, cefalópodos." },
+  { type:"fill", civ:"artropodos", civLabel:"Artrópodos", text:"El cuerpo de los artrópodos tiene 3 partes: cabeza (con ojos y antenas), tronco y", illustration:"grasshopper",
+    blank:"patas", alternatives:["patas","patas"], feedback:"¡Correcto! Esa estructura de 3 partes es típica de los artrópodos como insectos y arácnidos." },
+  { type:"test", civ:"equinodermos", civLabel:"Equinodermos", text:"¿Cómo se desplazan los equinodermos?", illustration:"starfish",
+    options:["Con aletas","Con tentáculos pequeños","Con patas articuladas","Volando"],
+    correct:1, feedback:"¡Correcto! Los equinodermos usan pequeños tentáculos para desplazarse y alimentarse. No tienen cabeza." },
+  { type:"vf", civ:"poriferos", civLabel:"Poríferos", text:"Las esponjas (poríferos) pueden moverse libremente por el agua.", illustration:"sponge",
+    correct:false, feedback:"¡Falso! Las esponjas están ancladas al suelo. Son acuáticas, sin protección corporal y no se mueven." },
+  { type:"match", civ:"general", civLabel:"Invertebrados", text:"Une cada grupo con su característica principal:",
+    pairs:[["Poríferos","Cuerpo lleno de poros, anclados al suelo"],["Equinodermos","Placas espinosas, acuáticos"],["Anélidos","Cuerpo en anillos"],["Artrópodos","Exoesqueleto"]],
+    feedback:"¡Genial! Cada grupo de invertebrados tiene características únicas que los distinguen." },
+  { type:"test", civ:"cnidarios", civLabel:"Cnidarios", text:"¿Cómo atrapan su comida los cnidarios?", illustration:"anemone",
+    options:["Con pinzas","Con tentáculos","Con la cola","Cavando en la arena"],
+    correct:1, feedback:"¡Correcto! Usan sus tentáculos para desplazarse y atrapar a otros animales." },
+  { type:"fill", civ:"equinodermos", civLabel:"Equinodermos", text:"Los erizos y las estrellas de mar pertenecen al grupo de los", illustration:"starfish",
+    blank:"equinodermos", alternatives:["Equinodermos","equinodermos"], feedback:"¡Bien! Los equinodermos son acuáticos y respiran por branquias." },
+  { type:"vf", civ:"moluscos", civLabel:"Moluscos", text:"Los pulpos y los calamares son moluscos llamados cefalópodos.", illustration:"squid",
+    correct:true, feedback:"¡Correcto! Los cefalópodos son moluscos con tentáculos en la cabeza. También incluyen las sepias." },
+  { type:"test", civ:"artropodos", civLabel:"Artrópodos", text:"¿Cuál de estos NO es un artrópodo?", illustration:"spider",
+    options:["Araña","Cangrejo","Saltamontes","Lombriz"],
+    correct:3, feedback:"¡Correcto! La lombriz es un anélido, no un artrópodo. Arañas, cangrejos y saltamontes sí son artrópodos." },
+]},
+
+/* ═══ VARIANT 3 ═══ */
+{ title: "Examen 3 — ¡El Experto!", questions: [
+  { type:"match", civ:"anelidos", civLabel:"Anélidos y Cnidarios", text:"Une cada animal con su grupo:",
+    pairs:[["Sanguijuela","Anélido"],["Anémona","Cnidario"],["Coral","Cnidario"],["Lombriz","Anélido"]],
+    feedback:"¡Perfecto! Las sanguijuelas y lombrices son anélidos. Las anémonas y corales son cnidarios." },
+  { type:"vf", civ:"moluscos", civLabel:"Moluscos", text:"La mayoría de los moluscos tienen protección corporal: la concha.", illustration:"snail",
+    correct:true, feedback:"¡Correcto! La concha los protege. Los cefalópodos (calamares, pulpos) son una excepción: no tienen concha externa." },
+  { type:"test", civ:"poriferos", civLabel:"Poríferos", text:"¿Por qué se llaman poríferos?", illustration:"sponge",
+    options:["Porque son de colores","Porque su cuerpo está lleno de poros","Porque viven en el polo","Porque tienen cuatro patas"],
+    correct:1, feedback:"¡Exacto! Porífero significa 'portador de poros'. Su cuerpo está lleno de poros por los que respiran y comen." },
+  { type:"fill", civ:"artropodos", civLabel:"Artrópodos", text:"Los artrópodos tienen protección corporal llamada", illustration:"crab",
+    blank:"exoesqueleto", alternatives:["exoesqueleto","Exoesqueleto"], feedback:"¡Correcto! El exoesqueleto es su armadura exterior, a diferencia de los vertebrados que tienen el esqueleto dentro." },
+  { type:"test", civ:"equinodermos", civLabel:"Equinodermos", text:"¿Cómo respiran los equinodermos?", illustration:"urchin",
+    options:["Por poros","Por la piel entera","Por branquias","Por tráqueas"],
+    correct:2, feedback:"¡Correcto! Los equinodermos respiran por branquias. Son todos acuáticos y tienen protección de placas espinosas." },
+  { type:"vf", civ:"cnidarios", civLabel:"Cnidarios", text:"Los cnidarios tienen esqueleto interno como los peces.", illustration:"jellyfish",
+    correct:false, feedback:"¡Falso! Los cnidarios son invertebrados: NO tienen esqueleto. Su cuerpo es gelatinoso y blando." },
+  { type:"test", civ:"moluscos", civLabel:"Moluscos", text:"¿Cuál es un ejemplo de cefalópodo?", illustration:"squid",
+    options:["Caracol","Almeja","Mejillón","Pulpo"],
+    correct:3, feedback:"¡Correcto! El pulpo (y el calamar, la sepia) son cefalópodos: moluscos con tentáculos en la cabeza." },
+  { type:"match", civ:"general", civLabel:"Invertebrados", text:"Une cada animal con su grupo:",
+    pairs:[["Erizo de mar","Equinodermo"],["Esponja","Porífero"],["Araña","Artrópodo"],["Almeja","Molusco"]],
+    feedback:"¡Excelente! Recuerdas bien todos los grupos de invertebrados." },
+  { type:"vf", civ:"artropodos", civLabel:"Artrópodos", text:"Los artrópodos solo pueden vivir en la tierra, no en el agua.", illustration:"grasshopper",
+    correct:false, feedback:"¡Falso! Pueden ser acuáticos (cangrejos, langostas) o terrestres (insectos, arañas, ciempiés)." },
+  { type:"fill", civ:"anelidos", civLabel:"Anélidos", text:"Las lombrices y las sanguijuelas son ejemplos de animales del grupo de los", illustration:"leech",
+    blank:"anélidos", alternatives:["anelidos","Anélidos","Anelidos"], feedback:"¡Correcto! Los anélidos tienen el cuerpo dividido en anillos y respiran por toda la piel." },
+]},
+];
+
+// ─── STATE ───
+let currentSubject = null; // 'ea' | 'pre' | 'inv'
 let currentVariant = 0;
 let answers = [];
 let matchState = {};
 
+// Maps per subject
+const SUBJECT_DATA = {
+  ea:  { illus: null, variants: null },  // filled after data defs
+  pre: { illus: null, variants: null },
+  inv: { illus: null, variants: null },
+};
+
+function initSubjectData() {
+  SUBJECT_DATA.ea.illus    = ILLUS_EA;
+  SUBJECT_DATA.ea.variants = VARIANTS_EA;
+  SUBJECT_DATA.pre.illus   = ILLUS_PRE;
+  SUBJECT_DATA.pre.variants= VARIANTS_PRE;
+  SUBJECT_DATA.inv.illus   = ILLUS_INV;
+  SUBJECT_DATA.inv.variants= VARIANTS_INV;
+}
+
+// ─── NAVIGATION ───
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function goHome() {
+  currentSubject = null;
+  showScreen('screen-home');
+  renderDashboard();
+}
+
+function goToSubject(subj) {
+  currentSubject = subj;
+  currentVariant = 0;
+  answers = new Array(SUBJECT_DATA[subj].variants[0].questions.length).fill(null);
+  matchState = {};
+  showScreen('screen-quiz');
+  renderSubjectHeader();
+  loadVariant(0);
+}
+
+function renderSubjectHeader() {
+  const meta = {
+    ea:  { title:'🏛️ La Edad Antigua',  color:'#1A3F6B' },
+    pre: { title:'🦣 La Prehistoria',    color:'#5C3317' },
+    inv: { title:'🐙 Los Invertebrados', color:'#023E8A' },
+  }[currentSubject];
+  const h = document.getElementById('quiz-subject-header');
+  h.textContent = meta.title;
+  h.style.background = `linear-gradient(135deg, ${meta.color}, ${meta.color}CC)`;
+}
+
+// ─── SCORES ───
+const SCORE_KEY = 'quiz_scores_v1';
+function getScores() {
+  try { return JSON.parse(localStorage.getItem(SCORE_KEY) || '{}'); } catch(e) { return {}; }
+}
+function saveScore(subj, variant, correct, total) {
+  const scores = getScores();
+  if (!scores[subj]) scores[subj] = {};
+  const key = `v${variant}`;
+  if (!scores[subj][key]) scores[subj][key] = [];
+  scores[subj][key].push({ correct, total, date: new Date().toLocaleDateString('es-ES') });
+  localStorage.setItem(SCORE_KEY, JSON.stringify(scores));
+}
+
+function renderDashboard() {
+  const scores = getScores();
+  const subjects = [
+    { id:'ea',  label:'Edad Antigua',  emoji:'🏛️', color:'#1A3F6B' },
+    { id:'pre', label:'Prehistoria',   emoji:'🦣', color:'#5C3317' },
+    { id:'inv', label:'Invertebrados', emoji:'🐙', color:'#023E8A' },
+  ];
+  const dash = document.getElementById('dashboard');
+  const hasAny = subjects.some(s => scores[s.id]);
+  if (!hasAny) {
+    dash.innerHTML = `<p style="text-align:center;color:#888;font-size:15px;padding:20px 0">Aún no has completado ningún examen. ¡Anímate! 🚀</p>`;
+    return;
+  }
+  let html = '';
+  subjects.forEach(s => {
+    const sd = scores[s.id];
+    if (!sd) return;
+    let totalCorrect=0, totalQ=0, attempts=0;
+    Object.values(sd).forEach(arr => arr.forEach(r => { totalCorrect+=r.correct; totalQ+=r.total; attempts++; }));
+    const pct = totalQ ? Math.round(totalCorrect/totalQ*100) : 0;
+    const ring = pct>=80?'#4CAF50':pct>=60?'#F4B942':'#E53935';
+    html += `<div class="dash-card">
+      <div class="dash-card-left">
+        <span class="dash-emoji">${s.emoji}</span>
+        <div>
+          <div class="dash-label">${s.label}</div>
+          <div class="dash-attempts">${attempts} intento${attempts!==1?'s':''} · ${totalCorrect}/${totalQ} aciertos</div>
+        </div>
+      </div>
+      <div class="dash-ring" style="--pct:${pct};--ring:${ring}">${pct}<span style="font-size:12px">%</span></div>
+    </div>`;
+  });
+  dash.innerHTML = html;
+}
+
+function clearScores() {
+  if(confirm('¿Borrar todas las puntuaciones?')) {
+    localStorage.removeItem(SCORE_KEY);
+    renderDashboard();
+  }
+}
+
+// ─── QUIZ ENGINE ───
 function loadVariant(idx) {
   currentVariant = idx;
   document.querySelectorAll('.variant-btn').forEach((b,i) => b.classList.toggle('active', i===idx));
+  const VARIANTS = SUBJECT_DATA[currentSubject].variants;
   answers = new Array(VARIANTS[idx].questions.length).fill(null);
   matchState = {};
   document.getElementById('score-panel').classList.remove('show');
@@ -1005,6 +1441,8 @@ function loadVariant(idx) {
 }
 
 function renderQuiz() {
+  const VARIANTS = SUBJECT_DATA[currentSubject].variants;
+  const ILLUS = SUBJECT_DATA[currentSubject].illus;
   const v = VARIANTS[currentVariant];
   const qa = document.getElementById('quiz-area');
   qa.innerHTML = '';
@@ -1013,19 +1451,29 @@ function renderQuiz() {
   prog.innerHTML = `<div class="progress-bar-wrap"><div class="progress-bar-fill" id="prog-fill" style="width:0%"></div></div><div class="progress-label" id="prog-label">0 / ${v.questions.length} respondidas</div>`;
   qa.appendChild(prog);
 
+  // Variant buttons
+  const vbtns = document.createElement('div');
+  vbtns.className = 'variant-selector';
+  VARIANTS.forEach((vv, vi) => {
+    const emojis = ['🌟','⚡','🔥'];
+    const b = document.createElement('button');
+    b.className = 'variant-btn' + (vi===currentVariant?' active':'');
+    b.innerHTML = `${emojis[vi]} Examen ${vi+1}`;
+    b.onclick = () => loadVariant(vi);
+    vbtns.appendChild(b);
+  });
+  qa.appendChild(vbtns);
+
   v.questions.forEach((q, qi) => {
     const card = document.createElement('div');
     card.className = 'question-card';
     card.id = `q-${qi}`;
 
-    const typeLabel = {test:'Tipo test', vf:'Verdadero o Falso', fill:'Completa la frase', match:'Une con flechas'}[q.type];
-    const typeBadge = {test:'badge-test', vf:'badge-vf', fill:'badge-fill', match:'badge-match'}[q.type];
+    const typeLabel = {test:'Tipo test',vf:'Verdadero o Falso',fill:'Completa la frase',match:'Une con flechas'}[q.type];
+    const typeBadge = {test:'badge-test',vf:'badge-vf',fill:'badge-fill',match:'badge-match'}[q.type];
 
-    let illHtml = '';
-    const key = q.illustration;
-    if (key && ILLUSTRATIONS[key]) {
-      illHtml = `<div class="q-illustration">${ILLUSTRATIONS[key]}</div>`;
-    }
+    const illHtml = q.illustration && ILLUS[q.illustration]
+      ? `<div class="q-illustration">${ILLUS[q.illustration]}</div>` : '';
 
     card.innerHTML = `
       <span class="civ-tag civ-${q.civ}">${q.civLabel}</span>
@@ -1033,61 +1481,57 @@ function renderQuiz() {
         <span class="q-number">${qi+1}</span>
         <div style="flex:1">
           <span class="q-badge ${typeBadge}">${typeLabel}</span>
-          <div class="q-text" style="margin-top:6px">${q.text}${q.type==='fill' ? ' <span style="color:var(--blue)">___________</span>' : ''}</div>
+          <div class="q-text" style="margin-top:6px">${q.text}${q.type==='fill' ? ' <span class="blank-span">___________</span>' : ''}</div>
         </div>
       </div>
       ${illHtml}
       <div id="q-body-${qi}"></div>
-      <div class="feedback" id="fb-${qi}"><span class="feedback-icon"></span><span id="fb-text-${qi}"></span></div>
-    `;
+      <div class="feedback" id="fb-${qi}"><span class="feedback-icon"></span><span id="fb-text-${qi}"></span></div>`;
     qa.appendChild(card);
 
     const body = document.getElementById(`q-body-${qi}`);
-    if (q.type === 'test') renderTest(body, q, qi);
-    else if (q.type === 'vf') renderVF(body, q, qi);
-    else if (q.type === 'fill') renderFill(body, q, qi);
-    else if (q.type === 'match') renderMatch(body, q, qi);
+    if (q.type==='test') renderTest(body, q, qi);
+    else if (q.type==='vf') renderVF(body, q, qi);
+    else if (q.type==='fill') renderFill(body, q, qi);
+    else if (q.type==='match') renderMatch(body, q, qi);
   });
 
   const sub = document.createElement('div');
   sub.className = 'submit-area';
-  sub.innerHTML = `<button class="submit-btn" onclick="submitQuiz()">🏛️ Ver mi puntuación</button>`;
+  sub.innerHTML = `<button class="submit-btn" onclick="submitQuiz()">🏆 Ver mi puntuación</button>`;
   qa.appendChild(sub);
 }
 
 function showFeedback(qi, isCorrect, msg) {
   const fb = document.getElementById(`fb-${qi}`);
-  fb.className = `feedback show ${isCorrect ? 'correct-fb' : 'wrong-fb'}`;
+  fb.className = `feedback show ${isCorrect?'correct-fb':'wrong-fb'}`;
   fb.querySelector('.feedback-icon').textContent = isCorrect ? '🌟' : '💡';
   document.getElementById(`fb-text-${qi}`).textContent = msg;
   updateProgress();
 }
 
 function updateProgress() {
+  const VARIANTS = SUBJECT_DATA[currentSubject].variants;
   const v = VARIANTS[currentVariant];
-  const answered = answers.filter(a => a !== null).length;
-  const pct = Math.round(answered / v.questions.length * 100);
-  document.getElementById('prog-fill').style.width = pct + '%';
+  const answered = answers.filter(a => a!==null).length;
+  const pct = Math.round(answered/v.questions.length*100);
+  document.getElementById('prog-fill').style.width = pct+'%';
   document.getElementById('prog-label').textContent = `${answered} / ${v.questions.length} respondidas`;
 }
 
-/* ── TEST ── */
 function renderTest(body, q, qi) {
   const letters = ['A','B','C','D'];
-  const grid = document.createElement('div');
-  grid.className = 'options-grid';
+  const grid = document.createElement('div'); grid.className = 'options-grid';
   q.options.forEach((opt, oi) => {
-    const btn = document.createElement('button');
-    btn.className = 'option-btn';
+    const btn = document.createElement('button'); btn.className = 'option-btn';
     btn.innerHTML = `<span class="option-letter">${letters[oi]}</span>${opt}`;
     btn.onclick = () => {
-      if (answers[qi] !== null) return;
-      const correct = oi === q.correct;
-      answers[qi] = correct;
-      grid.querySelectorAll('.option-btn').forEach((b, bi) => {
+      if (answers[qi]!==null) return;
+      const correct = oi===q.correct; answers[qi] = correct;
+      grid.querySelectorAll('.option-btn').forEach((b,bi) => {
         b.disabled = true;
-        if (bi === q.correct) b.classList.add('correct');
-        else if (bi === oi && !correct) b.classList.add('wrong');
+        if (bi===q.correct) b.classList.add('correct');
+        else if (bi===oi && !correct) b.classList.add('wrong');
       });
       showFeedback(qi, correct, correct ? q.feedback : `La respuesta correcta era: "${q.options[q.correct]}". ${q.feedback}`);
     };
@@ -1096,23 +1540,19 @@ function renderTest(body, q, qi) {
   body.appendChild(grid);
 }
 
-/* ── V/F ── */
 function renderVF(body, q, qi) {
-  const wrap = document.createElement('div');
-  wrap.className = 'vf-buttons';
-  ['✅ Verdadero', '❌ Falso'].forEach((label, li) => {
+  const wrap = document.createElement('div'); wrap.className = 'vf-buttons';
+  ['✅ Verdadero','❌ Falso'].forEach((label, li) => {
     const btn = document.createElement('button');
     btn.className = `vf-btn ${li===0?'vf-true':'vf-false'}`;
     btn.textContent = label;
     btn.onclick = () => {
-      if (answers[qi] !== null) return;
-      const chosen = li === 0;
-      const correct = chosen === q.correct;
-      answers[qi] = correct;
+      if (answers[qi]!==null) return;
+      const chosen = li===0; const correct = chosen===q.correct; answers[qi] = correct;
       wrap.querySelectorAll('.vf-btn').forEach(b => b.disabled = true);
-      btn.classList.add(correct ? 'correct' : 'wrong');
-      const otherBtn = wrap.querySelector(`.${li===0?'vf-false':'vf-true'}`);
-      if (!correct) otherBtn.classList.add('correct');
+      btn.classList.add(correct?'correct':'wrong');
+      const other = wrap.querySelector(`.${li===0?'vf-false':'vf-true'}`);
+      if (!correct) other.classList.add('correct');
       showFeedback(qi, correct, q.feedback);
     };
     wrap.appendChild(btn);
@@ -1120,148 +1560,127 @@ function renderVF(body, q, qi) {
   body.appendChild(wrap);
 }
 
-/* ── FILL ── */
 function renderFill(body, q, qi) {
-  const wrap = document.createElement('div');
-  wrap.className = 'fill-wrap';
+  const wrap = document.createElement('div'); wrap.className = 'fill-wrap';
   const inp = document.createElement('input');
-  inp.className = 'fill-input';
-  inp.type = 'text';
-  inp.placeholder = 'Escribe aquí...';
-  const btn = document.createElement('button');
-  btn.className = 'fill-check-btn';
-  btn.textContent = '✔ Comprobar';
+  inp.className = 'fill-input'; inp.type = 'text'; inp.placeholder = 'Escribe aquí...';
+  const btn = document.createElement('button'); btn.className = 'fill-check-btn'; btn.textContent = '✔ Comprobar';
   const check = () => {
-    if (answers[qi] !== null) return;
+    if (answers[qi]!==null) return;
     const val = inp.value.trim().toLowerCase();
     const accepted = [q.blank.toLowerCase(), ...(q.alternatives||[]).map(a=>a.toLowerCase())];
-    const correct = accepted.includes(val);
-    answers[qi] = correct;
-    inp.disabled = true;
-    btn.disabled = true;
-    inp.classList.add(correct ? 'correct' : 'wrong');
+    const correct = accepted.includes(val); answers[qi] = correct;
+    inp.disabled = true; btn.disabled = true;
+    inp.classList.add(correct?'correct':'wrong');
     if (!correct) inp.value = q.blank;
     showFeedback(qi, correct, q.feedback);
   };
   btn.onclick = check;
   inp.addEventListener('keydown', e => { if(e.key==='Enter') check(); });
-  wrap.appendChild(inp);
-  wrap.appendChild(btn);
-  body.appendChild(wrap);
+  wrap.appendChild(inp); wrap.appendChild(btn); body.appendChild(wrap);
 }
 
-/* ── MATCH ── */
 function renderMatch(body, q, qi) {
-  const state = { selectedLeft: null, selectedRight: null, matched: new Set(), errors: 0 };
+  const state = { selectedLeft:null, selectedRight:null, matched:new Set(), errors:0 };
   matchState[qi] = state;
-
-  const shuffledRight = [...q.pairs].sort(() => Math.random()-0.5).map(p=>p[1]);
-
-  const grid = document.createElement('div');
-  grid.className = 'match-grid';
-  const colLeft = document.createElement('div');
-  const colRight = document.createElement('div');
-  colLeft.style.display = 'flex'; colLeft.style.flexDirection = 'column'; colLeft.style.gap = '8px';
-  colRight.style.display = 'flex'; colRight.style.flexDirection = 'column'; colRight.style.gap = '8px';
-
-  const statusEl = document.createElement('div');
-  statusEl.className = 'match-status';
+  const shuffledRight = [...q.pairs].sort(() => Math.random()-0.5).map(p => p[1]);
+  const grid = document.createElement('div'); grid.className = 'match-grid';
+  const colL = document.createElement('div'); const colR = document.createElement('div');
+  colL.style.cssText = 'display:flex;flex-direction:column;gap:8px';
+  colR.style.cssText = 'display:flex;flex-direction:column;gap:8px';
+  const statusEl = document.createElement('div'); statusEl.className = 'match-status';
   statusEl.textContent = `0 / ${q.pairs.length} pares encontrados`;
 
   q.pairs.forEach((pair, pi) => {
-    const leftBtn = document.createElement('button');
-    leftBtn.className = 'match-item left-item';
-    leftBtn.textContent = pair[0];
-    leftBtn.dataset.leftIdx = pi;
-    leftBtn.onclick = () => {
-      if (leftBtn.classList.contains('matched') || answers[qi] !== null) return;
-      grid.querySelectorAll('.left-item:not(.matched)').forEach(b=>b.classList.remove('selected'));
-      leftBtn.classList.add('selected');
-      state.selectedLeft = pi;
+    const lb = document.createElement('button'); lb.className = 'match-item left-item';
+    lb.textContent = pair[0]; lb.dataset.leftIdx = pi;
+    lb.onclick = () => {
+      if (lb.classList.contains('matched') || answers[qi]!==null) return;
+      grid.querySelectorAll('.left-item:not(.matched)').forEach(b => b.classList.remove('selected'));
+      lb.classList.add('selected'); state.selectedLeft = pi;
       tryMatch(grid, q, qi, state, statusEl);
     };
-    colLeft.appendChild(leftBtn);
+    colL.appendChild(lb);
   });
 
-  shuffledRight.forEach((rightText, ri) => {
-    const rightBtn = document.createElement('button');
-    rightBtn.className = 'match-item right-item';
-    rightBtn.textContent = rightText;
-    rightBtn.dataset.rightText = rightText;
-    rightBtn.onclick = () => {
-      if (rightBtn.classList.contains('matched') || answers[qi] !== null) return;
-      grid.querySelectorAll('.right-item:not(.matched)').forEach(b=>b.classList.remove('selected'));
-      rightBtn.classList.add('selected');
-      state.selectedRight = rightText;
+  shuffledRight.forEach(rt => {
+    const rb = document.createElement('button'); rb.className = 'match-item right-item';
+    rb.textContent = rt; rb.dataset.rightText = rt;
+    rb.onclick = () => {
+      if (rb.classList.contains('matched') || answers[qi]!==null) return;
+      grid.querySelectorAll('.right-item:not(.matched)').forEach(b => b.classList.remove('selected'));
+      rb.classList.add('selected'); state.selectedRight = rt;
       tryMatch(grid, q, qi, state, statusEl);
     };
-    colRight.appendChild(rightBtn);
+    colR.appendChild(rb);
   });
 
-  grid.appendChild(colLeft);
-  grid.appendChild(colRight);
-  body.appendChild(grid);
-  body.appendChild(statusEl);
+  grid.appendChild(colL); grid.appendChild(colR);
+  body.appendChild(grid); body.appendChild(statusEl);
 }
 
 function tryMatch(grid, q, qi, state, statusEl) {
-  if (state.selectedLeft === null || state.selectedRight === null) return;
-  const li = state.selectedLeft;
-  const rt = state.selectedRight;
+  if (state.selectedLeft===null || state.selectedRight===null) return;
+  const li = state.selectedLeft, rt = state.selectedRight;
   const correct = q.pairs[li][1] === rt;
-
-  const leftBtn = grid.querySelector(`[data-left-idx="${li}"]`);
-  const rightBtn = grid.querySelector(`[data-right-text="${rt}"]`);
-
+  const lb = grid.querySelector(`[data-left-idx="${li}"]`);
+  const rb = grid.querySelector(`[data-right-text="${rt}"]`);
   if (correct) {
-    leftBtn.classList.remove('selected'); leftBtn.classList.add('matched');
-    rightBtn.classList.remove('selected'); rightBtn.classList.add('matched');
+    lb.classList.remove('selected'); lb.classList.add('matched');
+    rb.classList.remove('selected'); rb.classList.add('matched');
     state.matched.add(li);
     statusEl.textContent = `${state.matched.size} / ${q.pairs.length} pares encontrados`;
-    if (state.matched.size === q.pairs.length) {
-      answers[qi] = state.errors === 0;
+    if (state.matched.size===q.pairs.length) {
+      answers[qi] = state.errors===0;
       showFeedback(qi, true, q.feedback);
     }
   } else {
     state.errors++;
-    leftBtn.classList.remove('selected');
-    rightBtn.classList.remove('selected');
-    rightBtn.classList.add('wrong-match');
-    setTimeout(()=>rightBtn.classList.remove('wrong-match'), 600);
+    lb.classList.remove('selected'); rb.classList.remove('selected');
+    rb.classList.add('wrong-match');
+    setTimeout(() => rb.classList.remove('wrong-match'), 600);
   }
-  state.selectedLeft = null;
-  state.selectedRight = null;
+  state.selectedLeft = null; state.selectedRight = null;
 }
 
-/* ── SUBMIT ── */
 function submitQuiz() {
+  const VARIANTS = SUBJECT_DATA[currentSubject].variants;
   const v = VARIANTS[currentVariant];
   const total = v.questions.length;
-  const correct = answers.filter(a => a === true).length;
+  const correct = answers.filter(a => a===true).length;
   const pct = Math.round(correct/total*100);
 
+  saveScore(currentSubject, currentVariant, correct, total);
+
   let emoji, msg;
-  if (pct === 100)       { emoji = '🏆'; msg = '¡PERFECTO! ¡Eres un genio de la Historia!'; }
-  else if (pct >= 80)    { emoji = '⭐'; msg = '¡Fantástico! ¡Casi lo bordas!'; }
-  else if (pct >= 60)    { emoji = '😊'; msg = '¡Muy bien! Sigue repasando un poquito.'; }
-  else if (pct >= 40)    { emoji = '💪'; msg = '¡Buen intento! Vuelve a ver el vídeo y lo clavaras.'; }
-  else                   { emoji = '📚'; msg = 'No pasa nada, ¡repasa y vuelve a intentarlo!'; }
+  if (pct===100)     { emoji='🏆'; msg='¡INCREÍBLE! ¡Eres un genio!'; }
+  else if (pct>=80)  { emoji='⭐'; msg='¡Fantástico! ¡Lo has hecho genial!'; }
+  else if (pct>=60)  { emoji='😊'; msg='¡Muy bien! Un poco más de repaso...'; }
+  else if (pct>=40)  { emoji='💪'; msg='¡Buen intento! Vuelve a repasar.'; }
+  else               { emoji='📚'; msg='¡No te rindas! Repasa y vuelve.'; }
 
   const panel = document.getElementById('score-panel');
   panel.innerHTML = `
-    <div class="score-title">🏛️ ${v.title}</div>
+    <div class="score-title">${v.title}</div>
     <div class="score-emoji">${emoji}</div>
     <div><span class="score-big">${correct}</span><span class="score-denom"> / ${total}</span></div>
     <div class="score-msg">${msg}</div>
-    <p style="color:var(--muted);font-size:14px;margin-top:6px">${pct}% de aciertos</p>
-    <button class="retry-btn" onclick="loadVariant(currentVariant)">🔄 Repetir este examen</button>
-  `;
+    <p style="color:#888;font-size:14px;margin-top:6px">${pct}% de aciertos</p>
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap">
+      <button class="retry-btn" onclick="loadVariant(currentVariant)">🔄 Repetir</button>
+      <button class="home-btn" onclick="goHome()">🏠 Inicio</button>
+    </div>`;
   panel.classList.add('show');
-  panel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  panel.scrollIntoView({behavior:'smooth', block:'center'});
   updateProgress();
 }
 
-loadVariant(0);
+window.addEventListener('DOMContentLoaded', () => {
+  initSubjectData();
+  showScreen('screen-home');
+  renderDashboard();
+});
+
 </script>
 </body>
 </html>
