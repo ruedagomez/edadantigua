@@ -244,7 +244,6 @@ body{font-family:'Nunito',sans-serif;background:#F0F4FF;color:#1A2036;min-height
 .word-chip.speaking{border-color:#16A34A;background:#DCFCE7;animation:pulse-chip 0.6s ease}
 @keyframes pulse-chip{0%{transform:scale(1)}50%{transform:scale(1.06)}100%{transform:scale(1)}}
 .word-chip .chip-icon{font-size:16px}
-.word-chip .chip-ipa{font-size:11px;color:#888;font-weight:600;font-style:italic}
 
 /* Sentence builder */
 .sentence-builder{margin-top:8px}
@@ -283,7 +282,6 @@ body{font-family:'Nunito',sans-serif;background:#F0F4FF;color:#1A2036;min-height
 .vocab-card.revealed{border-color:#22C55E;background:#F0FDF4}
 .vocab-card .vc-emoji{font-size:32px;margin-bottom:6px}
 .vocab-card .vc-word{font-family:'Fredoka One',cursive;font-size:15px;color:#1A2036;margin-bottom:3px}
-.vocab-card .vc-ipa{font-size:11px;color:#888;font-style:italic}
 .vocab-card .vc-es{font-size:12px;color:#15803D;font-weight:700;margin-top:4px;display:none}
 .vocab-card.revealed .vc-es{display:block}
 
@@ -1776,29 +1774,29 @@ function submitQuiz() {
 
 const ENG_VOCAB = {
   // Activities
-  fishing:         { ipa: '/ˈfɪʃɪŋ/',        es: 'pescar',           emoji: '🎣' },
-  cycling:         { ipa: '/ˈsaɪklɪŋ/',       es: 'montar en bici',   emoji: '🚴' },
-  sailing:         { ipa: '/ˈseɪlɪŋ/',        es: 'navegar',          emoji: '⛵' },
-  skateboarding:   { ipa: '/ˈskeɪtbɔːrdɪŋ/', es: 'patinar',          emoji: '🛹' },
-  drawing:         { ipa: '/ˈdrɔːɪŋ/',        es: 'dibujar',          emoji: '🎨' },
-  'rock-climbing': { ipa: '/ˈrɒk ˌklaɪmɪŋ/', es: 'escalar',          emoji: '🧗' },
-  'having a picnic':   { ipa: '/ˈhævɪŋ ə ˈpɪknɪk/', es: 'hacer un picnic', emoji: '🧺' },
-  'building a den':    { ipa: '/ˈbɪldɪŋ ə den/', es: 'construir una cabaña', emoji: '⛺' },
-  'reading a map':     { ipa: '/ˈriːdɪŋ ə mæp/', es: 'leer un mapa',    emoji: '🗺️' },
-  'doing a nature trail': { ipa: '/ˈduːɪŋ ə ˈneɪtʃər treɪl/', es: 'hacer senderismo', emoji: '🥾' },
+  fishing:         { es: 'pescar',           emoji: '🎣' },
+  cycling:         { es: 'montar en bici',   emoji: '🚴' },
+  sailing:         { es: 'navegar',          emoji: '⛵' },
+  skateboarding:   { es: 'patinar',          emoji: '🛹' },
+  drawing:         { es: 'dibujar',          emoji: '🎨' },
+  'rock-climbing': { es: 'escalar',          emoji: '🧗' },
+  'having a picnic':   { es: 'hacer un picnic', emoji: '🧺' },
+  'building a den':    { es: 'construir una cabaña', emoji: '⛺' },
+  'reading a map':     { es: 'leer un mapa',    emoji: '🗺️' },
+  'doing a nature trail': { es: 'hacer senderismo', emoji: '🥾' },
   // Nature
-  forest:      { ipa: '/ˈfɒrɪst/',   es: 'bosque',    emoji: '🌲' },
-  lake:        { ipa: '/leɪk/',       es: 'lago',      emoji: '🏞️' },
-  mountain:    { ipa: '/ˈmaʊntɪn/',  es: 'montaña',   emoji: '⛰️' },
-  river:       { ipa: '/ˈrɪvər/',    es: 'río',       emoji: '🌊' },
-  countryside: { ipa: '/ˈkʌntrisaɪd/', es: 'campo',  emoji: '🌾' },
-  island:      { ipa: '/ˈaɪlənd/',   es: 'isla',      emoji: '🏝️' },
+  forest:      { es: 'bosque',    emoji: '🌲' },
+  lake:        { es: 'lago',      emoji: '🏞️' },
+  mountain:    { es: 'montaña',   emoji: '⛰️' },
+  river:       { es: 'río',       emoji: '🌊' },
+  countryside: { es: 'campo',  emoji: '🌾' },
+  island:      { es: 'isla',      emoji: '🏝️' },
   // Weather
-  sunny:   { ipa: '/ˈsʌni/',   es: 'soleado',  emoji: '☀️' },
-  cloudy:  { ipa: '/ˈklaʊdi/', es: 'nublado',  emoji: '☁️' },
-  rainy:   { ipa: '/ˈreɪni/',  es: 'lluvioso', emoji: '🌧️' },
-  snowy:   { ipa: '/ˈsnəʊi/',  es: 'nevado',   emoji: '❄️' },
-  windy:   { ipa: '/ˈwɪndi/',  es: 'ventoso',  emoji: '💨' },
+  sunny:   { es: 'soleado',  emoji: '☀️' },
+  cloudy:  { es: 'nublado',  emoji: '☁️' },
+  rainy:   { es: 'lluvioso', emoji: '🌧️' },
+  snowy:   { es: 'nevado',   emoji: '❄️' },
+  windy:   { es: 'ventoso',  emoji: '💨' },
 };
 
 function speakWord(word) {
@@ -1817,7 +1815,6 @@ function makeWordChip(word, size) {
   return `<span class="word-chip" style="font-size:${fontSize}" onclick="speakWord('${word.replace(/'/g,"\\'")}');this.classList.add('speaking');setTimeout(()=>this.classList.remove('speaking'),700)" title="Click to hear pronunciation">
     <span class="chip-icon">🔊</span>
     <span>${word}</span>
-    <span class="chip-ipa">${v.ipa||''}</span>
   </span>`;
 }
 
@@ -2345,7 +2342,6 @@ function renderEngVocab(body, q, qi) {
     const card = document.createElement('div'); card.className = 'vocab-card';
     card.innerHTML = `<div class="vc-emoji">${v.emoji||'❓'}</div>
       <div class="vc-word">${word}</div>
-      <div class="vc-ipa">${v.ipa||''}</div>
       <div class="vc-es">${v.es||''}</div>`;
     card.onclick = () => {
       if (engAnswers[qi]!==null) return;
@@ -2382,7 +2378,7 @@ function renderEngWeather(body, q, qi) {
     const vd = ENG_VOCAB[w] || {};
     const btn = document.createElement('button'); btn.className = 'weather-btn';
     btn.dataset.weather = w;
-    btn.innerHTML = `<span class="weather-icon">${vd.emoji||'?'}</span>${w}<br><span style="font-size:10px;color:#888">${vd.ipa||''}</span>`;
+    btn.innerHTML = `<span class="weather-icon">${vd.emoji||'?'}</span>${w}`;
     btn.onclick = () => {
       if (engAnswers[qi]!==null) return;
       speakWord(w);
