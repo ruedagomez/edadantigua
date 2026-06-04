@@ -220,6 +220,90 @@ body{font-family:'Nunito',sans-serif;background:#F0F4FF;color:#1A2036;min-height
 .submit-area{text-align:center;margin-top:32px}
 .submit-btn{font-family:'Fredoka One',cursive;font-size:20px;padding:16px 48px;border-radius:50px;border:none;background:linear-gradient(135deg,#F4B942,#F97316);color:white;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 14px rgba(249,115,22,0.4);letter-spacing:0.5px}
 .submit-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(249,115,22,0.5)}
+
+/* ═══ ENGLISH MODULE ═══ */
+.subject-card.eng{background:linear-gradient(135deg,#F0FDF4,#DCFCE7);border-color:#BBF7D0}
+.subject-card.eng:hover{border-color:#22C55E}
+.sc-title.eng{color:#15803D}
+.sc-badge.eng{color:#15803D}
+.civ-activity{background:#DCFCE7;color:#166534}
+.civ-nature{background:#CFFAFE;color:#0E7490}
+.civ-grammar{background:#FEF9C3;color:#854D0E}
+.civ-weather{background:#EDE9FE;color:#5B21B6}
+.civ-sentence{background:#FCE7F3;color:#9D174D}
+
+/* Pronunciation chip */
+.word-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  background:white;border:2.5px solid #BBF7D0;border-radius:50px;
+  padding:6px 14px;margin:5px;cursor:pointer;
+  font-family:'Nunito',sans-serif;font-weight:800;font-size:15px;
+  transition:all 0.18s;box-shadow:0 2px 8px rgba(0,0,0,0.06);
+}
+.word-chip:hover{border-color:#22C55E;background:#F0FDF4;transform:translateY(-2px);box-shadow:0 4px 12px rgba(34,197,94,0.2)}
+.word-chip.speaking{border-color:#16A34A;background:#DCFCE7;animation:pulse-chip 0.6s ease}
+@keyframes pulse-chip{0%{transform:scale(1)}50%{transform:scale(1.06)}100%{transform:scale(1)}}
+.word-chip .chip-icon{font-size:16px}
+.word-chip .chip-ipa{font-size:11px;color:#888;font-weight:600;font-style:italic}
+
+/* Sentence builder */
+.sentence-builder{margin-top:8px}
+.word-bank{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;min-height:44px;padding:10px;background:#F8FAFF;border-radius:12px;border:2px dashed #C7D2FE}
+.word-token{
+  display:inline-flex;align-items:center;gap:4px;
+  background:white;border:2.5px solid #A5B4FC;border-radius:50px;
+  padding:6px 14px;cursor:pointer;font-family:'Nunito',sans-serif;
+  font-weight:800;font-size:14px;color:#3730A3;
+  transition:all 0.18s;
+}
+.word-token:hover{background:#EEF2FF;border-color:#6366F1;transform:translateY(-1px)}
+.word-token.placed{background:#EEF2FF;border-color:#818CF8;opacity:0.5;cursor:not-allowed}
+.sentence-slots{display:flex;flex-wrap:wrap;gap:8px;min-height:48px;padding:10px;background:#FEFCE8;border-radius:12px;border:2px solid #FDE047;margin-bottom:10px}
+.sentence-slot{
+  min-width:70px;padding:6px 14px;border-radius:50px;
+  background:white;border:2.5px dashed #FDE047;
+  font-family:'Nunito',sans-serif;font-weight:800;font-size:14px;
+  color:#854D0E;cursor:pointer;text-align:center;
+  transition:all 0.18s;
+}
+.sentence-slot.filled{border-style:solid;border-color:#F59E0B;background:#FFFBEB;cursor:pointer}
+.sentence-slot.filled:hover{background:#FEF3C7}
+.eng-check-btn{font-family:'Fredoka One',cursive;font-size:15px;padding:8px 22px;border-radius:50px;border:none;background:#15803D;color:white;cursor:pointer;transition:all 0.18s}
+.eng-check-btn:hover{background:#166534;transform:translateY(-1px)}
+.eng-check-btn:disabled{opacity:0.5;cursor:default}
+
+/* Vocab grid */
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-top:8px}
+.vocab-card{
+  background:white;border-radius:14px;padding:14px 10px;text-align:center;
+  border:2.5px solid #E5E7EB;cursor:pointer;transition:all 0.2s;
+  box-shadow:0 2px 8px rgba(0,0,0,0.04);
+}
+.vocab-card:hover{border-color:#22C55E;transform:translateY(-3px);box-shadow:0 6px 16px rgba(34,197,94,0.15)}
+.vocab-card.revealed{border-color:#22C55E;background:#F0FDF4}
+.vocab-card .vc-emoji{font-size:32px;margin-bottom:6px}
+.vocab-card .vc-word{font-family:'Fredoka One',cursive;font-size:15px;color:#1A2036;margin-bottom:3px}
+.vocab-card .vc-ipa{font-size:11px;color:#888;font-style:italic}
+.vocab-card .vc-es{font-size:12px;color:#15803D;font-weight:700;margin-top:4px;display:none}
+.vocab-card.revealed .vc-es{display:block}
+
+/* Weather picker */
+.weather-grid{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.weather-btn{
+  flex:1;min-width:80px;padding:12px 8px;border-radius:14px;
+  border:2.5px solid #E5E7EB;background:white;cursor:pointer;
+  font-family:'Nunito',sans-serif;font-weight:800;font-size:13px;
+  text-align:center;transition:all 0.18s;
+}
+.weather-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.1)}
+.weather-btn.correct{background:#F0FDF4;border-color:#22C55E;color:#15803D}
+.weather-btn.wrong{background:#FEF2F2;border-color:#EF4444;color:#B91C1C}
+.weather-btn:disabled{cursor:default}
+.weather-icon{font-size:28px;display:block;margin-bottom:4px}
+
+/* Eng score */
+.eng-score-wrap{background:white;border-radius:20px;padding:28px 20px;text-align:center;border:2px solid #BBF7D0;box-shadow:0 4px 16px rgba(34,197,94,0.1);display:none;margin-top:20px;animation:slideIn 0.4s ease}
+.eng-score-wrap.show{display:block}
 </style>
 </head>
 <body>
@@ -257,6 +341,14 @@ body{font-family:'Nunito',sans-serif;background:#F0F4FF;color:#1A2036;min-height
           <div class="sc-desc">Anélidos · Cnidarios · Moluscos · Equinodermos · Poríferos · Artrópodos<br>3 exámenes · 10 preguntas cada uno</div>
         </div>
         <span class="sc-badge inv">3 variantes</span>
+      </div>
+      <div class="subject-card eng" onclick="goToSubject('eng')">
+        <span class="sc-emoji">🇬🇧</span>
+        <div class="sc-info">
+          <div class="sc-title eng">English — Unit 6</div>
+          <div class="sc-desc">Activities · Nature vocabulary · Grammar He's/She's + -ing · Weather<br>3 exámenes · pronunciación con voz y fonética</div>
+        </div>
+        <span class="sc-badge eng">3 variantes</span>
       </div>
     </div>
 
@@ -1353,6 +1445,7 @@ function goHome() {
 }
 
 function goToSubject(subj) {
+  if (subj === 'eng') { goToEng(); return; }
   currentSubject = subj;
   currentVariant = 0;
   answers = new Array(SUBJECT_DATA[subj].variants[0].questions.length).fill(null);
@@ -1393,6 +1486,7 @@ function renderDashboard() {
     { id:'ea',  label:'Edad Antigua',  emoji:'🏛️', color:'#1A3F6B' },
     { id:'pre', label:'Prehistoria',   emoji:'🦣', color:'#5C3317' },
     { id:'inv', label:'Invertebrados', emoji:'🐙', color:'#023E8A' },
+    { id:'eng', label:'English Unit 6',emoji:'🇬🇧', color:'#15803D' },
   ];
   const dash = document.getElementById('dashboard');
   const hasAny = subjects.some(s => scores[s.id]);
@@ -1675,6 +1769,684 @@ function submitQuiz() {
   updateProgress();
 }
 
+
+// ═══════════════════════════════════════════════
+//  ENGLISH MODULE — Unit 6: Come on an adventure!
+// ═══════════════════════════════════════════════
+
+const ENG_VOCAB = {
+  // Activities
+  fishing:         { ipa: '/ˈfɪʃɪŋ/',        es: 'pescar',           emoji: '🎣' },
+  cycling:         { ipa: '/ˈsaɪklɪŋ/',       es: 'montar en bici',   emoji: '🚴' },
+  sailing:         { ipa: '/ˈseɪlɪŋ/',        es: 'navegar',          emoji: '⛵' },
+  skateboarding:   { ipa: '/ˈskeɪtbɔːrdɪŋ/', es: 'patinar',          emoji: '🛹' },
+  drawing:         { ipa: '/ˈdrɔːɪŋ/',        es: 'dibujar',          emoji: '🎨' },
+  'rock-climbing': { ipa: '/ˈrɒk ˌklaɪmɪŋ/', es: 'escalar',          emoji: '🧗' },
+  'having a picnic':   { ipa: '/ˈhævɪŋ ə ˈpɪknɪk/', es: 'hacer un picnic', emoji: '🧺' },
+  'building a den':    { ipa: '/ˈbɪldɪŋ ə den/', es: 'construir una cabaña', emoji: '⛺' },
+  'reading a map':     { ipa: '/ˈriːdɪŋ ə mæp/', es: 'leer un mapa',    emoji: '🗺️' },
+  'doing a nature trail': { ipa: '/ˈduːɪŋ ə ˈneɪtʃər treɪl/', es: 'hacer senderismo', emoji: '🥾' },
+  // Nature
+  forest:      { ipa: '/ˈfɒrɪst/',   es: 'bosque',    emoji: '🌲' },
+  lake:        { ipa: '/leɪk/',       es: 'lago',      emoji: '🏞️' },
+  mountain:    { ipa: '/ˈmaʊntɪn/',  es: 'montaña',   emoji: '⛰️' },
+  river:       { ipa: '/ˈrɪvər/',    es: 'río',       emoji: '🌊' },
+  countryside: { ipa: '/ˈkʌntrisaɪd/', es: 'campo',  emoji: '🌾' },
+  island:      { ipa: '/ˈaɪlənd/',   es: 'isla',      emoji: '🏝️' },
+  // Weather
+  sunny:   { ipa: '/ˈsʌni/',   es: 'soleado',  emoji: '☀️' },
+  cloudy:  { ipa: '/ˈklaʊdi/', es: 'nublado',  emoji: '☁️' },
+  rainy:   { ipa: '/ˈreɪni/',  es: 'lluvioso', emoji: '🌧️' },
+  snowy:   { ipa: '/ˈsnəʊi/',  es: 'nevado',   emoji: '❄️' },
+  windy:   { ipa: '/ˈwɪndi/',  es: 'ventoso',  emoji: '💨' },
+};
+
+function speakWord(word) {
+  if (!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
+  const utt = new SpeechSynthesisUtterance(word);
+  utt.lang = 'en-GB';
+  utt.rate = 0.85;
+  utt.pitch = 1.1;
+  window.speechSynthesis.speak(utt);
+}
+
+function makeWordChip(word, size) {
+  const v = ENG_VOCAB[word] || {};
+  const fontSize = size === 'lg' ? '17px' : '14px';
+  return `<span class="word-chip" style="font-size:${fontSize}" onclick="speakWord('${word.replace(/'/g,"\\'")}');this.classList.add('speaking');setTimeout(()=>this.classList.remove('speaking'),700)" title="Click to hear pronunciation">
+    <span class="chip-icon">🔊</span>
+    <span>${word}</span>
+    <span class="chip-ipa">${v.ipa||''}</span>
+  </span>`;
+}
+
+// ── ENG VARIANTS ──────────────────────────────────────────────────────────
+
+const VARIANTS_ENG = [
+
+/* ══════════════ VARIANT 1 ══════════════ */
+{
+  title: "Exam 1 — The Adventurer! 🏕️",
+  questions: [
+    // 1. VOCAB RECOGNITION — activities
+    {
+      type: "test",
+      civ: "activity", civLabel: "Activities",
+      text: "Listen and click the word to hear it! 🔊 What activity is this? 🛹",
+      chips: ["fishing","cycling","skateboarding","sailing"],
+      options: ["fishing","cycling","skateboarding","sailing"],
+      correct: 2,
+      feedback: "✅ Skateboarding! /ˈskeɪtbɔːrdɪŋ/ — ¡patinar en monopatín!"
+    },
+    // 2. GRAMMAR — He's/She's
+    {
+      type: "sentence",
+      civ: "grammar", civLabel: "Grammar",
+      text: "Build the sentence! Put the words in order: 🎣",
+      words: ["He's","fishing.","cycling.","She's"],
+      answer: ["He's","fishing."],
+      hint: "He's ___ (not cycling!)",
+      feedback: "✅ He's fishing. /hiːz ˈfɪʃɪŋ/ — ¡Está pescando!"
+    },
+    // 3. NATURE VOCAB
+    {
+      type: "vocab_click",
+      civ: "nature", civLabel: "Nature",
+      text: "Click each word to hear it, then match: Which is the LAKE? 🏞️",
+      vocabSet: ["forest","lake","mountain","river"],
+      correct: "lake",
+      feedback: "✅ Lake! /leɪk/ — ¡un lago!"
+    },
+    // 4. WEATHER
+    {
+      type: "weather",
+      civ: "weather", civLabel: "Weather",
+      text: "What's the weather like? ☁️💨",
+      scene: "It's grey and the trees are moving. You need a jacket!",
+      weatherOptions: ["sunny","cloudy","rainy","snowy","windy"],
+      correct: ["cloudy","windy"],
+      feedback: "✅ It's cloudy and windy! ☁️💨"
+    },
+    // 5. GRAMMAR negative
+    {
+      type: "test",
+      civ: "grammar", civLabel: "Grammar",
+      chips: ["rock-climbing","sailing","cycling"],
+      text: "She isn't ___. She's rock-climbing. 🧗 Click the words to hear them!",
+      options: ["She isn't cycling.","She isn't rock-climbing.","She isn't fishing.","She is cycling."],
+      correct: 0,
+      feedback: "✅ She isn't cycling. /ʃiː ɪznt ˈsaɪklɪŋ/ — ¡No está montando en bici!"
+    },
+    // 6. VOCAB — nature
+    {
+      type: "test",
+      civ: "nature", civLabel: "Nature",
+      chips: ["island","countryside","forest"],
+      text: "🏝️ Land surrounded by water — what is it?",
+      options: ["forest","countryside","island","mountain"],
+      correct: 2,
+      feedback: "✅ Island! /ˈaɪlənd/ — ¡una isla!"
+    },
+    // 7. SENTENCE BUILD
+    {
+      type: "sentence",
+      civ: "grammar", civLabel: "Grammar",
+      text: "Build the negative sentence: She's NOT sailing ⛵",
+      words: ["She","isn't","sailing.","is","cycling."],
+      answer: ["She","isn't","sailing."],
+      hint: "She ___ sailing.",
+      feedback: "✅ She isn't sailing. /ʃiː ɪznt ˈseɪlɪŋ/ — ¡No está navegando!"
+    },
+    // 8. WEATHER dialogue
+    {
+      type: "test",
+      civ: "weather", civLabel: "Weather",
+      text: "Complete: 'It's ___ and it's ___.' ❄️💨",
+      options: ["sunny and rainy","snowy and windy","cloudy and sunny","rainy and hot"],
+      correct: 1,
+      feedback: "✅ It's snowy and windy! ❄️💨 Great weather for staying inside!"
+    },
+    // 9. VOCAB — activity
+    {
+      type: "vocab_click",
+      civ: "activity", civLabel: "Activities",
+      text: "Click each word to hear it! Which activity uses a MAP? 🗺️",
+      vocabSet: ["fishing","drawing","reading a map","rock-climbing"],
+      correct: "reading a map",
+      feedback: "✅ Reading a map! /ˈriːdɪŋ ə mæp/ — ¡leer un mapa!"
+    },
+    // 10. GRAMMAR question form
+    {
+      type: "sentence",
+      civ: "grammar", civLabel: "Grammar",
+      text: "Build the question: Is she cycling? 🚴",
+      words: ["Is","she","cycling?","he","fishing?"],
+      answer: ["Is","she","cycling?"],
+      hint: "__ she ___?",
+      feedback: "✅ Is she cycling? /ɪz ʃiː ˈsaɪklɪŋ/ — ¿Está montando en bici?"
+    },
+  ]
+},
+
+/* ══════════════ VARIANT 2 ══════════════ */
+{
+  title: "Exam 2 — The Explorer! 🌍",
+  questions: [
+    {
+      type: "test",
+      civ: "activity", civLabel: "Activities",
+      chips: ["drawing","fishing","rock-climbing","sailing"],
+      text: "🎨 An artist does this activity. Click the words to hear them!",
+      options: ["fishing","drawing","rock-climbing","cycling"],
+      correct: 1,
+      feedback: "✅ Drawing! /ˈdrɔːɪŋ/ — ¡dibujar!"
+    },
+    {
+      type: "vocab_click",
+      civ: "nature", civLabel: "Nature",
+      text: "Click to hear! 🌲 Lots of trees together — what is it?",
+      vocabSet: ["forest","lake","mountain","island"],
+      correct: "forest",
+      feedback: "✅ Forest! /ˈfɒrɪst/ — ¡un bosque!"
+    },
+    {
+      type: "sentence",
+      civ: "grammar", civLabel: "Grammar",
+      text: "Build it! He's at the adventure park. He's doing... 🥾",
+      words: ["He's","doing","a","nature","trail.","fishing."],
+      answer: ["He's","doing","a","nature","trail."],
+      hint: "He's doing a ___.",
+      feedback: "✅ He's doing a nature trail. /hiːz ˈduːɪŋ ə ˈneɪtʃər treɪl/ ¡Está haciendo senderismo!"
+    },
+    {
+      type: "weather",
+      civ: "weather", civLabel: "Weather",
+      text: "What's the weather like? ☀️",
+      scene: "There are no clouds. It's very bright. Perfect for the beach!",
+      weatherOptions: ["sunny","cloudy","rainy","snowy","windy"],
+      correct: ["sunny"],
+      feedback: "✅ It's sunny! ☀️ /ˈsʌni/ — ¡soleado!"
+    },
+    {
+      type: "test",
+      civ: "grammar", civLabel: "Grammar",
+      chips: ["He's","She's","fishing","cycling"],
+      text: "Fill the gap: '___ rock-climbing.' (a boy) 🧗",
+      options: ["She's rock-climbing.","He isn't rock-climbing.","He's rock-climbing.","Is he rock-climbing?"],
+      correct: 2,
+      feedback: "✅ He's rock-climbing! /hiːz ˈrɒk ˌklaɪmɪŋ/ ¡Está escalando!"
+    },
+    {
+      type: "vocab_click",
+      civ: "nature", civLabel: "Nature",
+      text: "Click to hear! 🌾 Open land outside the city — what is it?",
+      vocabSet: ["river","countryside","island","forest"],
+      correct: "countryside",
+      feedback: "✅ Countryside! /ˈkʌntrisaɪd/ — ¡el campo!"
+    },
+    {
+      type: "sentence",
+      civ: "grammar", civLabel: "Grammar",
+      text: "Negative! She's NOT having a picnic 🧺",
+      words: ["She","isn't","having","a","picnic.","sailing."],
+      answer: ["She","isn't","having","a","picnic."],
+      hint: "She isn't ___ a ___.",
+      feedback: "✅ She isn't having a picnic. /ʃiː ɪznt ˈhævɪŋ ə ˈpɪknɪk/"
+    },
+    {
+      type: "test",
+      civ: "weather", civLabel: "Weather",
+      chips: ["rainy","snowy","windy","sunny","cloudy"],
+      text: "What do you say when it's raining? 🌧️ Click to hear the weather words!",
+      options: ["It's windy.","It's cloudy.","It's rainy.","It's snowy."],
+      correct: 2,
+      feedback: "✅ It's rainy! /ɪts ˈreɪni/ — ¡Está lloviendo!"
+    },
+    {
+      type: "test",
+      civ: "nature", civLabel: "Nature",
+      chips: ["river","mountain","lake","island"],
+      text: "⛰️ The highest landform — what is it? Click to hear!",
+      options: ["river","lake","island","mountain"],
+      correct: 3,
+      feedback: "✅ Mountain! /ˈmaʊntɪn/ — ¡una montaña!"
+    },
+    {
+      type: "sentence",
+      civ: "grammar", civLabel: "Grammar",
+      text: "Question form — ask about her! 🚴",
+      words: ["Is","she","cycling?","he","sailing?"],
+      answer: ["Is","she","cycling?"],
+      hint: "___ she cycling?",
+      feedback: "✅ Is she cycling? /ɪz ʃiː ˈsaɪklɪŋ/ — ¿Está montando en bici?"
+    },
+  ]
+},
+
+/* ══════════════ VARIANT 3 ══════════════ */
+{
+  title: "Exam 3 — The Champion! 🏆",
+  questions: [
+    {
+      type: "vocab_click",
+      civ: "activity", civLabel: "Activities",
+      text: "Click to hear! ⛺ You use sticks and branches to make this...",
+      vocabSet: ["fishing","building a den","skateboarding","drawing"],
+      correct: "building a den",
+      feedback: "✅ Building a den! /ˈbɪldɪŋ ə den/ — ¡construir una cabaña!"
+    },
+    {
+      type: "sentence",
+      civ: "grammar", civLabel: "Grammar",
+      text: "Build it! What's he doing? 🎣",
+      words: ["What's","he","doing?","she","Is"],
+      answer: ["What's","he","doing?"],
+      hint: "What's ___ doing?",
+      feedback: "✅ What's he doing? /wɒts hiː ˈduːɪŋ/ — ¿Qué está haciendo él?"
+    },
+    {
+      type: "weather",
+      civ: "weather", civLabel: "Weather",
+      text: "What's the weather? ❄️",
+      scene: "Everything is white. Kids are throwing snowballs! Brrr!",
+      weatherOptions: ["sunny","cloudy","rainy","snowy","windy"],
+      correct: ["snowy"],
+      feedback: "✅ It's snowy! /ɪts ˈsnəʊi/ — ¡Está nevando! ❄️"
+    },
+    {
+      type: "test",
+      civ: "grammar", civLabel: "Grammar",
+      chips: ["He's","She's","fishing","rock-climbing"],
+      text: "Answer: Is she fishing? No... 🎣",
+      options: ["Yes, she is.","No, she isn't.","Yes, he is.","No, he isn't."],
+      correct: 1,
+      feedback: "✅ No, she isn't. /nəʊ ʃiː ɪznt/ — ¡No, no lo está haciendo!"
+    },
+    {
+      type: "vocab_click",
+      civ: "nature", civLabel: "Nature",
+      text: "Click to hear! 🌊 Water that flows through the land...",
+      vocabSet: ["lake","river","island","forest"],
+      correct: "river",
+      feedback: "✅ River! /ˈrɪvər/ — ¡un río!"
+    },
+    {
+      type: "sentence",
+      civ: "grammar", civLabel: "Grammar",
+      text: "Full answer! Is he skateboarding? YES! 🛹",
+      words: ["Yes,","he","is.","she","isn't."],
+      answer: ["Yes,","he","is."],
+      hint: "Yes, ___ ___.",
+      feedback: "✅ Yes, he is. /jes hiː ɪz/ — ¡Sí, lo está haciendo!"
+    },
+    {
+      type: "test",
+      civ: "weather", civLabel: "Weather",
+      chips: ["sunny","cloudy","rainy","snowy","windy"],
+      text: "What's the weather like today? ☁️ Snowy weather, snowy weather, let's play in the snow together! It's...",
+      options: ["It's sunny.","It's rainy.","It's snowy.","It's cloudy."],
+      correct: 2,
+      feedback: "✅ It's snowy! The song says: 'Snowy weather, snowy weather, let's play in the snow together!' ❄️"
+    },
+    {
+      type: "test",
+      civ: "activity", civLabel: "Activities",
+      chips: ["cycling","sailing","fishing","drawing"],
+      text: "Alicia isn't cycling. She isn't playing with a ball. She's learning something new. She's ___ up a wall! 🧗",
+      options: ["sailing","fishing","rock-climbing","drawing"],
+      correct: 2,
+      feedback: "✅ Rock-climbing! /ˈrɒk ˌklaɪmɪŋ/ — From the song: 'She's rock-climbing up a wall'!"
+    },
+    {
+      type: "vocab_click",
+      civ: "nature", civLabel: "Nature",
+      text: "Click to hear all weather words! 🌤️ Which one means IT'S NOT RAINING?",
+      vocabSet: ["sunny","cloudy","rainy","windy"],
+      correct: "sunny",
+      feedback: "✅ Sunny! /ˈsʌni/ ☀️ When it's sunny there's no rain!"
+    },
+    {
+      type: "sentence",
+      civ: "grammar", civLabel: "Grammar",
+      text: "Full sentence — She's at the adventure park. She's... 🌲",
+      words: ["She's","doing","a","nature","trail.","fishing.","He's"],
+      answer: ["She's","doing","a","nature","trail."],
+      hint: "She's ___ a ___ ___.",
+      feedback: "✅ She's doing a nature trail. /ʃiːz ˈduːɪŋ ə ˈneɪtʃər treɪl/"
+    },
+  ]
+}
+];
+
+// ── ENG ENGINE ──────────────────────────────────────────────────────────────
+
+let engVariant = 0;
+let engAnswers = [];
+let engSlots = []; // per question
+let engPlaced = []; // per question
+
+function goToEng() {
+  currentSubject = 'eng';
+  engVariant = 0;
+  showScreen('screen-eng');
+  loadEngVariant(0);
+}
+
+function loadEngVariant(idx) {
+  engVariant = idx;
+  const v = VARIANTS_ENG[idx];
+  engAnswers = new Array(v.questions.length).fill(null);
+  engSlots = v.questions.map(() => []);
+  engPlaced = v.questions.map(q => q.type === 'sentence' ? new Array(q.words.length).fill(false) : []);
+  document.getElementById('eng-score-wrap').classList.remove('show');
+  renderEngQuiz();
+}
+
+function renderEngQuiz() {
+  const v = VARIANTS_ENG[engVariant];
+  const qa = document.getElementById('eng-quiz-area');
+  qa.innerHTML = '';
+
+  // Progress
+  const prog = document.createElement('div');
+  prog.innerHTML = `<div class="progress-bar-wrap" style="margin-top:16px"><div class="progress-bar-fill" id="eng-prog-fill" style="width:0%;background:linear-gradient(90deg,#22C55E,#16A34A)"></div></div><div class="progress-label" id="eng-prog-label">0 / ${v.questions.length} answered</div>`;
+  qa.appendChild(prog);
+
+  // Variant buttons
+  const vbtns = document.createElement('div');
+  vbtns.className = 'variant-selector';
+  ['🌟 Exam 1','⚡ Exam 2','🔥 Exam 3'].forEach((lbl, vi) => {
+    const b = document.createElement('button');
+    b.className = 'variant-btn' + (vi===engVariant?' active':'');
+    b.style.cssText = vi===engVariant ? 'background:#15803D;color:white;border-color:#15803D' : 'border-color:#BBF7D0;color:#15803D';
+    b.textContent = lbl;
+    b.onclick = () => loadEngVariant(vi);
+    vbtns.appendChild(b);
+  });
+  qa.appendChild(vbtns);
+
+  v.questions.forEach((q, qi) => {
+    const card = document.createElement('div');
+    card.className = 'question-card';
+    card.id = `eng-q-${qi}`;
+
+    const typeLabel = {
+      test:'Multiple choice', sentence:'Build the sentence',
+      vocab_click:'Vocabulary', weather:'Weather'
+    }[q.type];
+    const typeBadge = {
+      test:'badge-test', sentence:'badge-match',
+      vocab_click:'badge-fill', weather:'badge-vf'
+    }[q.type];
+
+    // Chips for pronunciation
+    let chipsHtml = '';
+    const chipWords = q.chips || (q.vocabSet ? q.vocabSet : []);
+    if (chipWords.length) {
+      chipsHtml = `<div style="margin:10px 0 4px">${chipWords.map(w=>makeWordChip(w,'sm')).join('')}</div>`;
+    }
+
+    card.innerHTML = `
+      <span class="civ-tag civ-${q.civ}">${q.civLabel}</span>
+      <div class="q-header">
+        <span class="q-number">${qi+1}</span>
+        <div style="flex:1">
+          <span class="q-badge ${typeBadge}">${typeLabel}</span>
+          <div class="q-text" style="margin-top:6px">${q.text}</div>
+        </div>
+      </div>
+      ${chipsHtml}
+      <div id="eng-q-body-${qi}"></div>
+      <div class="feedback" id="eng-fb-${qi}"><span class="feedback-icon"></span><span id="eng-fb-text-${qi}"></span></div>`;
+    qa.appendChild(card);
+
+    const body = document.getElementById(`eng-q-body-${qi}`);
+    if (q.type === 'test') renderEngTest(body, q, qi);
+    else if (q.type === 'sentence') renderEngSentence(body, q, qi);
+    else if (q.type === 'vocab_click') renderEngVocab(body, q, qi);
+    else if (q.type === 'weather') renderEngWeather(body, q, qi);
+  });
+
+  const sub = document.createElement('div');
+  sub.className = 'submit-area';
+  sub.innerHTML = `<button class="submit-btn" style="background:linear-gradient(135deg,#22C55E,#15803D)" onclick="submitEngQuiz()">🇬🇧 See my score!</button>`;
+  qa.appendChild(sub);
+}
+
+function showEngFeedback(qi, isCorrect, msg) {
+  const fb = document.getElementById(`eng-fb-${qi}`);
+  fb.className = `feedback show ${isCorrect?'correct-fb':'wrong-fb'}`;
+  fb.querySelector('.feedback-icon').textContent = isCorrect ? '🌟' : '💡';
+  document.getElementById(`eng-fb-text-${qi}`).textContent = msg;
+  engUpdateProgress();
+}
+
+function engUpdateProgress() {
+  const v = VARIANTS_ENG[engVariant];
+  const answered = engAnswers.filter(a => a!==null).length;
+  const pct = Math.round(answered/v.questions.length*100);
+  const fill = document.getElementById('eng-prog-fill');
+  if (fill) fill.style.width = pct+'%';
+  const lbl = document.getElementById('eng-prog-label');
+  if (lbl) lbl.textContent = `${answered} / ${v.questions.length} answered`;
+}
+
+// Multiple choice
+function renderEngTest(body, q, qi) {
+  const letters = ['A','B','C','D'];
+  const grid = document.createElement('div'); grid.className = 'options-grid';
+  q.options.forEach((opt, oi) => {
+    const btn = document.createElement('button'); btn.className = 'option-btn';
+    const v = ENG_VOCAB[opt.replace(/[^a-z\- ]/gi,'').trim().toLowerCase()];
+    btn.innerHTML = `<span class="option-letter" style="background:#15803D">${letters[oi]}</span>${opt}`;
+    btn.onclick = () => {
+      if (engAnswers[qi]!==null) return;
+      const correct = oi===q.correct; engAnswers[qi] = correct;
+      grid.querySelectorAll('.option-btn').forEach((b,bi) => {
+        b.disabled = true;
+        if (bi===q.correct) b.classList.add('correct');
+        else if (bi===oi && !correct) b.classList.add('wrong');
+      });
+      showEngFeedback(qi, correct, correct ? q.feedback : `The answer is: "${q.options[q.correct]}". ${q.feedback}`);
+    };
+    grid.appendChild(btn);
+  });
+  body.appendChild(grid);
+}
+
+// Sentence builder (drag/click words into slots)
+function renderEngSentence(body, q, qi) {
+  const ansLen = q.answer.length;
+  const slots = new Array(ansLen).fill(null); // null = empty, string = filled word
+  const placed = new Array(q.words.length).fill(false);
+
+  const wrap = document.createElement('div'); wrap.className = 'sentence-builder';
+
+  // Hint
+  const hintEl = document.createElement('div');
+  hintEl.style.cssText = 'font-size:13px;color:#888;margin-bottom:8px;font-style:italic';
+  hintEl.textContent = '💡 Hint: ' + q.hint;
+  wrap.appendChild(hintEl);
+
+  // Slot area (where answer goes)
+  const slotArea = document.createElement('div'); slotArea.className = 'sentence-slots';
+  for (let i=0; i<ansLen; i++) {
+    const slot = document.createElement('div');
+    slot.className = 'sentence-slot';
+    slot.dataset.slotIdx = i;
+    slot.textContent = '_____';
+    slot.onclick = () => {
+      if (slots[i]) {
+        // Remove from slot, return to bank
+        const wordIdx = q.words.indexOf(slots[i]);
+        if (wordIdx>=0) placed[wordIdx] = false;
+        const token = bank.querySelector(`[data-word-idx="${wordIdx}"]`);
+        if (token) token.classList.remove('placed');
+        slots[i] = null;
+        slot.textContent = '_____';
+        slot.classList.remove('filled');
+        checkBtn.disabled = slots.some(s=>!s);
+      }
+    };
+    slotArea.appendChild(slot);
+  }
+  wrap.appendChild(slotArea);
+
+  // Word bank
+  const bank = document.createElement('div'); bank.className = 'word-bank';
+  q.words.forEach((word, wi) => {
+    const token = document.createElement('button'); token.className = 'word-token';
+    token.dataset.wordIdx = wi;
+    token.innerHTML = `🔊 ${word}`;
+    token.onclick = () => {
+      speakWord(word.replace(/[?.!,]/g,''));
+      if (placed[wi] || engAnswers[qi]!==null) return;
+      // Find first empty slot
+      const emptyIdx = slots.indexOf(null);
+      if (emptyIdx === -1) return;
+      slots[emptyIdx] = word;
+      placed[wi] = true;
+      token.classList.add('placed');
+      const slot = slotArea.children[emptyIdx];
+      slot.textContent = word;
+      slot.classList.add('filled');
+      checkBtn.disabled = slots.some(s=>!s);
+    };
+    bank.appendChild(token);
+  });
+  wrap.appendChild(bank);
+
+  const checkBtn = document.createElement('button');
+  checkBtn.className = 'eng-check-btn'; checkBtn.textContent = '✔ Check!'; checkBtn.disabled = true;
+  checkBtn.onclick = () => {
+    if (engAnswers[qi]!==null) return;
+    const isCorrect = JSON.stringify(slots) === JSON.stringify(q.answer);
+    engAnswers[qi] = isCorrect;
+    checkBtn.disabled = true;
+    // Disable all tokens and slots
+    bank.querySelectorAll('.word-token').forEach(t => { t.disabled = true; t.style.cursor='default'; });
+    slotArea.querySelectorAll('.sentence-slot').forEach(s => {
+      s.style.cursor = 'default';
+      s.style.background = isCorrect ? '#F0FDF4' : '#FEF2F2';
+      s.style.borderColor = isCorrect ? '#22C55E' : '#EF4444';
+    });
+    showEngFeedback(qi, isCorrect, isCorrect ? q.feedback : `The correct sentence is: "${q.answer.join(' ')}" ${q.feedback}`);
+  };
+  wrap.appendChild(checkBtn);
+  body.appendChild(wrap);
+}
+
+// Vocab click cards
+function renderEngVocab(body, q, qi) {
+  const grid = document.createElement('div'); grid.className = 'vocab-grid';
+  q.vocabSet.forEach(word => {
+    const v = ENG_VOCAB[word] || {};
+    const card = document.createElement('div'); card.className = 'vocab-card';
+    card.innerHTML = `<div class="vc-emoji">${v.emoji||'❓'}</div>
+      <div class="vc-word">${word}</div>
+      <div class="vc-ipa">${v.ipa||''}</div>
+      <div class="vc-es">${v.es||''}</div>`;
+    card.onclick = () => {
+      if (engAnswers[qi]!==null) return;
+      speakWord(word);
+      card.classList.add('revealed');
+      // Check if correct
+      if (word === q.correct) {
+        engAnswers[qi] = true;
+        card.style.borderColor = '#22C55E';
+        card.style.background = '#DCFCE7';
+        // disable all
+        grid.querySelectorAll('.vocab-card').forEach(c => c.style.pointerEvents='none');
+        showEngFeedback(qi, true, q.feedback);
+      } else {
+        card.style.borderColor = '#EF4444';
+        card.style.background = '#FEF2F2';
+      }
+    };
+    grid.appendChild(card);
+  });
+  body.appendChild(grid);
+}
+
+// Weather selector
+function renderEngWeather(body, q, qi) {
+  const sceneEl = document.createElement('div');
+  sceneEl.style.cssText='background:#F8FAFF;border-radius:12px;padding:12px 16px;font-size:14px;font-weight:700;color:#1A2036;margin-bottom:12px;border:2px solid #E0E7FF';
+  sceneEl.textContent = '🌍 ' + q.scene;
+  body.appendChild(sceneEl);
+
+  const grid = document.createElement('div'); grid.className = 'weather-grid';
+  const selected = new Set();
+  q.weatherOptions.forEach(w => {
+    const vd = ENG_VOCAB[w] || {};
+    const btn = document.createElement('button'); btn.className = 'weather-btn';
+    btn.dataset.weather = w;
+    btn.innerHTML = `<span class="weather-icon">${vd.emoji||'?'}</span>${w}<br><span style="font-size:10px;color:#888">${vd.ipa||''}</span>`;
+    btn.onclick = () => {
+      if (engAnswers[qi]!==null) return;
+      speakWord(w);
+      btn.classList.toggle('selected');
+      if (selected.has(w)) selected.delete(w);
+      else selected.add(w);
+      btn.style.borderColor = btn.classList.contains('selected') ? '#7C3AED' : '';
+      btn.style.background = btn.classList.contains('selected') ? '#EDE9FE' : '';
+    };
+    grid.appendChild(btn);
+  });
+  body.appendChild(grid);
+
+  const checkBtn = document.createElement('button');
+  checkBtn.className = 'eng-check-btn'; checkBtn.style.marginTop='12px'; checkBtn.textContent = '✔ Check!';
+  checkBtn.onclick = () => {
+    if (engAnswers[qi]!==null) return;
+    const correct = q.correct;
+    const isCorrect = correct.every(c=>selected.has(c)) && selected.size===correct.length;
+    engAnswers[qi] = isCorrect;
+    checkBtn.disabled = true;
+    grid.querySelectorAll('.weather-btn').forEach(btn => {
+      btn.disabled = true;
+      const w = btn.dataset.weather;
+      if (correct.includes(w)) btn.classList.add('correct');
+      else if (selected.has(w)) btn.classList.add('wrong');
+    });
+    showEngFeedback(qi, isCorrect, q.feedback);
+  };
+  body.appendChild(checkBtn);
+}
+
+// Submit English quiz
+function submitEngQuiz() {
+  const v = VARIANTS_ENG[engVariant];
+  const total = v.questions.length;
+  const correct = engAnswers.filter(a=>a===true).length;
+  const pct = Math.round(correct/total*100);
+
+  saveScore('eng', engVariant, correct, total);
+
+  let emoji, msg;
+  if (pct===100)    { emoji='🏆'; msg='AMAZING! You\'re an English superstar! ⭐'; }
+  else if (pct>=80) { emoji='⭐'; msg='Fantastic! Really well done! 🎉'; }
+  else if (pct>=60) { emoji='😊'; msg='Good job! Keep practising! 💪'; }
+  else if (pct>=40) { emoji='💪'; msg='Good try! Review the vocabulary and try again!'; }
+  else              { emoji='📚'; msg='Don\'t give up! Listen to the words and try again!'; }
+
+  const wrap = document.getElementById('eng-score-wrap');
+  wrap.innerHTML = `
+    <div style="font-family:'Fredoka One',cursive;font-size:24px;color:#15803D;margin-bottom:8px">🇬🇧 ${v.title}</div>
+    <div style="font-size:48px;margin:10px 0">${emoji}</div>
+    <div><span style="font-family:'Fredoka One',cursive;font-size:64px;color:#15803D">${correct}</span><span style="font-size:26px;color:#888"> / ${total}</span></div>
+    <div style="font-size:18px;font-weight:700;margin:12px 0">${msg}</div>
+    <p style="color:#888;font-size:14px">${pct}% correct</p>
+    <div style="display:flex;gap:12px;justify-content:center;margin-top:20px;flex-wrap:wrap">
+      <button class="retry-btn" style="background:linear-gradient(135deg,#22C55E,#15803D)" onclick="loadEngVariant(engVariant)">🔄 Try again</button>
+      <button class="home-btn" onclick="goHome()">🏠 Home</button>
+    </div>`;
+  wrap.classList.add('show');
+  wrap.scrollIntoView({behavior:'smooth', block:'center'});
+  engUpdateProgress();
+}
+
 window.addEventListener('DOMContentLoaded', () => {
   initSubjectData();
   showScreen('screen-home');
@@ -1682,5 +2454,17 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 </script>
+
+<!-- ══════════ ENGLISH SCREEN ══════════ -->
+<div id="screen-eng" class="screen">
+  <div class="quiz-top-bar">
+    <button class="back-btn" onclick="goHome()">← Inicio</button>
+    <div id="eng-subject-header" style="font-family:'Fredoka One',cursive;font-size:18px;color:white;padding:8px 18px;border-radius:50px;flex:1;text-align:center;background:linear-gradient(135deg,#166534,#15803D);letter-spacing:0.5px;text-shadow:1px 1px 3px rgba(0,0,0,0.3)">🇬🇧 English — Unit 6</div>
+  </div>
+  <div style="max-width:760px;margin:0 auto;padding:0 16px">
+    <div id="eng-quiz-area"></div>
+    <div id="eng-score-wrap" class="eng-score-wrap"></div>
+  </div>
+</div>
 </body>
 </html>
