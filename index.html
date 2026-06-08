@@ -12,6 +12,8 @@
   --txt:#f0f0f8;--muted:#8888aa;--dim:#555570;
   --his:#f59e0b;--his2:#fbbf24;--his-bg:rgba(245,158,11,.1);--his-border:rgba(245,158,11,.25);
   --ani:#22d3ee;--ani2:#67e8f9;--ani-bg:rgba(34,211,238,.08);--ani-border:rgba(34,211,238,.2);
+
+  --med:#a78bfa;--med2:#c4b5fd;--med-bg:rgba(167,139,250,.08);--med-border:rgba(167,139,250,.22);
   --green:#4ade80;--red:#f87171;--orange:#fb923c;
   --r:16px;--r2:12px;--r3:8px;
 }
@@ -173,6 +175,41 @@ nav a.exam-nav.active{color:var(--green);border-bottom-color:var(--green)}
 .memory-box.ani .mb-label{color:var(--ani)}
 .memory-box .mb-content{font-size:14px;font-weight:700;color:var(--txt);line-height:1.7}
 .memory-box .mb-note{font-size:12px;color:var(--muted);margin-top:6px;font-style:italic}
+
+
+/* ── EDAD MEDIA THEME ── */
+.hero.med{background:linear-gradient(135deg,#0d0a1a,#150f2a,#0d0a1a);border:1px solid var(--med-border)}
+.hero.med::after{background:radial-gradient(circle,var(--med),transparent)}
+.hero.med .hero-tag{background:var(--med-bg);color:var(--med);border:1px solid var(--med-border)}
+.hero.med h1{color:var(--med)}
+.med .sec-num{background:var(--med-bg);color:var(--med);border:1px solid var(--med-border)}
+.med .tl-dot{border-color:var(--med);background:var(--med-bg)}
+.med .timeline::before{background:linear-gradient(to bottom,var(--med),transparent)}
+.med .tl-date{color:var(--med)}
+.med .memory-box{background:var(--med-bg);border-color:var(--med)}
+.med .memory-box .mb-label{color:var(--med)}
+.med .compare-table th{border-bottom-color:var(--med)}
+.med .row-label{color:var(--med) !important}
+.med .dates-grid .date-year{color:var(--med)}
+.med .flashcard .fc-badge{background:var(--surface3);color:var(--dim)}
+
+/* Estamento cards */
+.estamento-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:28px}
+.estamento-card{
+  background:var(--surface2);border:1px solid var(--med-border);
+  border-radius:var(--r);padding:20px;text-align:center;
+  transition:all .2s;
+}
+.estamento-card:hover{border-color:var(--med);transform:translateY(-2px)}
+.est-icon{font-size:44px;margin-bottom:10px;display:block;filter:drop-shadow(0 2px 8px rgba(0,0,0,.4))}
+.est-name{font-family:'Syne',sans-serif;font-size:17px;font-weight:900;color:var(--med);margin-bottom:8px}
+.est-desc{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* Med exam nav */
+.exam-tab.med-tab.active{border-color:var(--med);color:var(--med);background:var(--med-bg)}
+.exam-panel.med .exam-prog-fill{background:linear-gradient(90deg,var(--med),var(--med2))}
+.exam-panel.med .exam-submit-btn{background:linear-gradient(135deg,var(--med),var(--med2));color:#0d0a1a}
+.exam-panel.med .q-opt:hover:not(:disabled){border-color:var(--med-border)}
 
 /* ── ANIMAL GROUP CARDS ── */
 .animal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-bottom:28px}
@@ -382,6 +419,7 @@ nav a.exam-nav.active{color:var(--green);border-bottom-color:var(--green)}
   <div class="nav-logo">📚 Lucas</div>
   <a href="#" class="active" onclick="showScreen('his',this)">🏛️ Historia</a>
   <a href="#" onclick="showScreen('ani',this)">🐾 Animales</a>
+  <a href="#" onclick="showScreen('med',this)">🏰 Edad Media</a>
   <a href="#" class="exam-nav" onclick="showScreen('exam',this)">📝 Exámenes</a>
 </nav>
 
@@ -737,6 +775,240 @@ nav a.exam-nav.active{color:var(--green);border-bottom-color:var(--green)}
 <!-- ══════════════════════════════════════
      EXÁMENES SCREEN
 ══════════════════════════════════════ -->
+
+<!-- ══════════════════════════════════════
+     EDAD MEDIA SCREEN
+══════════════════════════════════════ -->
+<div id="screen-med" class="screen med">
+
+  <div class="hero med">
+    <div class="hero-tag">🏰 Bloque 3 · Modo élite</div>
+    <h1>La Edad Media</h1>
+    <p>Entre castillos y monasterios. Todo lo que necesitas para sacar un 10: sociedad estamental, reinos, Iglesia, comercio, caballeros y cultura.</p>
+    <div class="hero-chips">
+      <span class="hero-chip">Sociedad estamental</span>
+      <span class="hero-chip">Reinos y castillos</span>
+      <span class="hero-chip">La Reconquista</span>
+      <span class="hero-chip">Iglesia y cultura</span>
+      <span class="hero-chip">Comercio y ciudades</span>
+      <span class="hero-chip">Caballeros</span>
+    </div>
+  </div>
+
+  <!-- TÉCNICAS -->
+  <div class="methods-bar">
+    <div class="method-chip"><span class="mi">🧠</span><span class="ml">Dual Coding</span></div>
+    <div class="method-chip"><span class="mi">🔁</span><span class="ml">Retrieval</span></div>
+    <div class="method-chip"><span class="mi">⚡</span><span class="ml">Espaciado</span></div>
+    <div class="method-chip"><span class="mi">🔗</span><span class="ml">Elaboración</span></div>
+  </div>
+
+  <!-- 1. LO BÁSICO -->
+  <div class="sec-header med">
+    <div class="sec-num">1</div>
+    <h2>¿Qué es y cuándo fue la Edad Media?</h2>
+  </div>
+
+  <div class="detail-section">
+    <p>La Edad Media comienza con la <strong>caída del Imperio Romano de Occidente (año 476 d.C.)</strong> y termina con el <strong>descubrimiento de América (año 1492)</strong>. Fue una época de cambios en la que se formaron reinos y señoríos, florecieron las ciudades y el comercio, y surgieron grandes avances en la cultura.</p>
+  </div>
+
+  <div class="memory-box med">
+    <div class="mb-label">🧠 Truco de memoria — Las dos fechas que no puedes olvidar</div>
+    <div class="mb-content">
+      <strong>476</strong> → caída de Roma → EMPIEZA la Edad Media<br>
+      <strong>1492</strong> → descubrimiento de América → TERMINA la Edad Media<br>
+      👉 <em>"Roma cayó en 476 y Colón navegó hasta 1492"</em>
+    </div>
+    <div class="mb-note">Repite esta frase tres veces en voz alta y no la olvidarás nunca.</div>
+  </div>
+
+  <div class="dates-grid">
+    <div class="date-card"><div class="date-year">476 d.C.</div><div class="date-event">Caída del Imperio Romano → comienza la Edad Media</div></div>
+    <div class="date-card"><div class="date-year">Siglo XI</div><div class="date-event">El comercio crece. Surgen ferias, mercados y gremios</div></div>
+    <div class="date-card"><div class="date-year">S. XI–XII</div><div class="date-event">Se construyen iglesias y monasterios románicos</div></div>
+    <div class="date-card"><div class="date-year">S. XII–XV</div><div class="date-event">Se construyen catedrales góticas</div></div>
+    <div class="date-card"><div class="date-year">1492</div><div class="date-event">Descubrimiento de América → termina la Edad Media</div></div>
+  </div>
+
+  <!-- 2. DÓNDE Y CÓMO VIVÍAN -->
+  <div class="sec-header med">
+    <div class="sec-num">2</div>
+    <h2>¿Dónde y cómo vivían?</h2>
+  </div>
+
+  <div class="detail-section">
+    <ul>
+      <li>La <strong>mayoría de la población vivía en el campo</strong>, en pequeñas aldeas.</li>
+      <li>La sociedad era <strong>estamental</strong> y estaba dividida en tres grupos: nobleza, clero y campesinos.</li>
+      <li>Las ciudades crecieron y se convirtieron en <strong>centros de comercio y artesanía</strong>.</li>
+    </ul>
+  </div>
+
+  <!-- 3. ALIMENTACIÓN -->
+  <div class="sec-header med">
+    <div class="sec-num">3</div>
+    <h2>¿Qué comían?</h2>
+  </div>
+
+  <div class="detail-section">
+    <p>Su alimentación dependía de los productos que cultivaban:</p>
+    <ul>
+      <li>Comían <strong>cereales</strong>: trigo, avena y cebada.</li>
+      <li>También <strong>legumbres, verduras y frutas</strong>.</li>
+      <li>Criaban animales: <strong>vacas, ovejas, cerdos y gallinas</strong>.</li>
+      <li>En las ciudades se consumían <strong>más productos y alimentos variados</strong>.</li>
+    </ul>
+  </div>
+
+  <!-- 4. LA SOCIEDAD MEDIEVAL — ESTAMENTOS -->
+  <div class="sec-header med">
+    <div class="sec-num">4</div>
+    <h2>La sociedad medieval: los tres estamentos</h2>
+  </div>
+
+  <div class="memory-box med">
+    <div class="mb-label">🧠 Truco — Los tres estamentos</div>
+    <div class="mb-content">
+      <strong>N</strong>obleza · <strong>C</strong>lero · <strong>C</strong>ampesinos<br>
+      👉 <em>"Nobles Con Campos"</em> — N · C · C<br>
+      Los nobles <strong>defienden</strong>, el clero <strong>reza y enseña</strong>, los campesinos <strong>trabajan y pagan</strong>.
+    </div>
+    <div class="mb-note">Cada estamento tenía una función clara. En el examen suelen preguntar cuál hacía qué.</div>
+  </div>
+
+  <div class="estamento-grid">
+    <div class="estamento-card">
+      <span class="est-icon">⚔️</span>
+      <div class="est-name">Nobleza</div>
+      <div class="est-desc">Señores y caballeros que <strong>defendían</strong> los territorios. Vivían en castillos. Eran los más poderosos.</div>
+    </div>
+    <div class="estamento-card">
+      <span class="est-icon">✝️</span>
+      <div class="est-name">Clero</div>
+      <div class="est-desc">Religiosos que <strong>rezaban y enseñaban</strong> en los monasterios. La Iglesia tenía un gran poder en la sociedad.</div>
+    </div>
+    <div class="estamento-card">
+      <span class="est-icon">🌾</span>
+      <div class="est-name">Campesinos</div>
+      <div class="est-desc">La mayoría de la población. <strong>Trabajaban la tierra y pagaban impuestos y servicios</strong> a los señores.</div>
+    </div>
+  </div>
+
+  <!-- 5. REINOS Y CASTILLOS -->
+  <div class="sec-header med">
+    <div class="sec-num">5</div>
+    <h2>Los reinos y los castillos</h2>
+  </div>
+
+  <div class="detail-section">
+    <ul>
+      <li>Se formaron <strong>reinos cristianos en el norte</strong> y <strong>reinos musulmanes en el sur</strong> de la Península Ibérica.</li>
+      <li>Los <strong>castillos</strong> servían para <strong>defender los territorios y controlar las poblaciones</strong>.</li>
+      <li><strong>La Reconquista:</strong> los reinos cristianos lucharon para recuperar los territorios ocupados por los musulmanes durante siglos.</li>
+    </ul>
+  </div>
+
+  <div class="memory-box med">
+    <div class="mb-label">🧠 Para recordar — La Reconquista</div>
+    <div class="mb-content">
+      Norte = <strong>Reinos Cristianos</strong> 🏰<br>
+      Sur = <strong>Reinos Musulmanes</strong> 🌙<br>
+      Los cristianos fueron <strong>reconquistando</strong> el sur durante siglos.
+    </div>
+    <div class="mb-note">La Reconquista duró casi 800 años y terminó precisamente en 1492, el mismo año del descubrimiento de América.</div>
+  </div>
+
+  <!-- 6. COMERCIO Y CIUDADES -->
+  <div class="sec-header med">
+    <div class="sec-num">6</div>
+    <h2>Comercio y ciudades</h2>
+  </div>
+
+  <div class="detail-section">
+    <ul>
+      <li>A partir del <strong>siglo XI</strong>, el comercio creció y surgieron <strong>ferias y mercados</strong>.</li>
+      <li>Las ciudades se desarrollaron y surgieron los <strong>gremios</strong> de artesanos y comerciantes.</li>
+    </ul>
+  </div>
+
+  <!-- 7. IGLESIA Y CULTURA -->
+  <div class="sec-header med">
+    <div class="sec-num">7</div>
+    <h2>La Iglesia y la cultura</h2>
+  </div>
+
+  <div class="detail-section">
+    <ul>
+      <li>La <strong>Iglesia tuvo un gran poder</strong> en la sociedad medieval.</li>
+      <li>Se construyeron <strong>monasterios e iglesias románicas</strong> (siglos XI-XII) y <strong>catedrales góticas</strong> (siglos XII-XV).</li>
+      <li>En los monasterios se <strong>copiaban libros y se conservaba el conocimiento</strong>.</li>
+    </ul>
+  </div>
+
+  <div class="memory-box med">
+    <div class="mb-label">🧠 Truco — Arte medieval: románico vs gótico</div>
+    <div class="mb-content">
+      <strong>Románico</strong> → siglos XI-XII → iglesias y <strong>monasterios</strong> (más antiguos, muros gruesos)<br>
+      <strong>Gótico</strong> → siglos XII-XV → grandes <strong>catedrales</strong> (más altas, con vidrieras de colores)
+    </div>
+    <div class="mb-note">El románico va primero (más antiguo). El gótico es posterior y más espectacular.</div>
+  </div>
+
+  <!-- 8. CABALLEROS Y VIDA COTIDIANA -->
+  <div class="sec-header med">
+    <div class="sec-num">8</div>
+    <h2>Caballeros y vida cotidiana</h2>
+  </div>
+
+  <div class="detail-section">
+    <ul>
+      <li>Los <strong>caballeros defendían sus tierras</strong> y seguían un <strong>código de honor</strong>.</li>
+      <li>Se celebraban <strong>torneos y justas</strong>.</li>
+      <li>La vida cotidiana de la mayoría de las personas era <strong>dura</strong>, trabajando en el campo o en los talleres.</li>
+    </ul>
+  </div>
+
+  <!-- 9. TABLA COMPARATIVA COMPLETA -->
+  <div class="sec-header med">
+    <div class="sec-num">9</div>
+    <h2>Tabla resumen — Todo de un vistazo</h2>
+  </div>
+
+  <div style="overflow-x:auto;margin-bottom:28px">
+  <table class="compare-table med">
+    <thead>
+      <tr>
+        <th>Aspecto</th>
+        <th>🏰 La Edad Media</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="row-label" style="color:var(--med)">Fechas</td><td>476 d.C. (caída de Roma) → 1492 (descubrimiento de América)</td></tr>
+      <tr><td class="row-label" style="color:var(--med)">Vivienda</td><td>Mayoría en el campo (aldeas). Las ciudades crecen como centros comerciales</td></tr>
+      <tr><td class="row-label" style="color:var(--med)">Alimentación</td><td>Cereales (trigo, avena, cebada), legumbres, verduras, frutas; vacas, ovejas, cerdos, gallinas</td></tr>
+      <tr><td class="row-label" style="color:var(--med)">Sociedad</td><td>3 estamentos: Nobleza (defiende) · Clero (reza y enseña) · Campesinos (trabajan y pagan)</td></tr>
+      <tr><td class="row-label" style="color:var(--med)">Reinos</td><td>Reinos cristianos (norte) y musulmanes (sur) de la Península Ibérica</td></tr>
+      <tr><td class="row-label" style="color:var(--med)">Castillos</td><td>Para defender territorios y controlar poblaciones</td></tr>
+      <tr><td class="row-label" style="color:var(--med)">La Reconquista</td><td>Los reinos cristianos lucharon para recuperar el sur de los musulmanes</td></tr>
+      <tr><td class="row-label" style="color:var(--med)">Comercio</td><td>Desde el siglo XI: ferias, mercados y gremios de artesanos</td></tr>
+      <tr><td class="row-label" style="color:var(--med)">Iglesia</td><td>Gran poder. Monasterios (románico s.XI-XII) y catedrales (gótico s.XII-XV)</td></tr>
+      <tr><td class="row-label" style="color:var(--med)">Caballeros</td><td>Código de honor, torneos y justas. La mayoría vivía con dureza</td></tr>
+      <tr><td class="row-label" style="color:var(--med)">Cultura</td><td>Los monasterios copiaban libros y conservaban el conocimiento</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- 10. FLASHCARDS -->
+  <div class="sec-header med">
+    <div class="sec-num">10</div>
+    <h2>Tarjetas de repaso — Tócalas para ver la respuesta</h2>
+  </div>
+
+  <div class="flashcard-grid" id="med-flashcards"></div>
+
+</div><!-- /screen-med -->
+
 <div id="screen-exam" class="screen">
 
   <div class="exam-hero">
@@ -747,6 +1019,7 @@ nav a.exam-nav.active{color:var(--green);border-bottom-color:var(--green)}
   <div class="exam-selector">
     <button class="exam-tab his-tab active" onclick="selectExam('his',this)">🏛️ Historia · 30 preguntas</button>
     <button class="exam-tab ani-tab" onclick="selectExam('ani',this)">🐾 Animales · 30 preguntas</button>
+    <button class="exam-tab med-tab" onclick="selectExam('med',this)">🏰 Edad Media · 30 preguntas</button>
   </div>
 
   <!-- HISTORIA EXAM -->
@@ -786,6 +1059,27 @@ nav a.exam-nav.active{color:var(--green);border-bottom-color:var(--green)}
       <div class="score-bar-wrap"><div class="score-bar-fill" id="score-ani-bar" style="width:0%"></div></div>
       <div class="score-msg" id="score-ani-msg"></div>
       <button class="reset-btn" onclick="resetExam('ani')">🔄 Repetir examen</button>
+    </div>
+  </div>
+
+
+  <!-- EDAD MEDIA EXAM -->
+  <div id="exam-med" class="exam-panel med">
+    <div class="exam-header-bar">
+      <div class="exam-title" style="color:var(--med)">🏰 Examen de Edad Media</div>
+      <div class="exam-progress-wrap">
+        <div class="exam-prog-bar"><div class="exam-prog-fill" id="prog-med" style="width:0%"></div></div>
+        <div class="exam-prog-label" id="prog-med-lbl">0/30</div>
+      </div>
+    </div>
+    <div id="med-questions"></div>
+    <button class="exam-submit-btn med" onclick="submitExam('med')">Ver mi nota →</button>
+    <div class="score-panel" id="score-med">
+      <div class="score-big" id="score-med-num">0</div>
+      <div class="score-label">de 30 preguntas correctas</div>
+      <div class="score-bar-wrap"><div class="score-bar-fill" id="score-med-bar" style="width:0%"></div></div>
+      <div class="score-msg" id="score-med-msg"></div>
+      <button class="reset-btn" onclick="resetExam('med')">🔄 Repetir examen</button>
     </div>
   </div>
 
@@ -1016,8 +1310,67 @@ const ANI_QUESTIONS = [
   {q:'¿Cuál es el grupo de invertebrados con el mayor número de especies en la Tierra?',opts:['Moluscos','Cnidarios','Artrópodos','Equinodermos'],c:2,fb:'Los artrópodos son el grupo animal más numeroso del planeta. Los insectos solos representan más del 80% de todas las especies animales.'},
 ];
 
+
+// ── EDAD MEDIA DATA ──────────────────────────────────────
+const MED_FLASHCARDS = [
+  {q:'¿Cuándo empieza la Edad Media?', a:'En el año 476 d.C., con la caída del Imperio Romano de Occidente.'},
+  {q:'¿Cuándo termina la Edad Media?', a:'En 1492, con el descubrimiento de América.'},
+  {q:'¿Dónde vivía la mayoría de la población en la Edad Media?', a:'En el campo, en pequeñas aldeas. Las ciudades eran centros de comercio y artesanía.'},
+  {q:'¿Cuáles son los tres estamentos de la sociedad medieval?', a:'Nobleza, Clero y Campesinos.'},
+  {q:'¿Qué hacía la Nobleza?', a:'Señores y caballeros que defendían los territorios. Vivían en castillos.'},
+  {q:'¿Qué hacía el Clero?', a:'Religiosos que rezaban y enseñaban en los monasterios.'},
+  {q:'¿Qué hacían los Campesinos?', a:'Trabajaban la tierra y pagaban impuestos y servicios a los señores.'},
+  {q:'¿Qué cereales comían en la Edad Media?', a:'Trigo, avena y cebada. También legumbres, verduras, frutas y animales como vacas, ovejas, cerdos y gallinas.'},
+  {q:'¿Qué eran los castillos?', a:'Construcciones para defender los territorios y controlar las poblaciones.'},
+  {q:'¿Qué es la Reconquista?', a:'La lucha de los reinos cristianos para recuperar los territorios del sur de la Península Ibérica ocupados por los musulmanes.'},
+  {q:'¿Dónde estaban los reinos cristianos y los musulmanes?', a:'Los reinos cristianos estaban en el norte y los musulmanes en el sur de la Península Ibérica.'},
+  {q:'¿Qué ocurrió a partir del siglo XI con el comercio?', a:'El comercio creció, surgieron ferias y mercados, y las ciudades se desarrollaron con gremios de artesanos y comerciantes.'},
+  {q:'¿Qué son los gremios?', a:'Asociaciones de artesanos y comerciantes que surgieron con el crecimiento del comercio en las ciudades medievales.'},
+  {q:'¿Qué gran poder tenía la Iglesia en la Edad Media?', a:'La Iglesia tenía un gran poder en la sociedad. Los monasterios conservaban el conocimiento copiando libros.'},
+  {q:'¿Qué es el estilo románico?', a:'Estilo artístico de los siglos XI-XII. Se construyeron monasterios e iglesias románicas.'},
+  {q:'¿Qué es el estilo gótico?', a:'Estilo artístico de los siglos XII-XV. Se construyeron grandes catedrales góticas.'},
+  {q:'¿Qué diferencia hay entre románico y gótico?', a:'El románico es anterior (s.XI-XII, monasterios e iglesias). El gótico es posterior (s.XII-XV, catedrales más altas y con vidrieras).'},
+  {q:'¿Qué código seguían los caballeros?', a:'Un código de honor. También participaban en torneos y justas.'},
+  {q:'¿Cómo era la vida cotidiana de la mayoría de la gente en la Edad Media?', a:'Dura, trabajando en el campo o en los talleres.'},
+  {q:'¿Para qué servían los monasterios?', a:'Para rezar, enseñar, y conservar el conocimiento copiando libros.'},
+];
+
+const MED_QUESTIONS = [
+  {q:'¿En qué año comienza la Edad Media?',opts:['En el año 1000 d.C.','En el año 476 d.C.','En el año 3.500 a.C.','En el año 1492'],c:1,fb:'La Edad Media comienza con la caída del Imperio Romano de Occidente en el año 476 d.C.'},
+  {q:'¿Con qué evento termina la Edad Media?',opts:['La Revolución Francesa (1789)','La caída del Imperio Romano','El descubrimiento de América (1492)','La invención de la escritura'],c:2,fb:'La Edad Media termina en 1492 con el descubrimiento de América.'},
+  {q:'¿Cuánto duró la Edad Media?',opts:['Desde 3.500 a.C. hasta 476 d.C.','Desde 476 d.C. hasta 1492','Desde 1492 hasta 1789','Desde 1000 hasta 1500'],c:1,fb:'La Edad Media duró desde el año 476 d.C. hasta el año 1492: más de mil años.'},
+  {q:'¿Dónde vivía la mayoría de la población en la Edad Media?',opts:['En grandes ciudades','En barcos','En el campo, en pequeñas aldeas','En castillos'],c:2,fb:'La mayoría de la población vivía en el campo, en pequeñas aldeas. Las ciudades eran más pequeñas y servían como centros de comercio.'},
+  {q:'¿Cuántos estamentos tenía la sociedad medieval?',opts:['Dos','Cuatro','Cinco','Tres'],c:3,fb:'La sociedad medieval tenía tres estamentos: Nobleza, Clero y Campesinos.'},
+  {q:'¿Cuál era la función de la Nobleza?',opts:['Rezar y enseñar','Trabajar la tierra y pagar impuestos','Defender los territorios','Copiar libros en los monasterios'],c:2,fb:'La Nobleza (señores y caballeros) defendía los territorios. Eran los más poderosos y vivían en castillos.'},
+  {q:'¿Quiénes formaban el Clero en la Edad Media?',opts:['Los caballeros y nobles','Los campesinos y artesanos','Los comerciantes y gremios','Los religiosos que rezaban y enseñaban en los monasterios'],c:3,fb:'El Clero estaba formado por religiosos que rezaban y enseñaban. Vivían en monasterios y la Iglesia tenía un gran poder.'},
+  {q:'¿Qué hacían los campesinos en la Edad Media?',opts:['Defendían las ciudades','Rezaban y copiaban libros','Trabajaban la tierra y pagaban impuestos y servicios','Construían castillos'],c:2,fb:'Los campesinos trabajaban la tierra y pagaban impuestos y servicios a los señores. Eran el grupo más numeroso pero el menos poderoso.'},
+  {q:'¿Cuál de los tres estamentos era el más numeroso?',opts:['La Nobleza','El Clero','Los Campesinos','Los gremios'],c:2,fb:'Los campesinos eran la mayoría de la población medieval.'},
+  {q:'¿Qué cereales se consumían en la Edad Media?',opts:['Maíz, arroz y mijo','Trigo, avena y cebada','Solo trigo','Arroz y patata'],c:1,fb:'Se consumían cereales como trigo, avena y cebada, además de legumbres, verduras, frutas y animales domésticos.'},
+  {q:'¿Qué animales se criaban en la Edad Media?',opts:['Camellos, elefantes y jirafas','Vacas, ovejas, cerdos y gallinas','Solo caballos','Perros y gatos'],c:1,fb:'Se criaban vacas, ovejas, cerdos y gallinas para alimentarse.'},
+  {q:'¿Para qué servían los castillos?',opts:['Para celebrar fiestas','Solo para vivir la nobleza','Para defender los territorios y controlar las poblaciones','Para guardar el grano de los campesinos'],c:2,fb:'Los castillos servían para defender los territorios y controlar las poblaciones. Eran construcciones militares.'},
+  {q:'¿Dónde estaban los reinos cristianos en la Península Ibérica?',opts:['En el sur','En el centro','En el norte','En las islas'],c:2,fb:'Los reinos cristianos estaban en el norte, y los reinos musulmanes en el sur de la Península Ibérica.'},
+  {q:'¿Qué es la Reconquista?',opts:['La conquista de América por los españoles','La lucha de los reinos cristianos para recuperar el sur ocupado por los musulmanes','La fundación de los primeros reinos medievales','La construcción de monasterios en el norte'],c:1,fb:'La Reconquista fue el proceso por el que los reinos cristianos lucharon durante siglos para recuperar los territorios del sur de la Península ocupados por los musulmanes.'},
+  {q:'¿A partir de qué siglo creció el comercio en la Edad Media?',opts:['Siglo V','Siglo VIII','Siglo XI','Siglo XV'],c:2,fb:'A partir del siglo XI el comercio creció y surgieron ferias y mercados. Las ciudades se desarrollaron.'},
+  {q:'¿Qué son los gremios?',opts:['Grupos de caballeros que se unían para luchar','Asociaciones de artesanos y comerciantes que surgieron con el comercio','Grupos religiosos que vivían en monasterios','Aldeas de campesinos'],c:1,fb:'Los gremios eran asociaciones de artesanos y comerciantes que surgieron con el crecimiento del comercio en las ciudades medievales.'},
+  {q:'¿Qué gran institución tenía poder en la sociedad medieval?',opts:['Los comerciantes','La Iglesia','Los campesinos','Los gremios'],c:1,fb:'La Iglesia tuvo un gran poder en la Edad Media. Los monasterios eran centros de cultura y conocimiento.'},
+  {q:'¿Qué se hacía en los monasterios?',opts:['Se fabricaban armas','Se copiaban libros y se conservaba el conocimiento','Se celebraban torneos','Se construían castillos'],c:1,fb:'En los monasterios se copiaban libros y se conservaba el conocimiento. Era la principal fuente cultural de la época.'},
+  {q:'¿En qué siglos se construyeron las iglesias y monasterios románicos?',opts:['Siglos VII-VIII','Siglos XI-XII','Siglos XIV-XV','Siglos XVI-XVII'],c:1,fb:'Las iglesias y monasterios de estilo románico se construyeron en los siglos XI-XII.'},
+  {q:'¿En qué siglos se construyeron las catedrales góticas?',opts:['Siglos VII-IX','Siglos X-XI','Siglos XII-XV','Siglos XVI-XVIII'],c:2,fb:'Las catedrales góticas se construyeron en los siglos XII-XV. Son posteriores al románico.'},
+  {q:'¿Cuál de estos estilos artísticos es más antiguo, el románico o el gótico?',opts:['El gótico','Los dos son de la misma época','El románico','Ninguno pertenece a la Edad Media'],c:2,fb:'El románico (s.XI-XII) es más antiguo que el gótico (s.XII-XV). El románico va primero.'},
+  {q:'¿Qué código seguían los caballeros medievales?',opts:['Un código de comercio','Un código de honor','Un código agrícola','Un código religioso únicamente'],c:1,fb:'Los caballeros seguían un código de honor y participaban en torneos y justas para demostrar su valor.'},
+  {q:'¿Qué eran los torneos y las justas?',opts:['Competiciones deportivas y de combate de los caballeros','Ferias de comercio medieval','Reuniones del clero en los monasterios','Celebraciones de la cosecha'],c:0,fb:'Los torneos y las justas eran competiciones en las que los caballeros demostraban su valor y destreza en el combate.'},
+  {q:'¿Cómo era la vida cotidiana de la mayoría de las personas en la Edad Media?',opts:['Cómoda y tranquila','Llena de lujos','Dura, trabajando en el campo o en los talleres','Similar a la vida actual'],c:2,fb:'La vida cotidiana de la mayoría era dura, trabajando en el campo o en los talleres. Solo la nobleza y el alto clero vivían con comodidades.'},
+  {q:'¿Qué caracterizaba a las ciudades medievales a partir del siglo XI?',opts:['Solo había templos y castillos','Surgieron como centros de comercio, artesanía, ferias y mercados','Desaparecieron porque todos vivían en el campo','Eran el centro del poder de los campesinos'],c:1,fb:'A partir del siglo XI las ciudades crecieron como centros de comercio y artesanía, con ferias, mercados y gremios.'},
+  {q:'¿Qué tipo de sociedad era la medieval según su organización?',opts:['Una democracia','Una sociedad igualitaria','Una sociedad estamental dividida en nobleza, clero y campesinos','Una sociedad sin clases'],c:2,fb:'La sociedad medieval era estamental: estaba dividida en tres grupos con funciones distintas y muy desiguales: nobleza, clero y campesinos.'},
+  {q:'¿Cuál era el papel de la Iglesia en la cultura medieval?',opts:['No tenía ningún papel cultural','Era secundaria frente a los nobles','Tenía gran poder: en los monasterios se copiaban libros y se conservaba el conocimiento','Solo se dedicaba a cobrar impuestos'],c:2,fb:'La Iglesia era el principal centro cultural de la Edad Media. En los monasterios se copiaban libros y se preservaba el saber.'},
+  {q:'¿Qué construyeron los reinos en la Edad Media para protegerse?',opts:['Pirámides','Acueductos','Castillos','Termas'],c:2,fb:'Construyeron castillos para defender los territorios y controlar las poblaciones.'},
+  {q:'La Edad Media es parte de las cuatro Edades de la Historia. ¿Cuál viene antes?',opts:['La Edad Moderna','La Edad Contemporánea','No hay ninguna antes','La Edad Antigua'],c:3,fb:'Antes de la Edad Media está la Edad Antigua (que termina en 476 d.C., justo cuando empieza la Media).'},
+  {q:'¿Qué ocurrió en la Edad Media que sentó las bases de la sociedad actual?',opts:['Nada importante','Se formaron reinos, creció el comercio, surgieron ciudades y la cultura avanzó en los monasterios','Se inventó la escritura','Se descubrió el fuego'],c:1,fb:'La Edad Media fue un tiempo de cambios: se formaron reinos y señoríos, creció el comercio, se desarrollaron las ciudades y los monasterios preservaron la cultura. Todo esto sentó las bases del mundo actual.'},
+];
+
+
 // ── EXAM ENGINE ───────────────────────────────────────────
-let examState = { his:{answered:0,correct:0}, ani:{answered:0,correct:0} };
+let examState = { his:{answered:0,correct:0}, ani:{answered:0,correct:0}, med:{answered:0,correct:0} };
 
 function renderExam(subj, questions, containerId) {
   const letters = ['A','B','C','D'];
@@ -1068,7 +1421,7 @@ function answerQ(subj, qi, oi, correct, fb, total) {
 }
 
 function submitExam(subj) {
-  const total = subj==='his'?30:30;
+  const total = 30;
   const correct = examState[subj].correct;
   const pct = Math.round(correct/total*100);
   const nota = (correct/total*10).toFixed(1);
@@ -1092,6 +1445,8 @@ function resetExam(subj) {
   document.getElementById(`prog-${subj}-lbl`).textContent=`0/${subj==='his'?30:30}`;
   if(subj==='his') renderExam('his',HIS_QUESTIONS,'his-questions');
   else renderExam('ani',ANI_QUESTIONS,'ani-questions');
+renderExam('med',MED_QUESTIONS,'med-questions');
+examState.med={answered:0,correct:0};
 }
 
 function selectExam(subj, el) {
@@ -1104,9 +1459,12 @@ function selectExam(subj, el) {
 // ── INIT ──────────────────────────────────────────────────
 renderFlashcards(HIS_FLASHCARDS,'his-flashcards');
 renderFlashcards(ANI_FLASHCARDS,'ani-flashcards');
+renderFlashcards(MED_FLASHCARDS,'med-flashcards');
 renderAnimalCards();
 renderExam('his',HIS_QUESTIONS,'his-questions');
 renderExam('ani',ANI_QUESTIONS,'ani-questions');
+renderExam('med',MED_QUESTIONS,'med-questions');
+examState.med={answered:0,correct:0};
 </script>
 </body>
 </html>
