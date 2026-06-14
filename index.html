@@ -14,6 +14,8 @@
   --ani:#22d3ee;--ani2:#67e8f9;--ani-bg:rgba(34,211,238,.08);--ani-border:rgba(34,211,238,.2);
 
   --med:#a78bfa;--med2:#c4b5fd;--med-bg:rgba(167,139,250,.08);--med-border:rgba(167,139,250,.22);
+
+  --mod:#10b981;--mod2:#34d399;--mod-bg:rgba(16,185,129,.08);--mod-border:rgba(16,185,129,.22);
   --green:#4ade80;--red:#f87171;--orange:#fb923c;
   --r:16px;--r2:12px;--r3:8px;
 }
@@ -210,6 +212,37 @@ nav a.exam-nav.active{color:var(--green);border-bottom-color:var(--green)}
 .exam-panel.med .exam-prog-fill{background:linear-gradient(90deg,var(--med),var(--med2))}
 .exam-panel.med .exam-submit-btn{background:linear-gradient(135deg,var(--med),var(--med2));color:#0d0a1a}
 .exam-panel.med .q-opt:hover:not(:disabled){border-color:var(--med-border)}
+
+
+/* ── EDAD MODERNA THEME ── */
+.hero.mod{background:linear-gradient(135deg,#021a10,#032a18,#021a10);border:1px solid var(--mod-border)}
+.hero.mod::after{background:radial-gradient(circle,var(--mod),transparent)}
+.hero.mod .hero-tag{background:var(--mod-bg);color:var(--mod);border:1px solid var(--mod-border)}
+.hero.mod h1{color:var(--mod)}
+.mod .sec-num{background:var(--mod-bg);color:var(--mod);border:1px solid var(--mod-border)}
+.mod .memory-box{background:var(--mod-bg);border-color:var(--mod)}
+.mod .memory-box .mb-label{color:var(--mod)}
+.mod .compare-table th{border-bottom-color:var(--mod)}
+.mod .row-label{color:var(--mod) !important}
+.mod .dates-grid .date-year{color:var(--mod)}
+/* discovery timeline */
+.disc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:28px}
+.disc-card{background:var(--surface2);border:1px solid var(--mod-border);border-radius:var(--r);padding:16px;transition:all .2s}
+.disc-card:hover{border-color:var(--mod);transform:translateY(-2px)}
+.disc-year{font-family:'Syne',sans-serif;font-size:22px;font-weight:900;color:var(--mod);margin-bottom:4px}
+.disc-who{font-size:13px;font-weight:700;color:var(--white);margin-bottom:4px}
+.disc-what{font-size:12px;color:var(--muted);line-height:1.5}
+/* society modern cards */
+.soc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin-bottom:28px}
+.soc-card{background:var(--surface2);border:1px solid var(--mod-border);border-radius:var(--r);padding:18px;text-align:center;transition:all .2s}
+.soc-card:hover{border-color:var(--mod);transform:translateY(-2px)}
+.soc-icon{font-size:40px;margin-bottom:8px;display:block}
+.soc-name{font-family:'Syne',sans-serif;font-size:16px;font-weight:900;color:var(--mod);margin-bottom:6px}
+.soc-desc{font-size:13px;color:var(--muted);line-height:1.5}
+/* exam mod */
+.exam-tab.mod-tab.active{border-color:var(--mod);color:var(--mod);background:var(--mod-bg)}
+.exam-panel.mod .exam-prog-fill{background:linear-gradient(90deg,var(--mod),var(--mod2))}
+.exam-panel.mod .exam-submit-btn{background:linear-gradient(135deg,var(--mod),var(--mod2));color:#021a10}
 
 /* ── ANIMAL GROUP CARDS ── */
 .animal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-bottom:28px}
@@ -420,6 +453,7 @@ nav a.exam-nav.active{color:var(--green);border-bottom-color:var(--green)}
   <a href="#" class="active" onclick="showScreen('his',this)">🏛️ Historia</a>
   <a href="#" onclick="showScreen('ani',this)">🐾 Animales</a>
   <a href="#" onclick="showScreen('med',this)">🏰 Edad Media</a>
+  <a href="#" onclick="showScreen('mod',this)">⛵ Edad Moderna</a>
   <a href="#" class="exam-nav" onclick="showScreen('exam',this)">📝 Exámenes</a>
 </nav>
 
@@ -1009,6 +1043,263 @@ nav a.exam-nav.active{color:var(--green);border-bottom-color:var(--green)}
 
 </div><!-- /screen-med -->
 
+
+<!-- ══════════════════════════════════════
+     EDAD MODERNA SCREEN
+══════════════════════════════════════ -->
+<div id="screen-mod" class="screen mod">
+
+  <div class="hero mod">
+    <div class="hero-tag">⛵ Bloque 4 · Modo élite</div>
+    <h1>La Edad Moderna</h1>
+    <p>Descubrimientos, cambios y nuevas ideas. Todo lo que necesitas para sacar un 10: descubrimientos, sociedad, arte, ciencia y comercio.</p>
+    <div class="hero-chips">
+      <span class="hero-chip">Grandes descubrimientos</span>
+      <span class="hero-chip">La burguesía</span>
+      <span class="hero-chip">Renacimiento y Barroco</span>
+      <span class="hero-chip">La imprenta</span>
+      <span class="hero-chip">Comercio mundial</span>
+    </div>
+  </div>
+
+  <div class="methods-bar">
+    <div class="method-chip"><span class="mi">🧠</span><span class="ml">Dual Coding</span></div>
+    <div class="method-chip"><span class="mi">🔁</span><span class="ml">Retrieval</span></div>
+    <div class="method-chip"><span class="mi">⚡</span><span class="ml">Espaciado</span></div>
+    <div class="method-chip"><span class="mi">🔗</span><span class="ml">Elaboración</span></div>
+  </div>
+
+  <!-- 1. FECHAS Y QUÉ ES -->
+  <div class="sec-header mod">
+    <div class="sec-num">1</div>
+    <h2>¿Qué es y cuándo fue la Edad Moderna?</h2>
+  </div>
+  <div class="detail-section">
+    <p>La Edad Moderna comienza con la <strong>caída de Constantinopla (año 1453)</strong> y termina con la <strong>Revolución Francesa (año 1789)</strong>. Fue una época de grandes descubrimientos, avances científicos, fortalecimiento de los Estados y cambios importantes en la forma de pensar y de vivir.</p>
+  </div>
+
+  <div class="memory-box mod">
+    <div class="mb-label">🧠 Truco — Las dos fechas clave</div>
+    <div class="mb-content">
+      <strong>1453</strong> → cae Constantinopla → EMPIEZA la Edad Moderna<br>
+      <strong>1789</strong> → Revolución Francesa → TERMINA la Edad Moderna<br>
+      👉 <em>"En 1453 cayó Constantinopla y en 1789 la Revolución cambió todo"</em>
+    </div>
+    <div class="mb-note">Ojo: la Edad Media termina en 476 (Roma) o 1453 (Constantinopla) según el libro. En los apuntes de Lucas aparece 1453.</div>
+  </div>
+
+  <div class="dates-grid">
+    <div class="date-card"><div class="date-year">1453</div><div class="date-event">Caída de Constantinopla → comienza la Edad Moderna</div></div>
+    <div class="date-card"><div class="date-year">1492</div><div class="date-event">Cristóbal Colón llega a América</div></div>
+    <div class="date-card"><div class="date-year">1498</div><div class="date-event">Vasco de Gama llega a la India por mar</div></div>
+    <div class="date-card"><div class="date-year">1519–1522</div><div class="date-event">Magallanes y Elcano: primera vuelta al mundo</div></div>
+    <div class="date-card"><div class="date-year">S. XV</div><div class="date-event">Gutenberg inventa la imprenta</div></div>
+    <div class="date-card"><div class="date-year">S. XV–XVI</div><div class="date-event">Renacimiento: Leonardo, Miguel Ángel, Rafael</div></div>
+    <div class="date-card"><div class="date-year">S. XVII</div><div class="date-event">Barroco: arte más expresivo y detallado</div></div>
+    <div class="date-card"><div class="date-year">1789</div><div class="date-event">Revolución Francesa → termina la Edad Moderna</div></div>
+  </div>
+
+  <!-- 2. DÓNDE Y CÓMO VIVÍAN -->
+  <div class="sec-header mod">
+    <div class="sec-num">2</div>
+    <h2>¿Dónde y cómo vivían?</h2>
+  </div>
+  <div class="detail-section">
+    <ul>
+      <li>La población creció y muchas personas vivían en <strong>ciudades cada vez más grandes</strong>.</li>
+      <li>Las casas eran de <strong>piedra o ladrillo</strong> y estaban organizadas en barrios.</li>
+      <li>La sociedad seguía siendo <strong>desigual</strong>, con grupos privilegiados y el resto de la población.</li>
+    </ul>
+  </div>
+
+  <!-- 3. ALIMENTACIÓN -->
+  <div class="sec-header mod">
+    <div class="sec-num">3</div>
+    <h2>¿Qué comían?</h2>
+  </div>
+  <div class="detail-section">
+    <p>La alimentación <strong>mejoró y se hizo más variada</strong> gracias a los nuevos productos traídos de América:</p>
+    <ul>
+      <li><strong>De América:</strong> patata, tomate, maíz, pimiento, chocolate, vainilla, piña, cacao.</li>
+      <li><strong>También:</strong> cereales, carne, pescado, legumbres, frutas y hortalizas.</li>
+    </ul>
+  </div>
+
+  <div class="memory-box mod">
+    <div class="mb-label">🧠 Truco — Productos de América</div>
+    <div class="mb-content">
+      <strong>"Pa To Ma Pi Cho Va Pi Ca"</strong><br>
+      👉 <strong>Pa</strong>tata · <strong>To</strong>mate · <strong>Ma</strong>íz · <strong>Pi</strong>miento · <strong>Cho</strong>colate · <strong>Va</strong>inilla · <strong>Pi</strong>ña · <strong>Ca</strong>cao
+    </div>
+    <div class="mb-note">Sin el descubrimiento de América no habría pizza con tomate, chocolate ni patatas fritas.</div>
+  </div>
+
+  <!-- 4. LA SOCIEDAD MODERNA -->
+  <div class="sec-header mod">
+    <div class="sec-num">4</div>
+    <h2>La sociedad moderna: estamentos y la burguesía</h2>
+  </div>
+
+  <div class="memory-box mod">
+    <div class="mb-label">🧠 Truco — Los 3 estamentos + la novedad</div>
+    <div class="mb-content">
+      Nobleza · Clero · Estado Llano — igual que en la Edad Media<br>
+      👉 Pero ahora aparece la <strong>BURGUESÍA</strong>: ricos comerciantes y banqueros que empiezan a ganar poder.
+    </div>
+    <div class="mb-note">La burguesía es la gran novedad de la Edad Moderna. Son comerciantes ricos que no son nobles pero tienen dinero y poder.</div>
+  </div>
+
+  <div class="soc-grid">
+    <div class="soc-card">
+      <span class="soc-icon">👑</span>
+      <div class="soc-name">Nobleza</div>
+      <div class="soc-desc">Poseen <strong>tierras y títulos</strong>. Siguen siendo los más poderosos junto al rey.</div>
+    </div>
+    <div class="soc-card">
+      <span class="soc-icon">✝️</span>
+      <div class="soc-name">Clero</div>
+      <div class="soc-desc">Religiosos con <strong>gran influencia</strong> en la sociedad. Controlan la educación y la cultura.</div>
+    </div>
+    <div class="soc-card">
+      <span class="soc-icon">🌾</span>
+      <div class="soc-name">Estado Llano</div>
+      <div class="soc-desc">Campesinos, artesanos, comerciantes y <strong>burgueses</strong>. La mayoría de la población.</div>
+    </div>
+    <div class="soc-card" style="border-color:rgba(251,191,36,.35)">
+      <span class="soc-icon">💰</span>
+      <div class="soc-name" style="color:#fbbf24">La Burguesía ★</div>
+      <div class="soc-desc">Ricos <strong>comerciantes y banqueros</strong>. La gran novedad. Ganan importancia y poder con el comercio.</div>
+    </div>
+  </div>
+
+  <!-- 5. GRANDES DESCUBRIMIENTOS -->
+  <div class="sec-header mod">
+    <div class="sec-num">5</div>
+    <h2>Grandes descubrimientos y exploraciones</h2>
+  </div>
+  <div class="detail-section">
+    <p>Los europeos exploraron nuevos territorios por mar en busca de <strong>rutas comerciales hacia Oriente</strong>. Esto permitió el encuentro entre Europa, América, África y Asia, y el inicio del <strong>comercio mundial</strong>.</p>
+  </div>
+
+  <div class="disc-grid">
+    <div class="disc-card">
+      <div class="disc-year">1492</div>
+      <div class="disc-who">⚓ Cristóbal Colón</div>
+      <div class="disc-what">Llega a América navegando hacia el oeste. Abre el contacto entre Europa y el Nuevo Mundo.</div>
+    </div>
+    <div class="disc-card">
+      <div class="disc-year">1498</div>
+      <div class="disc-who">⚓ Vasco de Gama</div>
+      <div class="disc-what">Llega a la India por mar, bordeando África. Abre la ruta de las especias.</div>
+    </div>
+    <div class="disc-card">
+      <div class="disc-year">1519–1522</div>
+      <div class="disc-who">⚓ Magallanes y Elcano</div>
+      <div class="disc-what">Dan la primera vuelta al mundo. Demuestran que la Tierra es redonda navegando por ella.</div>
+    </div>
+  </div>
+
+  <!-- 6. AVANCES Y CAMBIOS -->
+  <div class="sec-header mod">
+    <div class="sec-num">6</div>
+    <h2>Avances y cambios importantes</h2>
+  </div>
+  <div class="detail-section">
+    <ul>
+      <li><strong>La imprenta</strong> (Gutenberg, s. XV): permitió difundir libros e ideas a toda la sociedad. Fue una revolución de la información.</li>
+      <li><strong>Avances científicos y técnicos</strong> con personajes como <strong>Copérnico</strong> (la Tierra gira alrededor del Sol), <strong>Galileo</strong> (telescopio) y <strong>Leonardo da Vinci</strong> (arte y ciencia).</li>
+      <li><strong>Nuevas formas de gobierno:</strong> los reyes modernos fortalecieron su poder y consolidaron los Estados.</li>
+      <li><strong>Crecimiento del comercio</strong>, de los bancos y de las ciudades.</li>
+    </ul>
+  </div>
+
+  <div class="memory-box mod">
+    <div class="mb-label">🧠 Truco — Los tres grandes científicos</div>
+    <div class="mb-content">
+      <strong>C</strong>opérnico → el Sol en el centro (no la Tierra)<br>
+      <strong>G</strong>alileo → telescopio y observación del cielo<br>
+      <strong>L</strong>eonardo da Vinci → arte + ciencia + inventos<br>
+      👉 <em>"Con Galileo Leonardo miraban las estrellas"</em>
+    </div>
+    <div class="mb-note">Copérnico y Galileo cambiaron lo que los humanos pensaban del universo. La Iglesia no estaba de acuerdo con ellos.</div>
+  </div>
+
+  <!-- 7. ARTE Y CULTURA -->
+  <div class="sec-header mod">
+    <div class="sec-num">7</div>
+    <h2>El arte y la cultura</h2>
+  </div>
+  <div class="detail-section">
+    <ul>
+      <li><strong>Renacimiento (s. XV-XVI):</strong> recuperación del arte clásico griego y romano. Obras de Leonardo da Vinci, Miguel Ángel y Rafael. Gran esplendor cultural.</li>
+      <li><strong>Humanismo:</strong> corriente de pensamiento que confía en las capacidades del ser humano. El ser humano es el centro del mundo (no solo Dios).</li>
+      <li><strong>Barroco (s. XVII):</strong> arte más expresivo y detallado. Uso de luces y sombras dramáticas.</li>
+      <li>Se construyeron <strong>palacios, catedrales, universidades</strong> y grandes obras de arte.</li>
+    </ul>
+  </div>
+
+  <div class="memory-box mod">
+    <div class="mb-label">🧠 Truco — Renacimiento vs Barroco</div>
+    <div class="mb-content">
+      <strong>Renacimiento</strong> → s. XV-XVI → equilibrio, belleza, arte clásico<br>
+      <strong>Barroco</strong> → s. XVII → más dramático, expresivo, luces y sombras<br>
+      👉 El Renacimiento va primero. El Barroco es más teatral y exagerado.
+    </div>
+    <div class="mb-note">Los tres grandes del Renacimiento: Leonardo da Vinci (La Mona Lisa), Miguel Ángel (La Sixtina), Rafael (Las Madonnas).</div>
+  </div>
+
+  <!-- 8. COMERCIO Y ECONOMÍA -->
+  <div class="sec-header mod">
+    <div class="sec-num">8</div>
+    <h2>Comercio y economía</h2>
+  </div>
+  <div class="detail-section">
+    <ul>
+      <li>El comercio se <strong>expandió por todo el mundo</strong> gracias a los descubrimientos.</li>
+      <li>Se crearon <strong>compañías comerciales y colonias</strong> en América, Asia y África.</li>
+      <li>Se intercambiaban productos como <strong>especias, oro, plata, azúcar, tabaco, seda, café</strong> y esclavos.</li>
+      <li>Aparecieron <strong>nuevas formas de negocio</strong> y surgió el <strong>capitalismo comercial</strong>.</li>
+    </ul>
+  </div>
+
+  <!-- 9. TABLA COMPARATIVA -->
+  <div class="sec-header mod">
+    <div class="sec-num">9</div>
+    <h2>Tabla resumen — Todo de un vistazo</h2>
+  </div>
+  <div style="overflow-x:auto;margin-bottom:28px">
+  <table class="compare-table mod">
+    <thead>
+      <tr>
+        <th>Aspecto</th>
+        <th>⛵ La Edad Moderna</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="row-label" style="color:var(--mod)">Fechas</td><td>1453 (caída de Constantinopla) → 1789 (Revolución Francesa)</td></tr>
+      <tr><td class="row-label" style="color:var(--mod)">Vivienda</td><td>Ciudades más grandes, casas de piedra o ladrillo organizadas en barrios</td></tr>
+      <tr><td class="row-label" style="color:var(--mod)">Alimentación</td><td>Mejora con productos de América: patata, tomate, maíz, pimiento, chocolate, vainilla, piña, cacao</td></tr>
+      <tr><td class="row-label" style="color:var(--mod)">Sociedad</td><td>3 estamentos + novedad: la <strong>burguesía</strong> (ricos comerciantes y banqueros) gana importancia</td></tr>
+      <tr><td class="row-label" style="color:var(--mod)">Descubrimientos</td><td>1492 Colón-América · 1498 Vasco de Gama-India · 1519-22 Magallanes/Elcano-vuelta al mundo</td></tr>
+      <tr><td class="row-label" style="color:var(--mod)">Avances</td><td>Imprenta (Gutenberg, s.XV), Copérnico, Galileo, Leonardo da Vinci</td></tr>
+      <tr><td class="row-label" style="color:var(--mod)">Arte</td><td>Renacimiento (s.XV-XVI): Leonardo, Miguel Ángel, Rafael · Barroco (s.XVII): más dramático</td></tr>
+      <tr><td class="row-label" style="color:var(--mod)">Humanismo</td><td>El ser humano en el centro. Confianza en las capacidades humanas</td></tr>
+      <tr><td class="row-label" style="color:var(--mod)">Comercio</td><td>Comercio mundial, compañías comerciales, colonias. Productos: especias, oro, plata, azúcar, seda, café</td></tr>
+      <tr><td class="row-label" style="color:var(--mod)">Novedad económica</td><td>Surge el capitalismo comercial. Crecen los bancos y las ciudades</td></tr>
+      <tr><td class="row-label" style="color:var(--mod)">Gobierno</td><td>Los reyes fortalecen su poder y consolidan los Estados modernos</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <!-- 10. FLASHCARDS -->
+  <div class="sec-header mod">
+    <div class="sec-num">10</div>
+    <h2>Tarjetas de repaso — Tócalas para ver la respuesta</h2>
+  </div>
+  <div class="flashcard-grid" id="mod-flashcards"></div>
+
+</div><!-- /screen-mod -->
+
 <div id="screen-exam" class="screen">
 
   <div class="exam-hero">
@@ -1020,6 +1311,7 @@ nav a.exam-nav.active{color:var(--green);border-bottom-color:var(--green)}
     <button class="exam-tab his-tab active" onclick="selectExam('his',this)">🏛️ Historia · 30 preguntas</button>
     <button class="exam-tab ani-tab" onclick="selectExam('ani',this)">🐾 Animales · 30 preguntas</button>
     <button class="exam-tab med-tab" onclick="selectExam('med',this)">🏰 Edad Media · 30 preguntas</button>
+    <button class="exam-tab mod-tab" onclick="selectExam('mod',this)">⛵ Edad Moderna · 30 preguntas</button>
   </div>
 
   <!-- HISTORIA EXAM -->
@@ -1080,6 +1372,27 @@ nav a.exam-nav.active{color:var(--green);border-bottom-color:var(--green)}
       <div class="score-bar-wrap"><div class="score-bar-fill" id="score-med-bar" style="width:0%"></div></div>
       <div class="score-msg" id="score-med-msg"></div>
       <button class="reset-btn" onclick="resetExam('med')">🔄 Repetir examen</button>
+    </div>
+  </div>
+
+
+  <!-- EDAD MODERNA EXAM -->
+  <div id="exam-mod" class="exam-panel mod">
+    <div class="exam-header-bar">
+      <div class="exam-title" style="color:var(--mod)">⛵ Examen de Edad Moderna</div>
+      <div class="exam-progress-wrap">
+        <div class="exam-prog-bar"><div class="exam-prog-fill" id="prog-mod" style="width:0%"></div></div>
+        <div class="exam-prog-label" id="prog-mod-lbl">0/30</div>
+      </div>
+    </div>
+    <div id="mod-questions"></div>
+    <button class="exam-submit-btn mod" onclick="submitExam('mod')">Ver mi nota →</button>
+    <div class="score-panel" id="score-mod">
+      <div class="score-big" id="score-mod-num">0</div>
+      <div class="score-label">de 30 preguntas correctas</div>
+      <div class="score-bar-wrap"><div class="score-bar-fill" id="score-mod-bar" style="width:0%"></div></div>
+      <div class="score-msg" id="score-mod-msg"></div>
+      <button class="reset-btn" onclick="resetExam('mod')">🔄 Repetir examen</button>
     </div>
   </div>
 
@@ -1369,8 +1682,67 @@ const MED_QUESTIONS = [
 ];
 
 
+
+// ── EDAD MODERNA DATA ─────────────────────────────────────
+const MOD_FLASHCARDS = [
+  {q:'¿Cuándo empieza la Edad Moderna?', a:'En 1453, con la caída de Constantinopla.'},
+  {q:'¿Cuándo termina la Edad Moderna?', a:'En 1789, con la Revolución Francesa.'},
+  {q:'¿Qué hizo Cristóbal Colón en 1492?', a:'Llegó a América navegando hacia el oeste, abriendo el contacto entre Europa y el Nuevo Mundo.'},
+  {q:'¿Qué hizo Vasco de Gama en 1498?', a:'Llegó a la India por mar, bordeando África, abriendo la ruta de las especias.'},
+  {q:'¿Qué hicieron Magallanes y Elcano entre 1519 y 1522?', a:'Dieron la primera vuelta al mundo, demostrando que la Tierra es esférica.'},
+  {q:'¿Qué inventó Gutenberg en el siglo XV?', a:'La imprenta, que permitió difundir libros e ideas por toda la sociedad.'},
+  {q:'¿Qué descubrió Copérnico?', a:'Que la Tierra gira alrededor del Sol (y no al revés, como se creía antes).'},
+  {q:'¿Cuáles son los tres grandes artistas del Renacimiento?', a:'Leonardo da Vinci, Miguel Ángel y Rafael.'},
+  {q:'¿Qué es el Renacimiento?', a:'Movimiento cultural de los siglos XV-XVI que recuperó el arte clásico griego y romano. Leonardo, Miguel Ángel y Rafael son sus grandes figuras.'},
+  {q:'¿Qué es el Barroco?', a:'Estilo artístico del siglo XVII, más expresivo y detallado que el Renacimiento. Usa luces y sombras dramáticas.'},
+  {q:'¿Qué es el Humanismo?', a:'Corriente de pensamiento de la Edad Moderna que confía en las capacidades del ser humano. El ser humano es el centro (no solo Dios).'},
+  {q:'¿Qué es la burguesía?', a:'La gran novedad social de la Edad Moderna: ricos comerciantes y banqueros que ganan importancia y poder gracias al comercio.'},
+  {q:'¿Qué productos llegaron de América a Europa?', a:'Patata, tomate, maíz, pimiento, chocolate, vainilla, piña y cacao.'},
+  {q:'¿Qué se intercambiaba en el comercio mundial?', a:'Especias, oro, plata, azúcar, tabaco, seda, café y esclavos.'},
+  {q:'¿Qué surgió como nueva forma económica?', a:'El capitalismo comercial, con compañías comerciales, bancos y colonias en América, Asia y África.'},
+  {q:'¿Qué cambió en el gobierno en la Edad Moderna?', a:'Los reyes modernos fortalecieron su poder y consolidaron los Estados. El rey manda más que nunca.'},
+  {q:'¿Cuáles son los 3 estamentos de la Edad Moderna?', a:'Nobleza (tierras y títulos), Clero (gran influencia) y Estado Llano (campesinos, artesanos, comerciantes, burgueses).'},
+  {q:'¿Cómo eran las casas en la Edad Moderna?', a:'De piedra o ladrillo, organizadas en barrios. Las ciudades crecieron y se hicieron más grandes.'},
+  {q:'¿Qué diferencia hay entre Renacimiento y Barroco?', a:'El Renacimiento (s.XV-XVI) busca equilibrio y belleza clásica. El Barroco (s.XVII) es más dramático, expresivo, con luces y sombras.'},
+  {q:'¿Por qué fue importante la imprenta de Gutenberg?', a:'Porque permitió copiar y difundir libros e ideas a toda la sociedad, democratizando el conocimiento.'},
+];
+
+const MOD_QUESTIONS = [
+  {q:'¿Cuándo comienza la Edad Moderna?',opts:['En el año 476 d.C.','En el año 1453','En el año 1492','En el año 1789'],c:1,fb:'La Edad Moderna comienza en 1453 con la caída de Constantinopla.'},
+  {q:'¿Con qué evento termina la Edad Moderna?',opts:['La caída del Imperio Romano','El descubrimiento de América','La Revolución Francesa (1789)','La invención de la imprenta'],c:2,fb:'La Edad Moderna termina en 1789 con la Revolución Francesa, que da inicio a la Edad Contemporánea.'},
+  {q:'¿Qué descubrió Cristóbal Colón en 1492?',opts:['La ruta a la India por mar','La vuelta al mundo','América','El Océano Pacífico'],c:2,fb:'Cristóbal Colón llegó a América en 1492 navegando hacia el oeste, abriendo el contacto entre Europa y el Nuevo Mundo.'},
+  {q:'¿Quién llegó a la India por mar en 1498?',opts:['Cristóbal Colón','Magallanes','Elcano','Vasco de Gama'],c:3,fb:'Vasco de Gama llegó a la India en 1498, bordeando África. Abrió la ruta marítima de las especias.'},
+  {q:'¿Qué lograron Magallanes y Elcano entre 1519 y 1522?',opts:['Descubrir América','Llegar a la India','Dar la primera vuelta al mundo','Conquistar Constantinopla'],c:2,fb:'Magallanes y Elcano completaron la primera vuelta al mundo entre 1519 y 1522, demostrando que la Tierra es esférica.'},
+  {q:'¿Qué inventó Gutenberg en el siglo XV?',opts:['El telescopio','La brújula','La imprenta','El astrolabio'],c:2,fb:'Gutenberg inventó la imprenta en el siglo XV. Permitió difundir libros e ideas a toda la sociedad, revolucionando el conocimiento.'},
+  {q:'¿Qué demostró Copérnico?',opts:['Que la Tierra es plana','Que el Sol gira alrededor de la Tierra','Que la Tierra gira alrededor del Sol','Que la Tierra es cuadrada'],c:2,fb:'Copérnico demostró que la Tierra gira alrededor del Sol, no al revés. Esto cambió completamente la visión del universo.'},
+  {q:'¿Quiénes son los tres grandes artistas del Renacimiento?',opts:['Goya, Velázquez y Murillo','Leonardo da Vinci, Miguel Ángel y Rafael','Picasso, Dalí y Miró','Copérnico, Galileo y Newton'],c:1,fb:'Los tres grandes del Renacimiento son Leonardo da Vinci, Miguel Ángel y Rafael. Vivieron en los siglos XV y XVI.'},
+  {q:'¿En qué siglos se produjo el Renacimiento?',opts:['Siglos XI-XII','Siglos XIII-XIV','Siglos XV-XVI','Siglos XVIII-XIX'],c:2,fb:'El Renacimiento ocurrió en los siglos XV-XVI. Recuperó el arte y el pensamiento clásico griego y romano.'},
+  {q:'¿Qué caracteriza al Barroco?',opts:['Arte equilibrado y sencillo','Arte más expresivo y detallado, con luces y sombras dramáticas','Arte abstracto y moderno','Arte prehistórico en cuevas'],c:1,fb:'El Barroco (siglo XVII) es un estilo más expresivo y detallado que el Renacimiento, con uso dramático de luces y sombras.'},
+  {q:'¿Qué es el Humanismo?',opts:['Una religión nueva','Una corriente que confía en las capacidades del ser humano','Un tipo de arte medieval','Un partido político'],c:1,fb:'El Humanismo es una corriente de pensamiento que pone al ser humano en el centro, confiando en sus capacidades y su razón.'},
+  {q:'¿Qué es la burguesía?',opts:['Un grupo de campesinos ricos','Los nobles sin títulos','Ricos comerciantes y banqueros que ganan importancia en la Edad Moderna','Los religiosos poderosos'],c:2,fb:'La burguesía son ricos comerciantes y banqueros. Son la gran novedad social de la Edad Moderna: ganan poder gracias al comercio.'},
+  {q:'¿Cuál de estos productos NO vino de América a Europa?',opts:['Patata','Tomate','Trigo','Chocolate'],c:2,fb:'El trigo ya existía en Europa. Los productos llegados de América fueron: patata, tomate, maíz, pimiento, chocolate, vainilla, piña y cacao.'},
+  {q:'¿Qué productos de América llegaron a Europa en la Edad Moderna?',opts:['Arroz, naranjas y aceitunas','Patata, tomate, maíz, pimiento, chocolate, vainilla, piña y cacao','Solo oro y plata','Trigo, cebada y avena'],c:1,fb:'De América llegaron: patata, tomate, maíz, pimiento, chocolate, vainilla, piña y cacao. Sin ellos no habría pizza ni chocolate.'},
+  {q:'¿Qué se intercambiaba en el comercio mundial de la Edad Moderna?',opts:['Solo especias','Solo oro y plata','Especias, oro, plata, azúcar, tabaco, seda, café y esclavos','Solo productos agrícolas'],c:2,fb:'En el comercio mundial se intercambiaban especias, oro, plata, azúcar, tabaco, seda, café y esclavos.'},
+  {q:'¿Qué nueva forma económica surgió en la Edad Moderna?',opts:['El feudalismo','El comunismo','El capitalismo comercial','El trueque simple'],c:2,fb:'Surgió el capitalismo comercial: compañías comerciales, bancos, colonias. El dinero y el comercio se convierten en la base de la economía.'},
+  {q:'¿Qué cambió en el gobierno durante la Edad Moderna?',opts:['Los nobles gobernaban más que nunca','Desaparecieron los reyes','Los reyes fortalecieron su poder y consolidaron los Estados','El clero tomó el poder'],c:2,fb:'Los reyes modernos fortalecieron su poder y consolidaron los Estados. Es la época de las monarquías absolutas.'},
+  {q:'¿Por qué los europeos exploraron nuevos territorios en la Edad Moderna?',opts:['Por curiosidad científica únicamente','En busca de rutas comerciales hacia Oriente','Para huir de guerras','Porque se les acabó el territorio en Europa'],c:1,fb:'Los europeos exploraron en busca de rutas comerciales hacia Oriente para obtener especias y otros productos valiosos.'},
+  {q:'¿Qué permitió el encuentro entre Europa, América, África y Asia?',opts:['La invención de la imprenta','El Renacimiento','Los grandes descubrimientos y exploraciones marítimas','Las guerras medievales'],c:2,fb:'Los grandes descubrimientos y exploraciones marítimas permitieron el encuentro entre los cuatro continentes y el inicio del comercio mundial.'},
+  {q:'¿Cuál es la diferencia entre Renacimiento y Barroco?',opts:['Son lo mismo','El Renacimiento es posterior al Barroco','El Renacimiento (s.XV-XVI) busca equilibrio clásico; el Barroco (s.XVII) es más expresivo y dramático','El Barroco es de la Edad Media'],c:2,fb:'El Renacimiento (s.XV-XVI) recupera el arte clásico con equilibrio y belleza. El Barroco (s.XVII) es posterior y más expresivo, dramático y detallado.'},
+  {q:'¿Cómo eran las ciudades en la Edad Moderna?',opts:['Desaparecieron casi todas','Eran pequeñas aldeas','Crecieron y se hicieron más grandes; las casas eran de piedra o ladrillo organizadas en barrios','Eran exactamente iguales que en la Edad Media'],c:2,fb:'En la Edad Moderna la población creció y las ciudades se hicieron cada vez más grandes, con casas de piedra o ladrillo.'},
+  {q:'¿Qué instrumento científico usó Galileo para observar el cielo?',opts:['El microscopio','El termómetro','El telescopio','La brújula'],c:2,fb:'Galileo usó el telescopio para observar el cielo y confirmar las teorías de Copérnico sobre el movimiento de los planetas.'},
+  {q:'¿Qué hizo Leonardo da Vinci que lo hace especial?',opts:['Solo fue pintor','Solo fue escultor','Fue a la vez artista, científico e inventor — el genio más completo del Renacimiento','Fue principalmente músico'],c:2,fb:'Leonardo da Vinci fue pintor (La Mona Lisa), escultor, arquitecto, científico e inventor. El genio más completo del Renacimiento.'},
+  {q:'¿Qué son las colonias en la Edad Moderna?',opts:['Ciudades medievales amuralladas','Territorios conquistados por los europeos en América, Asia y África para comerciar y explotar recursos','Barrios pobres de las ciudades','Monasterios religiosos'],c:1,fb:'Las colonias eran territorios que los europeos conquistaron en América, Asia y África para explotar sus recursos y comerciar.'},
+  {q:'¿Cuántos estamentos tenía la sociedad de la Edad Moderna?',opts:['Dos','Tres (Nobleza, Clero y Estado Llano) más la burguesía como novedad','Cuatro estamentos iguales','Cinco grupos sociales'],c:1,fb:'La sociedad tenía tres estamentos: Nobleza, Clero y Estado Llano. La gran novedad fue la burguesía dentro del Estado Llano.'},
+  {q:'¿Qué tenía la Nobleza en la Edad Moderna?',opts:['Solo títulos sin tierras','Tierras y títulos nobiliarios','Solo dinero de comercio','Solo poder religioso'],c:1,fb:'La Nobleza poseía tierras y títulos. Eran el grupo privilegiado junto con el Clero.'},
+  {q:'¿Qué papel tenía el Clero en la Edad Moderna?',opts:['Comerciaban y hacían negocios','Cultivaban la tierra','Tenían gran influencia en la sociedad, controlaban la educación y la cultura','No tenían ningún poder'],c:2,fb:'El Clero (religiosos) tenía gran influencia en la sociedad de la Edad Moderna, controlando la educación y la cultura.'},
+  {q:'¿Qué construyeron en la Edad Moderna además de iglesias?',opts:['Solo castillos medievales','Pirámides y templos','Palacios, catedrales, universidades y grandes obras de arte','Solo puentes y acueductos'],c:2,fb:'En la Edad Moderna se construyeron palacios, catedrales, universidades y grandes obras de arte, especialmente durante el Renacimiento y el Barroco.'},
+  {q:'¿Por qué la imprenta fue tan importante?',opts:['Solo servía para imprimir monedas','Permitió difundir libros e ideas a toda la sociedad, democratizando el conocimiento','Solo la usaban los reyes','No tuvo mucha importancia'],c:1,fb:'La imprenta de Gutenberg (s.XV) fue revolucionaria porque permitió copiar libros rápidamente y difundir ideas a toda la sociedad.'},
+  {q:'¿Qué nueva clase social gana importancia en la Edad Moderna gracias al comercio?',opts:['Los campesinos','Los caballeros medievales','La burguesía: ricos comerciantes y banqueros','Los monjes'],c:2,fb:'La burguesía (ricos comerciantes y banqueros) ganó importancia en la Edad Moderna gracias al crecimiento del comercio. Serán clave en la Revolución Francesa.'},
+];
+
+
 // ── EXAM ENGINE ───────────────────────────────────────────
-let examState = { his:{answered:0,correct:0}, ani:{answered:0,correct:0}, med:{answered:0,correct:0} };
+let examState = { his:{answered:0,correct:0}, ani:{answered:0,correct:0}, med:{answered:0,correct:0}, mod:{answered:0,correct:0} };
 
 function renderExam(subj, questions, containerId) {
   const letters = ['A','B','C','D'];
@@ -1446,6 +1818,8 @@ function resetExam(subj) {
   if(subj==='his') renderExam('his',HIS_QUESTIONS,'his-questions');
   else renderExam('ani',ANI_QUESTIONS,'ani-questions');
 renderExam('med',MED_QUESTIONS,'med-questions');
+renderExam('mod',MOD_QUESTIONS,'mod-questions');
+examState.mod={answered:0,correct:0};
 examState.med={answered:0,correct:0};
 }
 
@@ -1460,10 +1834,13 @@ function selectExam(subj, el) {
 renderFlashcards(HIS_FLASHCARDS,'his-flashcards');
 renderFlashcards(ANI_FLASHCARDS,'ani-flashcards');
 renderFlashcards(MED_FLASHCARDS,'med-flashcards');
+renderFlashcards(MOD_FLASHCARDS,'mod-flashcards');
 renderAnimalCards();
 renderExam('his',HIS_QUESTIONS,'his-questions');
 renderExam('ani',ANI_QUESTIONS,'ani-questions');
 renderExam('med',MED_QUESTIONS,'med-questions');
+renderExam('mod',MOD_QUESTIONS,'mod-questions');
+examState.mod={answered:0,correct:0};
 examState.med={answered:0,correct:0};
 </script>
 </body>
