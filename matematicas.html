@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matemáticas — Lucas Estudia</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  :root{
+    --accent:#60a5fa;--accent2:#93c5fd;--accent-bg:rgba(96,165,250,.1);--accent-border:rgba(96,165,250,.25);
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">📚 Lucas</a>
+  <a href="index.html">🏠 Inicio</a>
+  <a href="#tema-1" class="active">🔢 Matemáticas</a>
+  <a href="#examenes-m1">📝 Exámenes Tema 1</a>
+</nav>
+
+<div class="wrap">
+
+  <div class="tema-selector">
+    <button class="tema-tab active" onclick="selectTema('1',this)">Tema 1 · Números hasta las centenas de millar</button>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TEMA 1
+  ══════════════════════════════════════ -->
+  <div id="tema-1" class="tema-panel active">
+
+    <div class="hero">
+      <div class="hero-tag">🔢 Matemáticas · Tema 1</div>
+      <h1>Números hasta las<br>centenas de millar</h1>
+      <p>Lo justo de teoría y mucha práctica: valor posicional, leer y escribir números grandes, comparar, ordenar, redondear y números romanos. Con ejercicios de escribir la respuesta, elegir, arrastrar y clasificar.</p>
+      <div class="hero-chips">
+        <span class="hero-chip">Valor posicional</span>
+        <span class="hero-chip">Comparar y ordenar</span>
+        <span class="hero-chip">Redondeo</span>
+        <span class="hero-chip">Números romanos</span>
+      </div>
+    </div>
+
+    <div class="methods-bar">
+      <div class="method-chip"><span class="mi">🧮</span><span class="ml">Aplica</span></div>
+      <div class="method-chip"><span class="mi">🔁</span><span class="ml">Repite</span></div>
+      <div class="method-chip"><span class="mi">🖐️</span><span class="ml">Manipula</span></div>
+      <div class="method-chip"><span class="mi">⚡</span><span class="ml">Rápido</span></div>
+    </div>
+
+    <!-- REFERENCIA RÁPIDA (mínima, antes de practicar) -->
+    <div class="sec-header">
+      <div class="sec-num">0</div>
+      <h2>Antes de practicar: lo esencial</h2>
+    </div>
+
+    <div class="detail-section">
+      <p><strong>Orden de las cifras</strong> (de izquierda a derecha, en un número de 6 cifras): <strong>CM</strong> (centenas de millar) · <strong>DM</strong> (decenas de millar) · <strong>UM</strong> (unidades de millar) · <strong>C</strong> (centenas) · <strong>D</strong> (decenas) · <strong>U</strong> (unidades). Ejemplo: en 427.358 → 4-2-7-3-5-8.</p>
+      <p><strong>Comparar números:</strong> primero cuenta las cifras (gana el que tiene más); si tienen las mismas cifras, compara de izquierda a derecha hasta encontrar la primera diferencia.</p>
+      <p><strong>Redondear:</strong> mira la cifra siguiente al orden al que redondeas. Si es 5 o más, sube. Si es menor que 5, se queda igual (y todo lo de la derecha se convierte en ceros).</p>
+      <p><strong>Números romanos:</strong> I=1 · V=5 · X=10 · L=50 · C=100 · D=500 · M=1000. Si una letra de menor valor está a la izquierda de una mayor, se resta (IV=4); si está a la derecha o es igual o mayor, se suma (VI=6, XX=20).</p>
+    </div>
+
+    <!-- 1. VALOR POSICIONAL -->
+    <div class="sec-header">
+      <div class="sec-num">1</div>
+      <h2>Practica: valor posicional y descomposición</h2>
+    </div>
+
+    <div class="prac-grid" id="prac-valor"></div>
+
+    <!-- 2. LEER Y ESCRIBIR -->
+    <div class="sec-header">
+      <div class="sec-num">2</div>
+      <h2>Practica: leer y escribir números</h2>
+    </div>
+
+    <div class="prac-grid" id="prac-leer"></div>
+
+    <!-- 3. ORDENAR ARRASTRANDO -->
+    <div class="sec-header">
+      <div class="sec-num">3</div>
+      <h2>Arrastra para ordenar</h2>
+    </div>
+
+    <div class="drag-exercise">
+      <div class="drag-exercise-title">① Ordena de menor a mayor</div>
+      <div id="drag-order1"></div>
+    </div>
+
+    <div class="drag-exercise">
+      <div class="drag-exercise-title">② Ordena de mayor a menor</div>
+      <div id="drag-order2"></div>
+    </div>
+
+    <!-- 4. COMPARAR -->
+    <div class="sec-header">
+      <div class="sec-num">4</div>
+      <h2>Practica: compara con &gt;, &lt; o =</h2>
+    </div>
+
+    <div class="prac-grid" id="prac-compara"></div>
+
+    <div class="sec-header">
+      <div class="sec-num">5</div>
+      <h2>Verdadero o falso: redondeo</h2>
+    </div>
+
+    <div class="prac-grid" id="prac-vf"></div>
+
+    <!-- 6. REDONDEO -->
+    <div class="sec-header">
+      <div class="sec-num">6</div>
+      <h2>Practica: redondea tú mismo</h2>
+    </div>
+
+    <div class="prac-grid" id="prac-redondeo"></div>
+
+    <!-- 7. NÚMEROS ROMANOS -->
+    <div class="sec-header">
+      <div class="sec-num">7</div>
+      <h2>Practica: números romanos</h2>
+    </div>
+
+    <div class="prac-grid" id="prac-romanos"></div>
+
+    <div class="drag-exercise">
+      <div class="drag-exercise-title">Empareja cada letra romana con su valor</div>
+      <div id="drag-match-rom"></div>
+    </div>
+
+    <!-- 8. CLASIFICAR -->
+    <div class="sec-header">
+      <div class="sec-num">8</div>
+      <h2>Arrastra para clasificar</h2>
+    </div>
+
+    <div class="drag-exercise">
+      <div class="drag-exercise-title">① Clasifica: ¿par o impar?</div>
+      <div id="drag-classify1"></div>
+    </div>
+
+    <div class="drag-exercise">
+      <div class="drag-exercise-title">② Clasifica: ¿mayor o menor que 50.000?</div>
+      <div id="drag-classify2"></div>
+    </div>
+
+    <!-- FLASHCARDS -->
+    <div class="sec-header">
+      <div class="sec-num">9</div>
+      <h2>Tarjetas de repaso rápido</h2>
+    </div>
+
+    <div class="flashcard-grid" id="m1-flashcards"></div>
+
+    <div class="divider"></div>
+
+    <!-- EXÁMENES TEMA 1 -->
+    <div id="examenes-m1" class="sec-header">
+      <div class="sec-num">📝</div>
+      <h2>Exámenes — Tema 1</h2>
+    </div>
+
+    <div class="exam-hero">
+      <h1>📝 3 exámenes, dificultad creciente</h1>
+      <p>Examen 1: repaso de conceptos básicos. Examen 2: aplicar a números concretos. Examen 3: nivel experto, con los casos que más se confunden. 20 preguntas cada uno, con corrección y explicación al momento.</p>
+    </div>
+
+    <div class="exam-selector">
+      <button class="exam-tab active" data-group="m1" onclick="selectExamTab('m1','m1-ex1',this)">① Básico · 20 preguntas</button>
+      <button class="exam-tab" data-group="m1" onclick="selectExamTab('m1','m1-ex2',this)">② Aplicación · 20 preguntas</button>
+      <button class="exam-tab" data-group="m1" onclick="selectExamTab('m1','m1-ex3',this)">③ Experto · 20 preguntas</button>
+    </div>
+
+    <!-- EXAMEN 1 -->
+    <div id="exam-m1-ex1" class="exam-panel active" data-group="m1">
+      <div class="exam-header-bar">
+        <div class="exam-title">① Examen básico</div>
+        <div class="exam-progress-wrap">
+          <div class="exam-prog-bar"><div class="exam-prog-fill" id="prog-m1-ex1" style="width:0%"></div></div>
+          <div class="exam-prog-label" id="prog-m1-ex1-lbl">0/20</div>
+        </div>
+      </div>
+      <div id="q-m1-ex1"></div>
+      <button class="exam-submit-btn" onclick="submitExam('m1-ex1')">Ver mi nota →</button>
+      <div class="score-panel" id="score-m1-ex1">
+        <div class="score-big" id="score-m1-ex1-num">0</div>
+        <div class="score-label">de <span id="score-m1-ex1-total">20</span> preguntas correctas</div>
+        <div class="score-bar-wrap"><div class="score-bar-fill" id="score-m1-ex1-bar" style="width:0%"></div></div>
+        <div class="score-msg" id="score-m1-ex1-msg"></div>
+        <button class="reset-btn" onclick="resetExam('m1-ex1')">🔄 Repetir examen</button>
+      </div>
+    </div>
+
+    <!-- EXAMEN 2 -->
+    <div id="exam-m1-ex2" class="exam-panel" data-group="m1">
+      <div class="exam-header-bar">
+        <div class="exam-title">② Examen de aplicación</div>
+        <div class="exam-progress-wrap">
+          <div class="exam-prog-bar"><div class="exam-prog-fill" id="prog-m1-ex2" style="width:0%"></div></div>
+          <div class="exam-prog-label" id="prog-m1-ex2-lbl">0/20</div>
+        </div>
+      </div>
+      <div id="q-m1-ex2"></div>
+      <button class="exam-submit-btn" onclick="submitExam('m1-ex2')">Ver mi nota →</button>
+      <div class="score-panel" id="score-m1-ex2">
+        <div class="score-big" id="score-m1-ex2-num">0</div>
+        <div class="score-label">de <span id="score-m1-ex2-total">20</span> preguntas correctas</div>
+        <div class="score-bar-wrap"><div class="score-bar-fill" id="score-m1-ex2-bar" style="width:0%"></div></div>
+        <div class="score-msg" id="score-m1-ex2-msg"></div>
+        <button class="reset-btn" onclick="resetExam('m1-ex2')">🔄 Repetir examen</button>
+      </div>
+    </div>
+
+    <!-- EXAMEN 3 -->
+    <div id="exam-m1-ex3" class="exam-panel" data-group="m1">
+      <div class="exam-header-bar">
+        <div class="exam-title">③ Examen experto</div>
+        <div class="exam-progress-wrap">
+          <div class="exam-prog-bar"><div class="exam-prog-fill" id="prog-m1-ex3" style="width:0%"></div></div>
+          <div class="exam-prog-label" id="prog-m1-ex3-lbl">0/20</div>
+        </div>
+      </div>
+      <div id="q-m1-ex3"></div>
+      <button class="exam-submit-btn" onclick="submitExam('m1-ex3')">Ver mi nota →</button>
+      <div class="score-panel" id="score-m1-ex3">
+        <div class="score-big" id="score-m1-ex3-num">0</div>
+        <div class="score-label">de <span id="score-m1-ex3-total">20</span> preguntas correctas</div>
+        <div class="score-bar-wrap"><div class="score-bar-fill" id="score-m1-ex3-bar" style="width:0%"></div></div>
+        <div class="score-msg" id="score-m1-ex3-msg"></div>
+        <button class="reset-btn" onclick="resetExam('m1-ex3')">🔄 Repetir examen</button>
+      </div>
+    </div>
+
+  </div><!-- /tema-1 -->
+
+</div><!-- /wrap -->
+
+<script src="assets/app.js"></script>
+<script>
+// ════════════════════════════════════════════════════════
+//  MATEMÁTICAS — Tema 1: datos
+// ════════════════════════════════════════════════════════
+
+// ── 1. VALOR POSICIONAL (input) ──
+const M_VALOR = [
+  {q:'¿Cuántas centenas de millar tiene 427.358?', a:'4', fb:'4-2-7-3-5-8: la primera cifra por la izquierda es la CM.'},
+  {q:'¿Cuál es el valor de la cifra 7 en 427.358?', a:'7000', fb:'El 7 está en el lugar de las unidades de millar: 7 × 1000 = 7000.'},
+  {q:'¿Cuántas unidades de millar tiene 427.358?', a:'7', fb:'4-2-7-3-5-8: la tercera cifra por la izquierda es la UM.'},
+  {q:'¿Qué número es 400.000 + 20.000 + 7.000 + 300 + 50 + 8?', a:'427358', fb:'Sumando cada orden obtienes 427.358.'},
+  {q:'¿Cuál es el valor de la cifra 5 en 25.030?', a:'5000', fb:'El 5 está en el lugar de las unidades de millar: vale 5000.'},
+  {q:'¿Cuántas decenas de millar tiene 153.296?', a:'5', fb:'1-5-3-2-9-6: la segunda cifra es la DM.'},
+  {q:'¿Qué número forman 3 DM + 2 UM + 9 C + 7 D + 4 U?', a:'32974', fb:'30.000 + 2.000 + 900 + 70 + 4 = 32.974.'},
+  {q:'Escribe en cifra: ochocientos mil trescientos veinticinco.', a:'800325', fb:'800.000 + 300 + 25 = 800.325.'},
+  {q:'En el número 638.512, ¿cuántas CM tiene?', a:'6', fb:'La primera cifra por la izquierda es la CM: 6.'},
+  {q:'En el número 638.512, ¿cuántas U tiene?', a:'2', fb:'La última cifra, las unidades, es 2.'},
+];
+
+// ── 2. LEER Y ESCRIBIR (choice) ──
+const M_LEER = [
+  {q:'¿Cómo se lee 1.001?', opts:['Mil uno','Cien uno','Ciento uno','Diez mil uno'], c:0, fb:'1.001 se lee "mil uno".'},
+  {q:'¿Cómo se escribe "setecientos setenta" en cifra?', opts:['770','707','717','7070'], c:0, fb:'Setecientos = 700, setenta = 70 → 770.'},
+  {q:'¿Cómo se lee 100.000?', opts:['Cien mil','Mil cien','Diez mil','Cien mil cien'], c:0, fb:'100.000 se lee "cien mil".'},
+  {q:'¿Cómo se lee 25.030?', opts:['Veinticinco mil treinta','Veinticinco mil trescientos','Doscientos cincuenta mil treinta','Veinticinco mil tres'], c:0, fb:'25.030 se lee "veinticinco mil treinta".'},
+  {q:'¿Cómo se lee el ordinal "20.º"?', opts:['Vigésimo','Vigésimo primero','Veinteavo','Veinteno'], c:0, fb:'20.º se lee "vigésimo".'},
+  {q:'¿Cómo se lee el ordinal "30.º"?', opts:['Trigésimo','Trigésimo primero','Treintavo','Vigésimo'], c:0, fb:'30.º se lee "trigésimo".'},
+  {q:'¿Cómo se lee 62.719?', opts:['Sesenta y dos mil setecientos diecinueve','Seiscientos veintisiete mil diecinueve','Sesenta y dos mil setecientos noventa','Seiscientos veintisiete mil ciento nueve'], c:0, fb:'62.719 se lee "sesenta y dos mil setecientos diecinueve".'},
+  {q:'¿Cómo se escribe "dos mil veintitrés" en cifra?', opts:['2023','2203','2230','223'], c:0, fb:'Dos mil = 2000, veintitrés = 23 → 2023.'},
+];
+
+// ── 3. ORDENAR (drag) ──
+const M_ORDER1 = {
+  items: [
+    {id:'a', label:'999'}, {id:'b', label:'1.250'}, {id:'c', label:'9.099'},
+    {id:'d', label:'16.343'}, {id:'e', label:'105.444'},
+  ],
+  correctOrder: ['a','b','c','d','e'],
+};
+const M_ORDER2 = {
+  items: [
+    {id:'a', label:'150.444'}, {id:'b', label:'105.444'}, {id:'c', label:'62.719'},
+    {id:'d', label:'16.343'}, {id:'e', label:'999'},
+  ],
+  correctOrder: ['a','b','c','d','e'],
+};
+
+// ── 4. COMPARAR (choice >,<,=) ──
+const M_COMPARA = [
+  {q:'5.823 ___ 14.105', opts:['>','<','='], c:1, fb:'5.823 tiene 4 cifras y 14.105 tiene 5: a menos cifras, menor es el número.'},
+  {q:'62.719 ___ 62.717', opts:['>','<','='], c:0, fb:'Mismas cifras hasta las decenas; en las unidades, 9 > 7.'},
+  {q:'16.343 ___ 6.343', opts:['>','<','='], c:0, fb:'16.343 tiene 5 cifras y 6.343 tiene 4: es mayor.'},
+  {q:'105.444 ___ 150.444', opts:['>','<','='], c:1, fb:'Mismas cifras (6), pero en el segundo orden 0 < 5.'},
+  {q:'9.099 ___ 999', opts:['>','<','='], c:0, fb:'9.099 tiene 4 cifras y 999 tiene 3: es mayor.'},
+  {q:'1.250 ___ 2.051', opts:['>','<','='], c:1, fb:'Mismas cifras (4); en el primer orden, 1 < 2.'},
+  {q:'1.001 ___ 1.010', opts:['>','<','='], c:1, fb:'Aunque usan las mismas cifras, el orden importa: 1.001 < 1.010.'},
+  {q:'100.000 ___ 99.999', opts:['>','<','='], c:0, fb:'100.000 tiene 6 cifras y 99.999 tiene 5: es mayor.'},
+];
+
+// ── 5. VERDADERO/FALSO REDONDEO (choice) ──
+const M_VF = [
+  {q:'7.549 redondeado a las centenas es 7.500.', opts:['Verdadero','Falso'], c:0, fb:'La cifra de las decenas es 4 (menor que 5): se redondea hacia abajo, 7.500.'},
+  {q:'2.638 redondeado a la unidad de millar más cercana es 3.000.', opts:['Verdadero','Falso'], c:0, fb:'2.638 está más cerca de 3.000 que de 2.000: sube.'},
+  {q:'4.088 redondeado a las centenas es 4.100.', opts:['Verdadero','Falso'], c:0, fb:'Los dos últimos dígitos (88) son ≥ 50: las centenas suben a 4.100.'},
+  {q:'25.030 redondeado a las unidades de millar es 25.000.', opts:['Verdadero','Falso'], c:0, fb:'El resto (030) es menor que 500: se queda en 25.000.'},
+  {q:'8.400 redondeado a las unidades de millar es 9.000.', opts:['Verdadero','Falso'], c:1, fb:'Falso: el resto (400) es menor que 500, así que redondea hacia abajo a 8.000, no a 9.000.'},
+  {q:'5.757 redondeado a las centenas es 5.700.', opts:['Verdadero','Falso'], c:1, fb:'Falso: el resto (57) es mayor o igual que 50, así que sube a 5.800.'},
+  {q:'62.719 redondeado a las decenas es 62.720.', opts:['Verdadero','Falso'], c:0, fb:'La cifra de las unidades es 9 (≥ 5): las decenas suben a 62.720.'},
+  {q:'1.800 está entre 1.000 y 6.000.', opts:['Verdadero','Falso'], c:0, fb:'1.000 < 1.800 < 6.000.'},
+];
+
+// ── 6. REDONDEO (input) ──
+const M_REDONDEO = [
+  {q:'Redondea 7.549 a las centenas.', a:'7500', fb:'La cifra de las decenas (4) es menor que 5: baja.'},
+  {q:'Redondea 2.638 a la unidad de millar más cercana.', a:'3000', fb:'2.638 está más cerca de 3.000.'},
+  {q:'Redondea 4.088 a las centenas.', a:'4100', fb:'Los dos últimos dígitos (88) son ≥ 50: sube.'},
+  {q:'Redondea 25.030 a las unidades de millar.', a:'25000', fb:'El resto (030) es menor que 500: se queda igual.'},
+  {q:'Redondea 153.296 a las centenas de millar.', a:'200000', fb:'153.296 está más cerca de 200.000 que de 100.000.'},
+  {q:'Redondea 8.400 a las unidades de millar.', a:'8000', fb:'El resto (400) es menor que 500: baja.'},
+  {q:'Redondea 5.757 a las centenas.', a:'5800', fb:'El resto (57) es ≥ 50: sube.'},
+  {q:'Redondea 62.719 a las decenas.', a:'62720', fb:'La cifra de las unidades (9) es ≥ 5: sube.'},
+];
+
+// ── 7. NÚMEROS ROMANOS (input + drag match) ──
+const M_ROMANOS = [
+  {q:'¿Qué número es este en cifra: MCMXXX?', a:'1930', fb:'M=1000, CM=900, XXX=30 → 1930.'},
+  {q:'Escribe en número romano el 45.', a:'XLV', numeric:false, fb:'45 = 40 + 5 = XL + V = XLV.'},
+  {q:'¿Qué número es XVII?', a:'17', fb:'X=10, VII=7 → 17.'},
+  {q:'Escribe en número romano el 2025.', a:'MMXXV', numeric:false, fb:'2000 = MM, 25 = XXV → MMXXV.'},
+  {q:'¿Qué número romano corresponde al 4?', a:'IV', numeric:false, fb:'4 = 5 − 1 = IV (el I resta por estar a la izquierda de la V).'},
+  {q:'¿Qué número es MCCXIII?', a:'1213', fb:'M=1000, CC=200, X=10, III=3 → 1213.'},
+  {q:'Escribe en número romano el 1990.', a:'MCMXC', numeric:false, fb:'1990 = 1000 + 900 + 90 = M + CM + XC = MCMXC.'},
+  {q:'¿Qué número es XLV?', a:'45', fb:'XL=40, V=5 → 45.'},
+];
+
+const M_MATCH_ROMANOS = {
+  pairs: [
+    {id:'I', left:'I', right:'1'},
+    {id:'V', left:'V', right:'5'},
+    {id:'X', left:'X', right:'10'},
+    {id:'L', left:'L', right:'50'},
+    {id:'C', left:'C', right:'100'},
+    {id:'D', left:'D', right:'500'},
+    {id:'M', left:'M', right:'1.000'},
+  ],
+};
+
+// ── 8. CLASIFICAR (drag) ──
+const M_CLASSIFY1 = {
+  items: [
+    {id:'n1', label:'427.358', bucket:'par'},
+    {id:'n2', label:'153.296', bucket:'par'},
+    {id:'n3', label:'62.719', bucket:'impar'},
+    {id:'n4', label:'16.343', bucket:'impar'},
+    {id:'n5', label:'8.400', bucket:'par'},
+    {id:'n6', label:'5.757', bucket:'impar'},
+    {id:'n7', label:'25.030', bucket:'par'},
+    {id:'n8', label:'9.099', bucket:'impar'},
+  ],
+  buckets: [
+    {id:'par', label:'Par', icon:'🔵'},
+    {id:'impar', label:'Impar', icon:'🟠'},
+  ],
+};
+const M_CLASSIFY2 = {
+  items: [
+    {id:'m1', label:'7.549', bucket:'menor'},
+    {id:'m2', label:'153.296', bucket:'mayor'},
+    {id:'m3', label:'25.030', bucket:'menor'},
+    {id:'m4', label:'62.719', bucket:'mayor'},
+    {id:'m5', label:'8.400', bucket:'menor'},
+    {id:'m6', label:'105.444', bucket:'mayor'},
+    {id:'m7', label:'9.099', bucket:'menor'},
+    {id:'m8', label:'150.444', bucket:'mayor'},
+  ],
+  buckets: [
+    {id:'menor', label:'Menor que 50.000', icon:'⬇️'},
+    {id:'mayor', label:'Mayor que 50.000', icon:'⬆️'},
+  ],
+};
+
+// ── FLASHCARDS ──
+const M1_FLASHCARDS = [
+  {q:'¿Qué significan las letras CM DM UM C D U?', a:'Centenas de millar, decenas de millar, unidades de millar, centenas, decenas, unidades: el orden de las cifras de izquierda a derecha en un número de 6 cifras.'},
+  {q:'¿Cómo se compara cuando los números tienen distinta cantidad de cifras?', a:'Es mayor el que tiene más cifras, sin mirar nada más.'},
+  {q:'¿Cómo se compara cuando los números tienen la misma cantidad de cifras?', a:'Se comparan cifra a cifra de izquierda a derecha, hasta encontrar la primera diferencia.'},
+  {q:'¿Qué se mira para redondear un número?', a:'La cifra siguiente al orden al que se redondea. Si es 5 o más, sube; si es menor que 5, se queda igual.'},
+  {q:'¿Qué valores tienen las letras romanas I, V, X, L, C, D, M?', a:'I=1, V=5, X=10, L=50, C=100, D=500, M=1000.'},
+  {q:'¿Cuándo se resta una letra romana?', a:'Cuando una letra de menor valor está a la izquierda de una mayor (IV=4, IX=9, XL=40).'},
+  {q:'¿Cuándo se suma una letra romana?', a:'Cuando está a la derecha de otra igual o mayor (VI=6, XI=11, LX=60).'},
+  {q:'¿Cómo se lee el ordinal 20.º?', a:'Vigésimo.'},
+  {q:'¿Cómo se lee el ordinal 30.º?', a:'Trigésimo.'},
+  {q:'¿Cuál es el valor de una cifra según su posición?', a:'Depende del lugar que ocupa: la misma cifra 5 puede valer 5, 50, 500, 5.000... según su posición.'},
+  {q:'¿Cuál es el sucesor de un número?', a:'El número que va justo después (el siguiente).'},
+  {q:'¿Cuál es el antecesor de un número?', a:'El número que va justo antes (el anterior).'},
+];
+
+// ── EXAMEN 1 — BÁSICO ──
+EXAMS['m1-ex1'] = {questions:[
+  {q:'¿Cuántas cifras tiene un número con centenas de millar?',opts:['4','5','6','7'],c:2,fb:'Un número con centenas de millar tiene 6 cifras: CM DM UM C D U.'},
+  {q:'En el orden CM DM UM C D U, ¿qué significa "UM"?',opts:['Unidades de millón','Unidades de millar','Unidades y medias','Unidad múltiple'],c:1,fb:'UM son las unidades de millar.'},
+  {q:'¿Cuál es el valor de la cifra 5 en 25.030?',opts:['500','5000','50','50000'],c:1,fb:'El 5 está en el lugar de las unidades de millar: vale 5000.'},
+  {q:'¿Cómo se lee 100.000?',opts:['Cien mil','Mil cien','Diez mil','Cien mil cien'],c:0,fb:'100.000 se lee "cien mil".'},
+  {q:'¿Qué signo se usa para indicar que un número es mayor que otro?',opts:['<','>','=','≠'],c:1,fb:'El signo > indica "mayor que".'},
+  {q:'5.823 ___ 14.105. ¿Qué signo va en el hueco?',opts:['>','<','='],c:1,fb:'5.823 tiene menos cifras que 14.105, así que es menor.'},
+  {q:'Para redondear a las centenas, ¿qué cifra se mira?',opts:['Las centenas','Las decenas','Las unidades','Las unidades de millar'],c:1,fb:'Se mira la cifra siguiente (las decenas) para decidir si sube o baja.'},
+  {q:'Redondea 7.549 a las centenas.',opts:['7500','7600','7000','7540'],c:0,fb:'La cifra de las decenas (4) es menor que 5: baja a 7.500.'},
+  {q:'¿Qué número romano representa el 5?',opts:['I','V','X','L'],c:1,fb:'La letra V vale 5.'},
+  {q:'¿Qué número romano representa el 10?',opts:['V','X','L','C'],c:1,fb:'La letra X vale 10.'},
+  {q:'¿Qué valor tiene la letra romana C?',opts:['10','50','100','500'],c:2,fb:'La letra C vale 100.'},
+  {q:'¿Qué valor tiene la letra romana M?',opts:['100','500','1000','5000'],c:2,fb:'La letra M vale 1000.'},
+  {q:'¿Cómo se lee el ordinal "20.º"?',opts:['Vigésimo','Veinteavo','Décimo','Trigésimo'],c:0,fb:'20.º se lee "vigésimo".'},
+  {q:'¿Cómo se lee el ordinal "30.º"?',opts:['Vigésimo','Trigésimo','Cuadragésimo','Décimo'],c:1,fb:'30.º se lee "trigésimo".'},
+  {q:'En 427.358, ¿qué cifra ocupa el lugar de las decenas de millar (DM)?',opts:['4','2','7','3'],c:1,fb:'4-2-7-3-5-8: la segunda cifra es la DM.'},
+  {q:'¿Cuántas unidades de millar tiene 427.358?',opts:['4','2','7','3'],c:2,fb:'4-2-7-3-5-8: la tercera cifra es la UM.'},
+  {q:'¿Qué número es mayor: 9.099 o 999?',opts:['9.099','999','Son iguales','No se puede saber'],c:0,fb:'9.099 tiene más cifras que 999: es mayor.'},
+  {q:'Al redondear, si la cifra siguiente es 5 o más, ¿qué se hace?',opts:['Se deja igual','Se baja la cifra','Se sube la cifra anterior','Se eliminan todas las cifras'],c:2,fb:'Si la cifra siguiente es 5 o más, la cifra anterior sube una unidad.'},
+  {q:'¿Cuál es el valor de la letra romana I?',opts:['0','1','5','10'],c:1,fb:'La letra I vale 1.'},
+  {q:'¿Cuál es el valor de la letra romana L?',opts:['10','50','100','500'],c:1,fb:'La letra L vale 50.'},
+]};
+
+// ── EXAMEN 2 — APLICACIÓN ──
+EXAMS['m1-ex2'] = {questions:[
+  {q:'¿Cuál es el valor de la cifra 7 en 427.358?',opts:['7','70','700','7000'],c:3,fb:'El 7 está en el lugar de las unidades de millar: vale 7000.'},
+  {q:'¿Cuántas centenas de millar tiene 638.512?',opts:['6','3','8','5'],c:0,fb:'6-3-8-5-1-2: la primera cifra es la CM.'},
+  {q:'¿Cuántas unidades tiene 638.512?',opts:['5','1','2','8'],c:2,fb:'6-3-8-5-1-2: la última cifra, las unidades, es 2.'},
+  {q:'¿Qué número es 400.000 + 20.000 + 7.000 + 300 + 50 + 8?',opts:['427358','472358','47358','4273580'],c:0,fb:'Sumando cada orden se obtiene 427.358.'},
+  {q:'¿Qué número forman 3 DM + 2 UM + 9 C + 7 D + 4 U?',opts:['32974','39274','3294','329740'],c:0,fb:'30.000 + 2.000 + 900 + 70 + 4 = 32.974.'},
+  {q:'Ordena de menor a mayor: 999, 1.250, 2.051.',opts:['999 < 1.250 < 2.051','2.051 < 1.250 < 999','1.250 < 999 < 2.051','999 < 2.051 < 1.250'],c:0,fb:'999 tiene 3 cifras (el menor); entre los otros dos, 1.250 < 2.051.'},
+  {q:'Compara: 16.343 y 6.343. ¿Cuál es mayor?',opts:['16.343','6.343','Son iguales','No se puede comparar'],c:0,fb:'16.343 tiene 5 cifras y 6.343 tiene 4: es mayor.'},
+  {q:'Redondea 2.638 a la unidad de millar más cercana.',opts:['2000','3000','2600','2700'],c:1,fb:'2.638 está más cerca de 3.000.'},
+  {q:'Redondea 153.296 a las centenas de millar.',opts:['100000','150000','200000','153000'],c:2,fb:'153.296 está más cerca de 200.000 que de 100.000.'},
+  {q:'Redondea 8.400 a las unidades de millar.',opts:['8000','9000','8500','8400'],c:0,fb:'El resto (400) es menor que 500: baja a 8.000.'},
+  {q:'Redondea 5.757 a las centenas.',opts:['5700','5800','5750','5760'],c:1,fb:'El resto (57) es ≥ 50: sube a 5.800.'},
+  {q:'¿Qué número romano corresponde a 1930?',opts:['MCMXXX','MCMXL','MDCCCXXX','MCCCXXX'],c:0,fb:'1930 = 1000 + 900 + 30 = M + CM + XXX = MCMXXX.'},
+  {q:'¿Qué número es MCCXIII?',opts:['1213','1312','1113','1223'],c:0,fb:'M=1000, CC=200, X=10, III=3 → 1213.'},
+  {q:'Escribe en número romano el 45.',opts:['XLV','VL','XXXXV','LV'],c:0,fb:'45 = 40 + 5 = XL + V = XLV.'},
+  {q:'¿Qué número es XVII?',opts:['16','17','18','27'],c:1,fb:'X=10, VII=7 → 17.'},
+  {q:'¿Cómo se lee 25.030?',opts:['Veinticinco mil treinta','Veinticinco mil trescientos','Doscientos cincuenta mil treinta','Veinticinco mil tres'],c:0,fb:'25.030 se lee "veinticinco mil treinta".'},
+  {q:'¿Cómo se lee 62.719?',opts:['Sesenta y dos mil setecientos diecinueve','Seiscientos veintisiete mil diecinueve','Sesenta y dos mil setecientos noventa','Seiscientos veintisiete mil ciento nueve'],c:0,fb:'62.719 se lee "sesenta y dos mil setecientos diecinueve".'},
+  {q:'El vigésimo primero se escribe...',opts:['20.º','21.º','22.º','31.º'],c:1,fb:'Vigésimo primero es el 21.º.'},
+  {q:'El trigésimo segundo se escribe...',opts:['30.º','32.º','23.º','33.º'],c:1,fb:'Trigésimo segundo es el 32.º.'},
+  {q:'¿Cuál es el anterior de 1.000?',opts:['999','1001','990','900'],c:0,fb:'El número justo antes de 1.000 es 999.'},
+]};
+
+// ── EXAMEN 3 — EXPERTO ──
+EXAMS['m1-ex3'] = {questions:[
+  {q:'¿Cuál es el mayor número de 3 cifras?',opts:['999','990','900','909'],c:0,fb:'999 es el mayor número posible con 3 cifras.'},
+  {q:'¿Cuál es el menor número de 4 cifras?',opts:['1000','999','1001','0999'],c:0,fb:'1000 es el menor número de 4 cifras (0999 en realidad son solo 3 cifras significativas).'},
+  {q:'9.099 y 999: ¿por qué 9.099 es mayor aunque ambos empiecen por 9?',opts:['Porque tiene más cifras','Porque es impar','Porque empieza por 9','No es mayor'],c:0,fb:'Al tener distinta cantidad de cifras, siempre es mayor el que tiene más, sin mirar nada más.'},
+  {q:'Compara 105.444 y 150.444. ¿Cuál es menor?',opts:['105.444','150.444','Son iguales','No se puede saber'],c:0,fb:'Tienen las mismas cifras, pero al comparar de izquierda a derecha: 1=1, y luego 0 < 5.'},
+  {q:'¿Cuál es el valor de la cifra 0 en 25.030?',opts:['0','No tiene valor','Depende de la cifra siguiente','Siempre vale 10'],c:0,fb:'Un 0 siempre vale 0, pero ocupa un lugar importante: indica que ese orden no tiene unidades.'},
+  {q:'Redondea 5.757 a las centenas. ¿Por qué sube a 5.800 y no se queda en 5.700?',opts:['Porque la cifra de las decenas (5) hace que se redondee hacia arriba','Porque 5.757 es impar','Porque siempre se redondea hacia arriba','Porque tiene 4 cifras'],c:0,fb:'El resto tras las centenas (57) es ≥ 50, así que sube.'},
+  {q:'Redondea 8.400 a las unidades de millar. ¿Por qué da 8.000 y no 9.000?',opts:['Porque el resto (400) es menor que 500','Porque 8.400 es par','Porque siempre se redondea hacia abajo','Porque tiene 4 cifras'],c:0,fb:'El resto (400) es menor que 500, así que redondea hacia abajo.'},
+  {q:'¿Qué número romano es mayor: IX o XI?',opts:['IX','XI','Son iguales','No se puede comparar'],c:1,fb:'IX = 9 (el I resta por ir antes de la X); XI = 11 (el I suma por ir después). 11 > 9.'},
+  {q:'En números romanos, ¿qué significa que una letra de menor valor esté a la izquierda de una mayor?',opts:['Que se suma','Que se resta','Que se multiplica','Que no es válido'],c:1,fb:'Cuando una letra de menor valor va a la izquierda de otra mayor, se resta (IV, IX, XL...).'},
+  {q:'¿Qué número es IV?',opts:['6','4','9','1'],c:1,fb:'IV = 5 − 1 = 4.'},
+  {q:'¿Qué número es IX?',opts:['11','9','19','91'],c:1,fb:'IX = 10 − 1 = 9.'},
+  {q:'Escribe en número romano el 40.',opts:['XL','XXXX','LX','XXXL'],c:0,fb:'40 = 50 − 10 = XL (la X resta por ir a la izquierda de la L).'},
+  {q:'¿Qué diferencia a 427.358 de 472.358?',opts:['Las unidades de millar y las decenas de millar están intercambiadas','Son el mismo número','Difieren en las unidades','Difieren en las centenas de millar'],c:0,fb:'En 427.358 el orden es 4-2-7..., y en 472.358 es 4-7-2...: se han intercambiado DM y UM.'},
+  {q:'Un número tiene un 0 en el lugar de las decenas. ¿Afecta esto a su valor total?',opts:['No, el 0 no cuenta para nada y se puede quitar','Sí, aunque valga 0 su posición es necesaria para leer bien el número','Sí, hay que sumarle 10','Solo afecta si es el primer 0'],c:1,fb:'El 0 marca que ese orden está vacío, pero su posición es imprescindible para que el resto de cifras se lean correctamente.'},
+  {q:'Redondea 153.296 a las decenas de millar.',opts:['150000','160000','153000','200000'],c:0,fb:'El resto tras las decenas de millar (3.296) es menor que 5.000: se queda en 150.000. (Distinto de redondear a las centenas de millar, que daría 200.000.)'},
+  {q:'¿Cuántos números hay entre 1 y 100 (ambos incluidos)?',opts:['98','99','100','101'],c:2,fb:'Del 1 al 100, ambos incluidos, hay 100 números.'},
+  {q:'¿Cuál es el sucesor de 999.999?',opts:['1.000.000','999.998','1.999.999','100.000'],c:0,fb:'El siguiente número después de 999.999 es 1.000.000.'},
+  {q:'¿Cuál es el antecesor de 100.000?',opts:['99.999','100.001','90.999','99.900'],c:0,fb:'El número justo antes de 100.000 es 99.999.'},
+  {q:'Si ordeno 62.717, 62.719 y 62.720 de menor a mayor, ¿cuál queda en el medio?',opts:['62.717','62.719','62.720','Ninguno'],c:1,fb:'62.717 < 62.719 < 62.720: el del medio es 62.719.'},
+  {q:'¿Por qué "1.001" y "1.010" no son el mismo número aunque usan las mismas cifras (1,0,0,1)?',opts:['Porque el orden de las cifras determina su valor posicional','Porque uno es par y otro impar','En realidad sí son el mismo número','Porque uno tiene una cifra más'],c:0,fb:'Cada cifra vale según la posición que ocupa: cambiar el orden cambia el número.'},
+]};
+
+// ── INIT ──
+renderInputPractice('prac-valor', M_VALOR);
+renderChoicePractice('prac-leer', M_LEER);
+renderDragOrder('drag-order1', M_ORDER1);
+renderDragOrder('drag-order2', M_ORDER2);
+renderChoicePractice('prac-compara', M_COMPARA);
+renderChoicePractice('prac-vf', M_VF);
+renderInputPractice('prac-redondeo', M_REDONDEO);
+renderInputPractice('prac-romanos', M_ROMANOS);
+renderDragMatch('drag-match-rom', M_MATCH_ROMANOS);
+renderDragClassify('drag-classify1', M_CLASSIFY1);
+renderDragClassify('drag-classify2', M_CLASSIFY2);
+renderFlashcards(M1_FLASHCARDS, 'm1-flashcards');
+initExams();
+</script>
+</body>
+</html>
